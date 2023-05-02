@@ -8,4 +8,28 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Views\carro2.png" />
+    <None Remove="Views\Cliente2.png" />
+    <None Remove="Views\Compra2.png" />
+    <None Remove="Views\configuracoes2.png" />
+    <None Remove="Views\Fornecedor2.png" />
+    <None Remove="Views\Funcionarios.svg" />
+    <None Remove="Views\Funcionarios2.png" />
+    <None Remove="Views\Locacaoes2.png" />
+    <None Remove="Views\relatorios2.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Views\carro2.png" />
+    <Resource Include="Views\Cliente2.png" />
+    <Resource Include="Views\Compra2.png" />
+    <Resource Include="Views\configuracoes2.png" />
+    <Resource Include="Views\Fornecedor2.png" />
+    <Resource Include="Views\Funcionarios.svg" />
+    <Resource Include="Views\Funcionarios2.png" />
+    <Resource Include="Views\Locacaoes2.png" />
+    <Resource Include="Views\relatorios2.png" />
+  </ItemGroup>
+
 </Project>

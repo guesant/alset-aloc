@@ -75,86 +75,86 @@
 
             <StackPanel Orientation="Vertical" Grid.Row="1" >
 
-                <Button Margin="0" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                <Button Margin="10" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <Grid Width="225">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="1.*" />
                         </Grid.ColumnDefinitions>
 
-                        <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="https://picsum.photos/36" />
+                        <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="/Views/Funcionarios2.png" />
                         <Label Grid.Column="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" HorizontalAlignment="Stretch">Funcionários</Label>
                     </Grid>
                 </Button>
 
-                <Button Margin="0" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                <Button Margin="10" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <Grid Width="225">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="1.*" />
                         </Grid.ColumnDefinitions>
 
-                        <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="https://picsum.photos/36" />
+                        <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="/Views/carro2.png" />
                         <Label Grid.Column="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" HorizontalAlignment="Stretch">Veículos</Label>
                     </Grid>
                 </Button>
 
-                <Button Margin="0" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                <Button Margin="10" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <Grid Width="225">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="1.*" />
                         </Grid.ColumnDefinitions>
 
-                        <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="https://picsum.photos/36" />
+                        <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="/Views/Cliente2.png" />
                         <Label Grid.Column="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" HorizontalAlignment="Stretch">Clientes</Label>
                     </Grid>
                 </Button>
 
-                <Button Margin="0" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                <Button Margin="10" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <Grid Width="225">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="1.*" />
                         </Grid.ColumnDefinitions>
 
-                        <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="https://picsum.photos/36" />
+                        <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="/Views/Fornecedor2.png" />
                         <Label Grid.Column="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" HorizontalAlignment="Stretch">Fornecedores</Label>
                     </Grid>
                 </Button>
 
-                <Button Margin="0" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                <Button Margin="10" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <Grid Width="225">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="1.*" />
                         </Grid.ColumnDefinitions>
 
-                        <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="https://picsum.photos/36" />
+                        <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="/Views/Compra2.png" />
                         <Label Grid.Column="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" HorizontalAlignment="Stretch">Compras</Label>
                     </Grid>
                 </Button>
 
-                <Button Margin="0" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                <Button Margin="10" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <Grid Width="225">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="1.*" />
                         </Grid.ColumnDefinitions>
 
-                        <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="https://picsum.photos/36" />
+                        <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="/Views/Locacaoes2.png" />
                         <Label Grid.Column="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" HorizontalAlignment="Stretch">Locações</Label>
                     </Grid>
                 </Button>
 
-                <Button Margin="0" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                <Button Margin="10" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <Grid Width="225">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="1.*" />
                         </Grid.ColumnDefinitions>
 
-                        <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="https://picsum.photos/36" />
+                        <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="/Views/relatorios2.png" />
                         <Label Grid.Column="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" HorizontalAlignment="Stretch">Relatórios</Label>
                     </Grid>
                 </Button>
@@ -162,14 +162,19 @@
             </StackPanel>
 
             <StackPanel Grid.Row="3">
-                <Button Margin="0" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                <Button Margin="10"  VerticalAlignment="Top" Background="Transparent"  HorizontalAlignment="Stretch">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="13"/>
+                        </Style>
+                    </Button.Resources>
                     <Grid Width="225">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="1.*" />
                         </Grid.ColumnDefinitions>
 
-                        <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="https://picsum.photos/36" />
+                        <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="/Views/configuracoes2.png" />
                         <Label Grid.Column="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" HorizontalAlignment="Stretch">Configurações</Label>
                     </Grid>
                 </Button>
