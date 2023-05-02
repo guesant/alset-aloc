@@ -23,8 +23,8 @@
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-
-            <Image Grid.Column="0" Margin="20 0" VerticalAlignment="Center" Width="45" Height="45" Source="https://www.autenticabandeiras.com.br/wp-content/uploads/2022/07/Produto-Bandeira-Amazonas.png" />
+            <Image Grid.Column="0" Margin="20 0" VerticalAlignment="Center" Width="45" Height="45" Source="/Views/home.png" />
+            <Image Grid.Column="1" Margin="20 0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="45" Height="45"  Source="/Views/logout.png"/>
 
             <TextBox Grid.Column="1" x:Name="txtSearch" Width="425" Padding="10" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="15">
                 <TextBox.Resources>
@@ -63,12 +63,14 @@
 
                 <Ellipse Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Height="62" Width="62">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="https://picsum.photos/62"/>
+                        <ImageBrush ImageSource="https://avatars.githubusercontent.com/u/26263847?v=4"/>
                     </Ellipse.Fill>
                 </Ellipse>
 
+                
+
                 <StackPanel Margin="8 0 15 0" Grid.Row="0" Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
-                    <Label  FontWeight="Bold" FontSize="14" >Jonathan Silva</Label>
+                    <Label  FontWeight="Bold" FontSize="14" >João Eujácio</Label>
                     <Label Margin="0 -12 0 0" VerticalAlignment="Center" FontSize="14" >Gerente</Label>
                 </StackPanel>
             </Grid>
@@ -183,9 +185,9 @@
 
         <Grid Grid.Row="2" Grid.Column="2">
             
-            <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="https://p2.trrsf.com/image/fget/cf/774/0/images.terra.com/2023/01/30/mario-cat-suit-filme-1k1tyn02ehmpl.jpg" />
+            
 
-            <Image Source="https://i.ytimg.com/vi/ewU9q95Y0M0/sddefault.jpg" />
+            <Image Width="425" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Views/logoAlset.png" />
 
         </Grid>
     </Grid>

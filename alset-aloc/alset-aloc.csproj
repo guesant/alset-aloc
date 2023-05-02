@@ -16,7 +16,10 @@
     <None Remove="Views\Fornecedor2.png" />
     <None Remove="Views\Funcionarios.svg" />
     <None Remove="Views\Funcionarios2.png" />
+    <None Remove="Views\home.png" />
     <None Remove="Views\Locacaoes2.png" />
+    <None Remove="Views\logoAlset.png" />
+    <None Remove="Views\logout.png" />
     <None Remove="Views\relatorios2.png" />
   </ItemGroup>
 
@@ -28,7 +31,10 @@
     <Resource Include="Views\Fornecedor2.png" />
     <Resource Include="Views\Funcionarios.svg" />
     <Resource Include="Views\Funcionarios2.png" />
+    <Resource Include="Views\home.png" />
     <Resource Include="Views\Locacaoes2.png" />
+    <Resource Include="Views\logoAlset.png" />
+    <Resource Include="Views\logout.png" />
     <Resource Include="Views\relatorios2.png" />
   </ItemGroup>
 
