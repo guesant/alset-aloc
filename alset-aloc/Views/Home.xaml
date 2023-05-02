@@ -184,10 +184,10 @@
         </Grid>
 
         <Grid Grid.Row="2" Grid.Column="2">
-            
-            
 
-            <Image Width="425" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Views/logoAlset.png" />
+
+
+            <Image Width="425" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/IMG/icons/logoAlset.png" />
 
         </Grid>
     </Grid>
