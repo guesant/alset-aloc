@@ -193,8 +193,8 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel  Orientation="Horizontal">
-                    <Button Content="RECEBIMENTOS" FontWeight="Bold" Margin="10 10" FontSize="16" Padding="5" Background="Transparent" BorderBrush="White"/>
-                    <Button Content="PAGAMENTOS" FontWeight="Bold" Margin="10 10" FontSize="16" Padding="5" Background="Transparent" BorderBrush="White"/>
+                    <Button Content="RECEBIMENTOS" FontWeight="Bold" Margin="10 10" FontSize="20" Padding="5" Background="Transparent" BorderBrush="White"/>
+                    <Button Content="PAGAMENTOS" FontWeight="Bold" Margin="10 10" FontSize="20" Padding="5" Background="Transparent" BorderBrush="White"/>
                 </StackPanel>
 
             </Grid>
@@ -207,7 +207,7 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
-                    <Button Margin="15 0" Content="+ Cadastrar" FontWeight="Bold"  FontSize="16" Padding="10 5" BorderBrush="Transparent" Background="#004D94" Foreground="White">
+                    <Button Margin="15 0" Content="+ Cadastrar" FontWeight="Bold"  FontSize="16" Padding="20 5" BorderBrush="Transparent" Background="#004D94" Foreground="White">
                         <Button.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="5"/>
@@ -215,8 +215,8 @@
                         </Button.Resources>
                     </Button>
 
-                    <Button Height="29" Background="Transparent" BorderBrush="#004D94">
-                        <Image Height="24" Width="24" Source="/IMG/Icons/trashCab.png"/>
+                    <Button Height="40"  Background="Transparent" BorderBrush="#004D94">
+                        <Image Height="35" Width="35" Source="/IMG/Icons/trashCab.png"/>
                         <Button.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="5"/>
@@ -226,8 +226,8 @@
 
                 </StackPanel>
 
-                <Button Grid.Row="1" Height="29" HorizontalAlignment="Right" Margin="25 0" Background="Transparent" BorderBrush="#004D94">
-                    <Image Height="24" Width="24" Source="/IMG/Icons/trashCab.png"/>
+                <Button Grid.Row="1" Height="40" HorizontalAlignment="Right" Margin="25 0" Background="Transparent" BorderBrush="#004D94">
+                    <Image Height="35" Width="35" Source="/IMG/Icons/lupa.png"/>
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
@@ -235,10 +235,10 @@
                     </Button.Resources>
                 </Button>
 
-                <DatePicker Grid.Row="1" HorizontalAlignment="Right" IsTodayHighlighted="true" VerticalAlignment="Center" Margin="60 0"/>
-w
-                <DataGrid Grid.Row="2"/>
-
+                <DatePicker FontSize="20" Grid.Row="1" HorizontalAlignment="Right" IsTodayHighlighted="true" VerticalAlignment="Center" Margin="70 0" />
+                
+                <DataGrid Grid.Row="2" Width="900" Height="500"/>
+ 
             </Grid>
         </Grid>
     </Grid>
