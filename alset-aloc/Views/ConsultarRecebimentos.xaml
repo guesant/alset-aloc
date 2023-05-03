@@ -226,21 +226,20 @@
 
                 </StackPanel>
 
-                <StackPanel Grid.Row="1" VerticalAlignment="center">
-                    <Button Height="29" Background="Transparent" BorderBrush="#004D94">
-                        <Image Height="24" Width="24" Source="/IMG/Icons/trashCab.png"/>
-                        <Button.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="5"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
+                <Button Grid.Row="1" Height="29" HorizontalAlignment="Right" Margin="25 0" Background="Transparent" BorderBrush="#004D94">
+                    <Image Height="24" Width="24" Source="/IMG/Icons/trashCab.png"/>
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
 
-                    <DatePicker HorizontalAlignment="Right" IsTodayHighlighted="true"/>
-                </StackPanel>
+                <DatePicker Grid.Row="1" HorizontalAlignment="Right" IsTodayHighlighted="true" VerticalAlignment="Center" Margin="60 0"/>
+w
+                <DataGrid Grid.Row="2"/>
 
             </Grid>
-            
         </Grid>
     </Grid>
 </Window>
