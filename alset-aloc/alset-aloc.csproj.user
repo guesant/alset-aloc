@@ -9,6 +9,12 @@
   <ItemGroup>
     <Compile Update="Views\ConsultarRecebimentos.xaml.cs">
       <SubType>Code</SubType>
+    </Compile>    
+    <Compile Update="Views\ConsultarCliente.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\cliente.xaml.cs">
+      <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Home.xaml.cs">
       <SubType>Code</SubType>
@@ -19,6 +25,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\ConsultarRecebimentos.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ConsultarCliente.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Cliente.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Home.xaml">
