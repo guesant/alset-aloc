@@ -23,8 +23,8 @@
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="0" Margin="20 0" VerticalAlignment="Center" Width="45" Height="45" Source="/IMG/Icons/home.png" />
-            <Image Grid.Column="1" Margin="20 0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="45" Height="45"  Source="/IMG/Icons/logout.png"/>
+            <Image Grid.Column="0" Margin="20 0" VerticalAlignment="Center" Width="45" Height="45" Source="/Projeto/img/Icons/home.png" />
+            <Image Grid.Column="1" Margin="20 0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="45" Height="45"  Source="/Projeto/img/icons/logout.png"/>
 
             <TextBox Grid.Column="1" x:Name="txtSearch" Width="425" Padding="10" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="15">
                 <TextBox.Resources>
@@ -85,7 +85,7 @@
                                 <ColumnDefinition Width="1.*" />
                             </Grid.ColumnDefinitions>
 
-                            <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="/IMG/Icons/Funcionarios.png" />
+                            <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="/Projeto/img/Icons/Funcionarios.png" />
                             <Label Grid.Column="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" HorizontalAlignment="Stretch">Funcionários</Label>
                         </Grid>
                     </Button>
@@ -97,7 +97,7 @@
                                 <ColumnDefinition Width="1.*" />
                             </Grid.ColumnDefinitions>
 
-                            <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="/IMG/Icons/carro.png" />
+                            <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="/Projeto/img/Icons/carro.png" />
                             <Label Grid.Column="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" HorizontalAlignment="Stretch">Veículos</Label>
                         </Grid>
                     </Button>
@@ -109,7 +109,7 @@
                                 <ColumnDefinition Width="1.*" />
                             </Grid.ColumnDefinitions>
 
-                            <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="/IMG/Icons/Cliente.png" />
+                            <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="/Projeto/img/Icons/Cliente.png" />
                             <Label Grid.Column="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" HorizontalAlignment="Stretch">Clientes</Label>
                         </Grid>
                     </Button>
@@ -121,7 +121,7 @@
                                 <ColumnDefinition Width="1.*" />
                             </Grid.ColumnDefinitions>
 
-                            <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="/IMG/Icons/Fornecedor.png" />
+                            <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="/Projeto/img/Icons/Fornecedor.png" />
                             <Label Grid.Column="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" HorizontalAlignment="Stretch">Fornecedores</Label>
                         </Grid>
                     </Button>
@@ -133,19 +133,19 @@
                                 <ColumnDefinition Width="1.*" />
                             </Grid.ColumnDefinitions>
 
-                            <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="/IMG/Icons/Compra.png" />
+                            <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="/Projeto/img/Icons/Compra.png" />
                             <Label Grid.Column="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" HorizontalAlignment="Stretch">Compras</Label>
                         </Grid>
                     </Button>
 
-                    <Button Margin="10" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                    <Button Margin="10" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top" HorizontalAlignment="Stretch" Click="Button_Click">
                         <Grid Width="225">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto" />
                                 <ColumnDefinition Width="1.*" />
                             </Grid.ColumnDefinitions>
 
-                            <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="/IMG/Icons/locacoes.png" />
+                            <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="/Projeto/img/Icons/locacoes.png" />
                             <Label Grid.Column="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" HorizontalAlignment="Stretch">Locações</Label>
                         </Grid>
                     </Button>
@@ -157,7 +157,7 @@
                                 <ColumnDefinition Width="1.*" />
                             </Grid.ColumnDefinitions>
 
-                            <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="/IMG/Icons/relatorios.png" />
+                            <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="/Projeto/img/Icons/relatorios.png" />
                             <Label Grid.Column="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" HorizontalAlignment="Stretch">Relatórios</Label>
                         </Grid>
                     </Button>
@@ -181,7 +181,7 @@
                             <ColumnDefinition Width="1.*" />
                         </Grid.ColumnDefinitions>
 
-                        <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="/IMG/Icons/configuracoes.png" />
+                        <Image Grid.Column="0" Margin="10 5" VerticalAlignment="Center" Width="36" Height="36" Source="/Projeto/img/Icons/configuracoes.png" />
                         <Label Grid.Column="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" HorizontalAlignment="Stretch">Configurações</Label>
                     </Grid>
                 </Button>
