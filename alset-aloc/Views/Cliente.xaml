@@ -207,22 +207,22 @@
                     <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="-14,-24,13,24"/>
                 </Border>
             </Grid>
-            <TextBox HorizontalAlignment="Left" Margin="799,41,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Pesquisar por..." VerticalAlignment="Top" Width="250" Height="24px" Foreground="Gray">
+            <TextBox HorizontalAlignment="Left" Margin="799,41,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Pesquisar por..." VerticalAlignment="Top" Width="250" Height="26px" Foreground="Gray">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="2"/>
                     </Style>
                 </TextBox.Resources>
             </TextBox>
-            <Button Grid.Row="1" Width="20" Height="22" Margin="0,42,60,0" VerticalAlignment="Top" HorizontalAlignment="Right" BorderBrush="{x:Null}">
+            <Button Grid.Row="1" Width="20" Height="22" Margin="0,42,70,0" VerticalAlignment="Top" HorizontalAlignment="Right" BorderBrush="{x:Null}">
                 <Button.Background>
                     <ImageBrush ImageSource="/IMG/Icons/procurar.png"/>
 
                 </Button.Background>
 
-            </Button>
+            </Button> 
 
-            <Button Grid.Row="1" Width="15" Height="18" Margin="0,44,93,0" VerticalAlignment="Top" HorizontalAlignment="Right" BorderBrush="{x:Null}" RenderTransformOrigin="-0.067,0.449">
+            <Button Grid.Row="1" Width="15" Height="18" Margin="0,44,52,0" VerticalAlignment="Top" HorizontalAlignment="Right" BorderBrush="{x:Null}" RenderTransformOrigin="-0.067,0.449">
                 <Button.Background>
                     <ImageBrush ImageSource="/IMG/Icons/Close.png"/>
                 </Button.Background>
