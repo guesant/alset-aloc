@@ -9,36 +9,40 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="IMG\Icons\carro.png" />
-    <None Remove="IMG\Icons\cliente.png" />
-    <None Remove="IMG\Icons\compra.png" />
-    <None Remove="IMG\Icons\configuracoes.png" />
-    <None Remove="IMG\Icons\fornecedor.png" />
-    <None Remove="IMG\Icons\funcionarios.png" />
-    <None Remove="IMG\Icons\home.png" />
-    <None Remove="IMG\Icons\locacoes.png" />
-    <None Remove="IMG\Icons\logoAlset.png" />
-    <None Remove="IMG\Icons\logout.png" />
-    <None Remove="IMG\Icons\relatorios.png" />
+    <None Remove="Projeto\IMG\Icons\carro.png" />
+    <None Remove="Projeto\IMG\Icons\cliente.png" />
+    <None Remove="Projeto\IMG\Icons\compra.png" />
+    <None Remove="Projeto\IMG\Icons\configuracoes.png" />
+    <None Remove="Projeto\IMG\Icons\fornecedor.png" />
+    <None Remove="Projeto\IMG\Icons\funcionarios.png" />
+    <None Remove="Projeto\IMG\Icons\home.png" />
+    <None Remove="Projeto\IMG\Icons\locacoes.png" />
+    <None Remove="Projeto\IMG\Icons\logoAlset.png" />
+    <None Remove="Projeto\IMG\Icons\logout.png" />
+    <None Remove="Projeto\IMG\Icons\relatorios.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Projeto\Database\" />
+    <Folder Include="Projeto\Fonts\" />
+    <Folder Include="Projeto\Models\" />
+    <Folder Include="Components\" />
     <Folder Include="Properties\" />
     <Folder Include="Resources\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="IMG\Icons\carro.png" />
-    <Resource Include="IMG\Icons\cliente.png" />
-    <Resource Include="IMG\Icons\compra.png" />
-    <Resource Include="IMG\Icons\configuracoes.png" />
-    <Resource Include="IMG\Icons\fornecedor.png" />
-    <Resource Include="IMG\Icons\funcionarios.png" />
-    <Resource Include="IMG\Icons\home.png" />
-    <Resource Include="IMG\Icons\locacoes.png" />
-    <Resource Include="IMG\Icons\logoAlset.png" />
-    <Resource Include="IMG\Icons\logout.png" />
-    <Resource Include="IMG\Icons\relatorios.png" />
+    <Resource Include="Projeto\IMG\Icons\carro.png" />
+    <Resource Include="Projeto\IMG\Icons\cliente.png" />
+    <Resource Include="Projeto\IMG\Icons\compra.png" />
+    <Resource Include="Projeto\IMG\Icons\configuracoes.png" />
+    <Resource Include="Projeto\IMG\Icons\fornecedor.png" />
+    <Resource Include="Projeto\IMG\Icons\funcionarios.png" />
+    <Resource Include="Projeto\IMG\Icons\home.png" />
+    <Resource Include="Projeto\IMG\Icons\locacoes.png" />
+    <Resource Include="Projeto\IMG\Icons\logoAlset.png" />
+    <Resource Include="Projeto\IMG\Icons\logout.png" />
+    <Resource Include="Projeto\IMG\Icons\relatorios.png" />
   </ItemGroup>
 
 </Project>
