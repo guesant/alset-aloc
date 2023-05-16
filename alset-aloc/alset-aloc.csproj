@@ -34,6 +34,7 @@
     <None Remove="Images\Icons\locacoes.png" />
     <None Remove="Images\Icons\logoAlset.png" />
     <None Remove="Images\Icons\logout.png" />
+    <None Remove="Images\Icons\procurar.png" />
     <None Remove="Images\Icons\relatorios.png" />
   </ItemGroup>
 
@@ -48,6 +49,7 @@
     <Resource Include="Images\Icons\locacoes.png" />
     <Resource Include="Images\Icons\logoAlset.png" />
     <Resource Include="Images\Icons\logout.png" />
+    <Resource Include="Images\Icons\procurar.png" />
     <Resource Include="Images\Icons\relatorios.png" />
   </ItemGroup>
 

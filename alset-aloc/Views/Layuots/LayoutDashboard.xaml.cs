@@ -40,5 +40,11 @@ namespace alset_aloc.Views.Layuots
             InitializeComponent();
             Children = PART_Host.Children;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var form = new  DashboardClientes();
+            form.Show();
+        }
     }
 }
