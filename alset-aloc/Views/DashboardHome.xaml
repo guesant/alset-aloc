@@ -1,0 +1,13 @@
+﻿ <Window x:Class="alset_aloc.Views.Home"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:layout="clr-namespace:alset_aloc.Views.Layuots"
+         
+        mc:Ignorable="d"
+        Title="Início" Height="740" Width="1320">
+    <layout:LayoutDashboard>
+        <Image Width="425" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Images/Icons/logoAlset.png" />
+    </layout:LayoutDashboard>
+</Window>
