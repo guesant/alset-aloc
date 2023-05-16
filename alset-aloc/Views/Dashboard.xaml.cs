@@ -20,7 +20,9 @@ namespace alset_aloc.Views
     /// Lógica interna para Dashboard.xaml
     /// </summary>
     /// 
-    
+
+  
+
     public delegate UserControl? ControlDelegate();
 
     public class DashboardMenuButton
@@ -34,34 +36,9 @@ namespace alset_aloc.Views
 
     public class DashboardModel : INotifyPropertyChanged
     {
-        private UserControl? _dashboardContent;
-
-        public UserControl? DashboardContent
+        List<DashboardMenuButton> GetMenuButtons()
         {
-            get { return _dashboardContent; }
-            set
-            {
-                _dashboardContent = value;
-                OnPropertyChanged(nameof(DashboardContent));
-            }
-        }
-
-
-        private List<DashboardMenuButton> _menuButtons;
-
-        public List<DashboardMenuButton> MenuButtons
-        {
-            get { return _menuButtons; }
-            set
-            {
-                _menuButtons = value;
-                OnPropertyChanged(nameof(MenuButtons));
-            }
-        }
-
-        public DashboardModel()
-        {
-            List<DashboardMenuButton> menuButtons = new()
+            return new List<DashboardMenuButton>()
             {
                 new DashboardMenuButton()
                 {
@@ -83,6 +60,14 @@ namespace alset_aloc.Views
                     Icon = "/Images/Icons/Cliente.png",
                     Label = "Clientes",
                     Control = () => new DashboardClientes(),
+                },
+
+                new DashboardMenuButton()
+                {
+                    Id = "relatorios",
+                    Icon = "/Images/Icons/relatorios.png",
+                    Label = "Recebimentos",
+                    Control = () => new DashboardRecebimentos(),
                 },
 
                 new DashboardMenuButton()
@@ -114,8 +99,36 @@ namespace alset_aloc.Views
                 }
             };
 
-          
-            MenuButtons = menuButtons;
+        }
+
+        private UserControl? _dashboardContent;
+
+        public UserControl? DashboardContent
+        {
+            get { return _dashboardContent; }
+            set
+            {
+                _dashboardContent = value;
+                OnPropertyChanged(nameof(DashboardContent));
+            }
+        }
+
+
+        private List<DashboardMenuButton> _menuButtons;
+
+        public List<DashboardMenuButton> MenuButtons
+        {
+            get { return _menuButtons; }
+            set
+            {
+                _menuButtons = value;
+                OnPropertyChanged(nameof(MenuButtons));
+            }
+        }
+
+        public DashboardModel()
+        { 
+            MenuButtons = GetMenuButtons();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -150,19 +163,15 @@ namespace alset_aloc.Views
         {
             UserControl control = new DashboardHome();
 
-            if(id != null && id != "home")
+            var menuButton = this.model.FindMenuButtonById(id);
+
+            if (menuButton != null)
             {
-                var menuButton = this.model.FindMenuButtonById(id);
+                var menuButtonControl = menuButton.Control != null ? menuButton.Control() : null;
 
-                if (menuButton != null)
+                if (menuButtonControl != null)
                 {
-                    var menuButtonControl = menuButton.Control != null ? menuButton.Control() : null;
-
-                    if (menuButtonControl != null)
-                    {
-                        control = menuButtonControl;
-
-                    }
+                    control = menuButtonControl;
                 }
             }
 

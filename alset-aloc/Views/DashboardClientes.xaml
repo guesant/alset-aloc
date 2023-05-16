@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:alset_aloc.Views"
              mc:Ignorable="d">
 
-    <Grid>
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -17,7 +17,7 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Padding="10px" FontWeight="Bold" Foreground="#FF0E87AF" Margin="0,0,0,614" Grid.RowSpan="2" >Clientes</TextBlock>
+        <TextBlock Padding="10px" FontWeight="Bold" Foreground="#FF0E87AF" Margin="0,0,0,614" Grid.RowSpan="2">Clientes</TextBlock>
 
         <Grid Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="1000px" Height="450" IsEnabled="False">
             <Border CornerRadius="5" BorderBrush="Black" BorderThickness="0.51px" Padding="50px">
