@@ -7,16 +7,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Views\ConsultarRecebimentos.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>    
-    <Compile Update="Views\ConsultarCliente.xaml.cs">
+    <Compile Update="Views\DashboardClientes.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\cliente.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Home.xaml.cs">
+    <Compile Update="Views\DashboardHome.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -24,16 +18,10 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\ConsultarRecebimentos.xaml">
+    <Page Update="Views\DashboardClientes.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\ConsultarCliente.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Cliente.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Home.xaml">
+    <Page Update="Views\DashboardHome.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

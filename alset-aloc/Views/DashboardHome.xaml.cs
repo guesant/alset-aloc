@@ -14,15 +14,15 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace alset_aloc.Views
-    {
+{
     /// <summary>
-    /// Interação lógica para ConsultarCliente.xam
+    /// Interação lógica para DashboardHome.xam
     /// </summary>
-    public partial class ConsultarCliente : Page
+    public partial class DashboardHome : UserControl
+    {
+        public DashboardHome()
         {
-        public ConsultarCliente()
-            {
             InitializeComponent();
-            }
         }
     }
+}

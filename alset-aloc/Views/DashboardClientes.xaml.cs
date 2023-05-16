@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace alset_aloc.Views
 {
     /// <summary>
-    /// Lógica interna para cliente.xaml
+    /// Lógica interna para DashboardClientes.xaml
     /// </summary>
-    public partial class cliente : Window
+    public partial class DashboardClientes : UserControl
     {
-        public cliente()
+        public DashboardClientes()
         {
             InitializeComponent();
         }
