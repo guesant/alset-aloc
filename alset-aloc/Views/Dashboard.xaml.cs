@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,17 +20,32 @@ namespace alset_aloc.Views
     /// Lógica interna para Dashboard.xaml
     /// </summary>
     /// 
+    
+    public delegate UserControl? ControlDelegate();
 
-   public class DashboardMenuButton
+    public class DashboardMenuButton
     {
         public string Id { get; set; }
         public string Label { get; set; }
         public string Icon { get; set; }
-        public UserControl? Control { get; internal set; }
+
+        public ControlDelegate? Control { get; internal set; }
     }
 
     public class DashboardModel : INotifyPropertyChanged
     {
+        private UserControl? _dashboardContent;
+
+        public UserControl? DashboardContent
+        {
+            get { return _dashboardContent; }
+            set
+            {
+                _dashboardContent = value;
+                OnPropertyChanged(nameof(DashboardContent));
+            }
+        }
+
 
         private List<DashboardMenuButton> _menuButtons;
 
@@ -45,73 +61,60 @@ namespace alset_aloc.Views
 
         public DashboardModel()
         {
-            List<DashboardMenuButton> menuButtons = new();
+            List<DashboardMenuButton> menuButtons = new()
+            {
+                new DashboardMenuButton()
+                {
+                    Id = "funcionarios",
+                    Icon = "/Images/Icons/Funcionarios.png",
+                    Label = "Funcionários",
+                },
 
-            menuButtons.Add(
-              new DashboardMenuButton()
-              {
-                  Id = "funcionarios",
-                  Icon = "/Images/Icons/Funcionarios.png",
-                  Label = "Funcionários"
-              }
-            );
+                new DashboardMenuButton()
+                {
+                    Id = "veiculos",
+                    Icon = "/Images/Icons/carro.png",
+                    Label = "Veículos"
+                },
 
-            menuButtons.Add(
-              new DashboardMenuButton()
-              {
-                  Id = "veiculos",
-                  Icon = "/Images/Icons/carro.png",
-                  Label = "Veículos"
-              }
-            );
+                new DashboardMenuButton()
+                {
+                    Id = "clientes",
+                    Icon = "/Images/Icons/Cliente.png",
+                    Label = "Clientes",
+                    Control = () => new DashboardClientes(),
+                },
 
+                new DashboardMenuButton()
+                {
+                    Id = "fornecedores",
+                    Icon = "/Images/Icons/Fornecedor.png",
+                    Label = "Fornecedores"
+                },
 
-            menuButtons.Add(
-              new DashboardMenuButton()
-              {
-                  Id = "clientes",
-                  Icon = "/Images/Icons/Cliente.png",
-                  Label = "Clientes",
-                  Control = new DashboardClientes(),
-              }
-            );
+                new DashboardMenuButton()
+                {
+                    Id = "compras",
+                    Icon = "/Images/Icons/Compra.png",
+                    Label = "Compras"
+                },
 
-            menuButtons.Add(
-              new DashboardMenuButton()
-              {
-                  Id = "fornecedores",
-                  Icon = "/Images/Icons/Fornecedor.png",
-                  Label = "Fornecedores"
-              }
-            );
+                new DashboardMenuButton()
+                {
+                    Id = "locacoes",
+                    Icon = "/Images/Icons/locacoes.png",
+                    Label = "Locações"
+                },
 
-            menuButtons.Add(
-              new DashboardMenuButton()
-              {
-                  Id = "compras",
-                  Icon = "/Images/Icons/Compra.png",
-                  Label = "Compras"
-              }
-            );
+                new DashboardMenuButton()
+                {
+                    Id = "relatorios",
+                    Icon = "/Images/Icons/relatorios.png",
+                    Label = "Relatórios"
+                }
+            };
 
-            menuButtons.Add(
-              new DashboardMenuButton()
-              {
-                  Id = "locacoes",
-                  Icon = "/Images/Icons/locacoes.png",
-                  Label = "Locações"
-              }
-            );
-
-            menuButtons.Add(
-              new DashboardMenuButton()
-              {
-                  Id = "relatorios",
-                  Icon = "/Images/Icons/relatorios.png",
-                  Label = "Relatórios"
-              }
-            );
-
+          
             MenuButtons = menuButtons;
         }
 
@@ -139,20 +142,38 @@ namespace alset_aloc.Views
             InitializeComponent();
 
             DataContext = model;
+
+            ChangeView(null);
+        }
+
+        public void ChangeView(string? id)
+        {
+            UserControl control = new DashboardHome();
+
+            if(id != null && id != "home")
+            {
+                var menuButton = this.model.FindMenuButtonById(id);
+
+                if (menuButton != null)
+                {
+                    var menuButtonControl = menuButton.Control != null ? menuButton.Control() : null;
+
+                    if (menuButtonControl != null)
+                    {
+                        control = menuButtonControl;
+
+                    }
+                }
+            }
+
+            this.model.DashboardContent = control;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var id = (string)((Button)sender).Tag;
-
-            var menuButton = this.model.FindMenuButtonById(id);
-
-            if(menuButton != null)
-            {
-                //Dashboard_Content.Ci = menuButton.Control;
-            }
-
-            MessageBox.Show(menuButton == null ? "nulo" : "encontrado");
+            this.ChangeView(id);
         }
+        
     }
 }

@@ -121,9 +121,7 @@
         </Grid>
 
         <Grid Grid.Row="2" Grid.Column="2">
-            <StackPanel x:Name="Dashboard_Content" >
-                <local:DashboardHome />
-            </StackPanel>
+            <ContentControl x:Name="Custom" Content="{Binding DashboardContent}"></ContentControl>
         </Grid>
     </Grid>
 </Window>
