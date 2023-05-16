@@ -17,7 +17,7 @@ namespace alset_aloc.Views
     /// <summary>
     /// Lógica interna para DashboardClientes.xaml
     /// </summary>
-    public partial class DashboardClientes : Window
+    public partial class DashboardClientes : UserControl
     {
         public DashboardClientes()
         {

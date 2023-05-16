@@ -13,9 +13,6 @@
     <Compile Update="Views\DashboardHome.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Layuots\LayoutDashboard.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
@@ -25,9 +22,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\DashboardHome.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Layuots\LayoutDashboard.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
