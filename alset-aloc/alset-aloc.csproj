@@ -39,6 +39,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
+    <PackageReference Include="ShowMeTheXAML.MSBuild" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\Icons\carro.png" />
     <Resource Include="Images\Icons\cliente.png" />
     <Resource Include="Images\Icons\compra.png" />
