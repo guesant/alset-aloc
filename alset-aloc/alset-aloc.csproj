@@ -25,13 +25,7 @@
 
   <ItemGroup>
     <None Remove="Images\Icons\carro.png" />
-    <None Remove="Images\Icons\cliente.png" />
-    <None Remove="Images\Icons\compra.png" />
-    <None Remove="Images\Icons\configuracoes.png" />
-    <None Remove="Images\Icons\fornecedor.png" />
-    <None Remove="Images\Icons\funcionarios.png" />
     <None Remove="Images\Icons\home.png" />
-    <None Remove="Images\Icons\locacoes.png" />
     <None Remove="Images\Icons\logoAlset.png" />
     <None Remove="Images\Icons\logout.png" />
     <None Remove="Images\Icons\procurar.png" />
@@ -39,14 +33,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
+    <PackageReference Include="ShowMeTheXAML.MSBuild" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\Icons\carro.png" />
-    <Resource Include="Images\Icons\cliente.png" />
-    <Resource Include="Images\Icons\compra.png" />
-    <Resource Include="Images\Icons\configuracoes.png" />
-    <Resource Include="Images\Icons\fornecedor.png" />
-    <Resource Include="Images\Icons\funcionarios.png" />
     <Resource Include="Images\Icons\home.png" />
-    <Resource Include="Images\Icons\locacoes.png" />
     <Resource Include="Images\Icons\logoAlset.png" />
     <Resource Include="Images\Icons\logout.png" />
     <Resource Include="Images\Icons\procurar.png" />
