@@ -129,10 +129,7 @@ namespace alset_aloc.Models
                 query.Parameters.AddWithValue("@telefone", t.Telefone);
                 query.Parameters.AddWithValue("@genero", t.Genero);
 
-                if(enderecoId != null)
-                {
-                    query.Parameters.AddWithValue("@id_end_fk", enderecoId);
-                }
+                query.Parameters.AddWithValue("@id_end_fk", t.EnderecoId);
 
                 var result = query.ExecuteNonQuery();
 
