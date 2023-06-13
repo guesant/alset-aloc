@@ -71,7 +71,8 @@ namespace alset_aloc.Models
                 while (dtReader.Read())
                 {
 
-                    endereco.Id = Convert.ToInt32(dtReader["id_end"].ToString());
+                    endereco.Id = Convert.ToInt64(dtReader["id_end"].ToString());
+
                     endereco.Pais = dtReader["pais_end"].ToString()!;
                     endereco.CodigoPostal = dtReader["codigo_postal_end"].ToString()!;
                     endereco.UF = dtReader["uf_end"].ToString()!;
@@ -126,7 +127,9 @@ namespace alset_aloc.Models
                     throw new Exception("O endereço não foi cadastrado. Verifique e tente novamente.");
                 }
 
-                // long compraId = query.LastInsertedId;
+                long enderecoId = query.LastInsertedId;
+
+                t.Id = enderecoId;
             }
             catch (Exception e)
             {
@@ -159,7 +162,7 @@ namespace alset_aloc.Models
                 {
                     Endereco endereco = new Endereco();
 
-                    endereco.Id = Convert.ToInt32(dtReader["id_end"].ToString());
+                    endereco.Id = Convert.ToInt64(dtReader["id_end"].ToString());
                     endereco.Pais = dtReader["pais_end"].ToString()!;
                     endereco.CodigoPostal = dtReader["codigo_postal_end"].ToString()!;
                     endereco.UF = dtReader["uf_end"].ToString()!;
@@ -222,8 +225,6 @@ namespace alset_aloc.Models
                 {
                     throw new Exception("O endereço não foi alterado. Verifique e tente novamente.");
                 }
-
-                // long compraId = query.LastInsertedId;
             }
             catch (Exception e)
             {

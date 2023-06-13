@@ -8,7 +8,7 @@ namespace alset_aloc.Models
 {
     class Endereco
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         public string Pais { get; set; }
 
