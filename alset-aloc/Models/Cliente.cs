@@ -8,7 +8,7 @@ namespace alset_aloc.Models
 {
     class Cliente
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         public string Nome { get; set; }
 
@@ -26,7 +26,7 @@ namespace alset_aloc.Models
 
         public string Genero { get; set; }
 
-        // public Endereco Endereco { get; set; }
+        public long? EnderecoId { get; set; }
 
         // public List<CompraLocacao> CompraLocacao { get; set; } = new List<CompraLocacao>();
     }
