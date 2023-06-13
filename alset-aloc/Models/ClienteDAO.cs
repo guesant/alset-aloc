@@ -36,9 +36,9 @@ namespace alset_aloc.Models
                 
                 query.CommandText = @"
                     INSERT INTO 
-                        cliente (nome_cli, dataNascimento_cli, cpf_cli, rg_cli, cnh_cli, email_cli, telefone_cli, genero_cli)
+                        cliente (nome_cli, data_nascimento_cli, cpf_cli, rg_cli, cnh_cli, email_cli, telefone_cli, genero_cli, id_end_fk)
                     VALUES
-                        (@nome, @dataNascimento, @cpf, @rg, @cnh, @email, @telefone, @genero)
+                        (@nome, @dataNascimento, @cpf, @rg, @cnh, @email, @telefone, @genero, @idEnd)
                 ";
 
                 query.Parameters.AddWithValue("@nome", t.Nome);
@@ -51,13 +51,16 @@ namespace alset_aloc.Models
                 query.Parameters.AddWithValue("@genero", t.Genero);
 
 
+                query.Parameters.AddWithValue("@genero", t.Genero);
+
+
                 var result = query.ExecuteNonQuery();
 
                 if (result == 0)
                 {
                     throw new Exception("O cliente não foi cadastrado. Verifique e tente novamente.");
                 }
-                    
+                
 
                 // long compraId = query.LastInsertedId;
             }
