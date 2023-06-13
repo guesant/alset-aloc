@@ -40,8 +40,10 @@ cpf_func varchar(11) not null,
 rg_func varchar(45) not null,
 email_func varchar(45) not null,
 telefone_func varchar(45) not null,
-genero_func varchar(45)
+genero_func varchar(45),
 
+id_end_fk int,
+foreign key (id_end_fk) references endereco(id_end)
 );
 
 CREATE TABLE IF NOT EXISTS usuario (
