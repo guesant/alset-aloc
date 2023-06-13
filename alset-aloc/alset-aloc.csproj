@@ -9,36 +9,42 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="IMG\Icons\carro.png" />
-    <None Remove="IMG\Icons\cliente.png" />
-    <None Remove="IMG\Icons\compra.png" />
-    <None Remove="IMG\Icons\configuracoes.png" />
-    <None Remove="IMG\Icons\fornecedor.png" />
-    <None Remove="IMG\Icons\funcionarios.png" />
-    <None Remove="IMG\Icons\home.png" />
-    <None Remove="IMG\Icons\locacoes.png" />
-    <None Remove="IMG\Icons\logoAlset.png" />
-    <None Remove="IMG\Icons\logout.png" />
-    <None Remove="IMG\Icons\relatorios.png" />
+    <Compile Remove="Components\**" />
+    <Compile Remove="Properties\**" />
+    <Compile Remove="Resources\**" />
+    <EmbeddedResource Remove="Components\**" />
+    <EmbeddedResource Remove="Properties\**" />
+    <EmbeddedResource Remove="Resources\**" />
+    <None Remove="Components\**" />
+    <None Remove="Properties\**" />
+    <None Remove="Resources\**" />
+    <Page Remove="Components\**" />
+    <Page Remove="Properties\**" />
+    <Page Remove="Resources\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Properties\" />
-    <Folder Include="Resources\" />
+    <None Remove="Images\Icons\carro.png" />
+    <None Remove="Images\Icons\home.png" />
+    <None Remove="Images\Icons\logoAlset.png" />
+    <None Remove="Images\Icons\logout.png" />
+    <None Remove="Images\Icons\procurar.png" />
+    <None Remove="Images\Icons\relatorios.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="IMG\Icons\carro.png" />
-    <Resource Include="IMG\Icons\cliente.png" />
-    <Resource Include="IMG\Icons\compra.png" />
-    <Resource Include="IMG\Icons\configuracoes.png" />
-    <Resource Include="IMG\Icons\fornecedor.png" />
-    <Resource Include="IMG\Icons\funcionarios.png" />
-    <Resource Include="IMG\Icons\home.png" />
-    <Resource Include="IMG\Icons\locacoes.png" />
-    <Resource Include="IMG\Icons\logoAlset.png" />
-    <Resource Include="IMG\Icons\logout.png" />
-    <Resource Include="IMG\Icons\relatorios.png" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
+    <PackageReference Include="MySql.Data" Version="8.0.33" />
+    <PackageReference Include="ShowMeTheXAML.MSBuild" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Icons\carro.png" />
+    <Resource Include="Images\Icons\home.png" />
+    <Resource Include="Images\Icons\logoAlset.png" />
+    <Resource Include="Images\Icons\logout.png" />
+    <Resource Include="Images\Icons\procurar.png" />
+    <Resource Include="Images\Icons\relatorios.png" />
   </ItemGroup>
 
 </Project>
