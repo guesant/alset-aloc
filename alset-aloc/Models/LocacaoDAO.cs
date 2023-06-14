@@ -2,6 +2,7 @@
 using alset_aloc.Interfaces;
 using MySql.Data.MySqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace alset_aloc.Models
@@ -15,6 +16,68 @@ namespace alset_aloc.Models
             conn = new Conexao();
         }
 
+        static Locacao ParseQuery(MySqlDataReader dtReader)
+        {
+            Locacao locacao = new Locacao();
+
+            locacao.Id = dtReader.GetInt64("id_loc");
+
+            locacao.DataLocacao = dtReader.GetDateTime("data_locacao_loc");
+            locacao.DataDevolucaoPrevista = dtReader.GetDateTime("data_devolucao_prevista");
+            
+            locacao.Status = dtReader.GetBoolean("status_loc");
+
+            var rawDataDevolucaoEfetivada = dtReader.GetOrdinal("data_devolucao_efetivada");
+
+            if (!dtReader.IsDBNull(rawDataDevolucaoEfetivada))
+            {
+                locacao.DataDevolucaoEfetivada = dtReader.GetDateTime(rawDataDevolucaoEfetivada);
+            }
+            else
+            {
+                locacao.DataDevolucaoEfetivada = null;
+            }
+
+            var rawVeiculoId = dtReader.GetOrdinal("id_vei_fk");
+
+            if (!dtReader.IsDBNull(rawVeiculoId))
+            {
+                locacao.VeiculoId = dtReader.GetInt64(rawVeiculoId);
+            }
+            else
+            {
+                locacao.VeiculoId = null;
+            }
+
+            var rawFuncionarioId = dtReader.GetOrdinal("id_fun_fk");
+
+            if (!dtReader.IsDBNull(rawFuncionarioId))
+            {
+                locacao.FuncionarioId = dtReader.GetInt64(rawFuncionarioId);
+            }
+            else
+            {
+                locacao.FuncionarioId = null;
+            }
+
+            return locacao;
+        }
+
+        static void BindQuery(Locacao t, MySqlCommand query)
+        {
+            query.Parameters.AddWithValue("@dataLocacao", t.DataLocacao);
+            query.Parameters.AddWithValue("@dataDevolucaoPrevista", t.DataDevolucaoPrevista);
+            query.Parameters.AddWithValue("@dataDevolucaoEfetivada", t.DataDevolucaoEfetivada);
+            query.Parameters.AddWithValue("@status", t.Status);
+            query.Parameters.AddWithValue("@veiculoId", t.VeiculoId);
+            query.Parameters.AddWithValue("@funcionarioId", t.FuncionarioId);
+        }
+
+        static void BindQueryId(long id, MySqlCommand query)
+        {
+            query.Parameters.AddWithValue("@idLoc", id);
+        }
+
         public void Delete(Locacao t)
         {
             try
@@ -26,7 +89,7 @@ namespace alset_aloc.Models
                     WHERE (id_loc = @idLoc)
                 ";
 
-                query.Parameters.AddWithValue("@idLoc", t.Id);
+                BindQueryId(t.Id, query);
 
                 var result = query.ExecuteNonQuery();
 
@@ -52,59 +115,18 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT (id_loc, data_locacao_loc, data_devolucao_prevista, data_devolucao_efetivada, status_loc)
+                    SELECT (id_loc, data_locacao_loc, data_devolucao_prevista, data_devolucao_efetivada, status_loc, id_vei_fk, id_fun_fk)
                     FROM locacao
                     WHERE (id_loc = @idLoc);
                 ";
 
-                query.Parameters.AddWithValue("@idLoc", id);
+                BindQueryId(id, query);
 
                 MySqlDataReader dtReader = query.ExecuteReader();
 
-                Locacao locacao = new Locacao();
-
                 while (dtReader.Read())
                 {
-                    locacao.Id = dtReader.GetInt64("id_loc");
-
-                    locacao.DataLocacao = dtReader.GetDateTime("data_locacao_loc");
-                    locacao.DataDevolucaoPrevista = dtReader.GetDateTime("data_devolucao_prevista");
-
-                    var rawDataDevolucaoEfetivada = dtReader.GetOrdinal("data_devolucao_efetivada");
-
-                    if (!dtReader.IsDBNull(rawDataDevolucaoEfetivada))
-                    {
-                        locacao.DataDevolucaoEfetivada = dtReader.GetDateTime(rawDataDevolucaoEfetivada);
-                    }
-                    else
-                    {
-                        locacao.DataDevolucaoEfetivada = null;
-                    }
-
-                    locacao.Status = dtReader.GetBoolean("status_loc");
-
-                    var rawVeiculoId = dtReader.GetOrdinal("id_vei_fk");
-
-                    if (!dtReader.IsDBNull(rawVeiculoId))
-                    {
-                        locacao.VeiculoId = dtReader.GetInt64(rawVeiculoId);
-                    }
-                    else
-                    {
-                        locacao.VeiculoId = null;
-                    }
-
-                    var rawFuncionarioId = dtReader.GetOrdinal("id_fun_fk");
-
-                    if (!dtReader.IsDBNull(rawFuncionarioId))
-                    {
-                        locacao.FuncionarioId = dtReader.GetInt64(rawFuncionarioId);
-                    }
-                    else
-                    {
-                        locacao.FuncionarioId = null;
-                    }
-
+                    Locacao locacao = ParseQuery(dtReader);
                     return locacao;
                 }
 
@@ -134,12 +156,7 @@ namespace alset_aloc.Models
                         (@dataLocacao, @dataDevolucaoPrevista, @dataDevolucaoEfetivada, @status, @veiculoId, @funcionarioId)
                 ";
 
-                query.Parameters.AddWithValue("@dataLocacao", t.DataLocacao);
-                query.Parameters.AddWithValue("@dataDevolucaoPrevista", t.DataDevolucaoPrevista);
-                query.Parameters.AddWithValue("@dataDevolucaoEfetivada", t.DataDevolucaoEfetivada);
-                query.Parameters.AddWithValue("@status", t.Status);
-                query.Parameters.AddWithValue("@veiculoId", t.VeiculoId);
-                query.Parameters.AddWithValue("@funcionarioId", t.FuncionarioId);
+                BindQuery(t, query);
 
                 var result = query.ExecuteNonQuery();
 
@@ -148,9 +165,7 @@ namespace alset_aloc.Models
                     throw new Exception("A locação não foi cadastrada. Verifique e tente novamente.");
                 }
 
-                long locacaoId = query.LastInsertedId;
-
-                t.Id = locacaoId;
+                t.Id = query.LastInsertedId;
             }
             catch (Exception e)
             {
@@ -169,7 +184,8 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT (id_loc, data_locacao_loc, data_devolucao_prevista, data_devolucao_efetivada, status_loc)
+                    SELECT
+                        (id_loc, data_locacao_loc, data_devolucao_prevista, data_devolucao_efetivada, status_loc, id_vei_fk, id_fun_fk)
                     FROM locacao
                     ;
                 "
@@ -181,51 +197,9 @@ namespace alset_aloc.Models
 
                 while (dtReader.Read())
                 {
-                    Locacao locacao = new Locacao();
-
-                    locacao.Id = dtReader.GetInt64("id_loc");
-
-                    locacao.DataLocacao = dtReader.GetDateTime("data_locacao_loc");
-                    locacao.DataDevolucaoPrevista = dtReader.GetDateTime("data_devolucao_prevista");
-
-                    var rawDataDevolucaoEfetivada = dtReader.GetOrdinal("data_devolucao_efetivada");
-
-                    if (!dtReader.IsDBNull(rawDataDevolucaoEfetivada))
-                    {
-                        locacao.DataDevolucaoEfetivada = dtReader.GetDateTime(rawDataDevolucaoEfetivada);
-                    }
-                    else
-                    {
-                        locacao.DataDevolucaoEfetivada = null;
-                    }
-
-                    locacao.Status = dtReader.GetBoolean("status_loc");
-
-                    var rawVeiculoId = dtReader.GetOrdinal("id_vei_fk");
-
-                    if (!dtReader.IsDBNull(rawVeiculoId))
-                    {
-                        locacao.VeiculoId = dtReader.GetInt64(rawVeiculoId);
-                    }
-                    else
-                    {
-                        locacao.VeiculoId = null;
-                    }
-
-                    var rawFuncionarioId = dtReader.GetOrdinal("id_fun_fk");
-
-                    if (!dtReader.IsDBNull(rawFuncionarioId))
-                    {
-                        locacao.FuncionarioId = dtReader.GetInt64(rawFuncionarioId);
-                    }
-                    else
-                    {
-                        locacao.FuncionarioId = null;
-                    }
-
+                    Locacao locacao = ParseQuery(dtReader);
                     listaDeRetorno.Add(locacao);
                 }
-
 
                 return listaDeRetorno;
             }
@@ -257,12 +231,8 @@ namespace alset_aloc.Models
                     WHERE (id_loc = @idLoc);
                 ";
 
-                query.Parameters.AddWithValue("@dataLocacao", t.DataLocacao);
-                query.Parameters.AddWithValue("@dataDevolucaoPrevista", t.DataDevolucaoPrevista);
-                query.Parameters.AddWithValue("@dataDevolucaoEfetivada", t.DataDevolucaoEfetivada);
-                query.Parameters.AddWithValue("@status", t.Status);
-                query.Parameters.AddWithValue("@veiculoId", t.VeiculoId);
-                query.Parameters.AddWithValue("@funcionarioId", t.FuncionarioId);
+                BindQuery(t, query);
+                BindQueryId(t.Id, query);
 
                 var result = query.ExecuteNonQuery();
 

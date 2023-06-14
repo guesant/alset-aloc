@@ -19,6 +19,51 @@ namespace alset_aloc.Models
             conn = new Conexao();
         }
 
+        public static Funcionario ParseReader(MySqlDataReader dtReader)
+        {
+            Funcionario funcionario = new Funcionario();
+
+            funcionario.Id = dtReader.GetInt32("id_func");
+            funcionario.Nome = dtReader.GetString("nome_func");
+            funcionario.DataNascimento = dtReader.GetDateTime("data_nascimento_func");
+            funcionario.Cpf = dtReader.GetString("cpf_func");
+            funcionario.Rg = dtReader.GetString("rg_func");
+            funcionario.Email = dtReader.GetString("email_func");
+            funcionario.Telefone = dtReader.GetString("telefone_func");
+            funcionario.Genero = dtReader.GetString("genero_func");
+
+            var enderecoIdRaw = dtReader.GetOrdinal("id_end_fk");
+
+            if (!dtReader.IsDBNull(enderecoIdRaw))
+            {
+                funcionario.EnderecoID = dtReader.GetInt64(enderecoIdRaw);
+            }
+            else
+            {
+                funcionario.EnderecoID = null;
+            }
+
+            return funcionario;
+        }
+
+        public static void BindQuery(Funcionario t, MySqlCommand query)
+        {
+            query.Parameters.AddWithValue("@nome", t.Nome);
+            query.Parameters.AddWithValue("@dataNascimento", t.DataNascimento);
+            query.Parameters.AddWithValue("@cpf", t.Cpf);
+            query.Parameters.AddWithValue("@rg", t.Rg);
+            query.Parameters.AddWithValue("@email", t.Email);
+            query.Parameters.AddWithValue("@telefone", t.Telefone);
+            query.Parameters.AddWithValue("@genero", t.Genero);
+
+            query.Parameters.AddWithValue("@enderecoId", t.EnderecoID);
+        }
+
+        public static void BindQueryId(long id, MySqlCommand query)
+        {
+            query.Parameters.AddWithValue("@idFunc", id);
+        }
+
         public void Delete(Funcionario t)
         {
             try
@@ -39,9 +84,9 @@ namespace alset_aloc.Models
                     throw new Exception("O funcionário não foi encontrado. Verifique as informações.");
                 }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                throw ex;
+                throw e;
             }
             finally { conn.Close(); }
         
@@ -54,46 +99,28 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT (id_func, nome_func, data_nascimento_func, cpf_func, rg_func, email_func, telefone_func, genero_func)
+                    SELECT (id_func, nome_func, data_nascimento_func, cpf_func, rg_func, email_func, telefone_func, genero_func, id_end_fk)
                     FROM funcionario
                     WHERE (id_func = @idFunc);
                 ";
 
-                query.Parameters.AddWithValue("@idFunc", id);
+                BindQueryId(id, query);
 
-                MySqlDataReader reader = query.ExecuteReader();
+                MySqlDataReader dtReader = query.ExecuteReader();
 
-                var func = new Funcionario();
+                Funcionario funcionario;
 
-                while (reader.Read())
+                while (dtReader.Read())
                 {
-                    func.Id = Convert.ToInt32(reader["id_func"].ToString());
-                    func.Nome = reader["nome_func"].ToString()!;
-                    func.DataNascimento = Convert.ToDateTime(reader["data_nascimento_func"].ToString());
-                    func.Cpf = reader["cpf_func"].ToString()!;
-                    func.Rg = reader["rg_func"].ToString()!;
-                    func.Email = reader["email_func"].ToString()!;
-                    func.Telefone = reader["telefone_func"].ToString()!;
-                    func.Genero = reader["genero_func"].ToString()!;
-
-                    var idEndCrua = reader["id_end_fk"].ToString();
-
-                    if (idEndCrua != null && !string.IsNullOrEmpty(idEndCrua))
-                    {
-                        func.EnderecoID = Convert.ToInt32(idEndCrua);
-                    }
-                    else
-                    {
-                        func.EnderecoID = null;
-                    }
-
+                    funcionario = ParseReader(dtReader);
+                    return funcionario;
                 }
 
-                return func;
+                throw new Exception("Não foi possível encontrar o funcionário com o id fornecido. Verifique e tente novamente.");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw new Exception("Não foi possível encontrar o endereço com o id fornecido. Verifique e tente novamente.");
+                throw e;
             }
             finally
             {
@@ -108,22 +135,14 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                 
                     INSERT INTO 
-                    funcionario 
-                        (nome_func, data_nascimento_func, cpf_func, rg_func, email_func, telefone_func, genero_func)
+                        funcionario 
+                        (nome_func, data_nascimento_func, cpf_func, rg_func, email_func, telefone_func, genero_func, id_end_fk)
                     VALUES 
-                        (@nome, @data_nascimento, @cpf, @rg, @email, @telefone, @genero);
-                    
+                        (@nome, @dataNascimento, @cpf, @rg, @email, @telefone, @genero, @enderecoId);
                 ";
 
-                query.Parameters.AddWithValue("@nome", t.Nome);
-                query.Parameters.AddWithValue("@data_nascimento", t.DataNascimento);
-                query.Parameters.AddWithValue("@cpf", t.Cpf);
-                query.Parameters.AddWithValue("@rg", t.Rg);
-                query.Parameters.AddWithValue("@email", t.Email);
-                query.Parameters.AddWithValue("@telefone", t.Telefone);
-                query.Parameters.AddWithValue("@genero", t.Genero);
+                BindQuery(t, query);
 
                 var result = query.ExecuteNonQuery();
 
@@ -132,9 +151,7 @@ namespace alset_aloc.Models
                     throw new Exception("O funcionário não foi cadastrado. Verifique e tente novamente.");
                 }
 
-                long enderecoId = query.LastInsertedId;
-
-                t.Id = enderecoId;
+                t.Id = query.LastInsertedId;
             }
             catch (Exception e)
             {
@@ -154,41 +171,20 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                         SELECT (id_func, nome_func, data_nascimento_func, cpf_func, rg_func, email_func, telefone_func, genero_func)
+                    SELECT (id_func, nome_func, data_nascimento_func, cpf_func, rg_func, email_func, telefone_func, genero_func, id_end_fk)
                     FROM funcionario
                     WHERE (id_func = @idFunc);
                 ";
 
 
-                MySqlDataReader reader = query.ExecuteReader();
+                MySqlDataReader dtReader = query.ExecuteReader();
 
                 List<Funcionario> listaDeRetorno = new List<Funcionario>();
 
-                while (reader.Read())
+                while (dtReader.Read())
                 {
-                    Funcionario func = new Funcionario();
-
-                    func.Id = Convert.ToInt32(reader["id_func"].ToString());
-                    func.Nome = reader["nome_func"].ToString()!;
-                    func.DataNascimento = Convert.ToDateTime(reader["data_nascimento_func"].ToString());
-                    func.Cpf = reader["cpf_func"].ToString()!;
-                    func.Rg = reader["rg_func"].ToString()!;
-                    func.Email = reader["email_func"].ToString()!;
-                    func.Telefone = reader["telefone_func"].ToString()!;
-                    func.Genero = reader["genero_func"].ToString()!;
-
-                    var rawEnderecoId = reader["id_end_fk"].ToString();
-
-                    if (rawEnderecoId != null && !String.IsNullOrEmpty(rawEnderecoId))
-                    {
-                        func.EnderecoID = Convert.ToInt64(rawEnderecoId);
-                    }
-                    else
-                    {
-                        func.EnderecoID = null;
-                    }
-
-                    listaDeRetorno.Add(func);
+                    Funcionario funcionario = ParseReader(dtReader);
+                    listaDeRetorno.Add(funcionario);
                 }
 
                 return listaDeRetorno;
@@ -209,28 +205,22 @@ namespace alset_aloc.Models
             {
                 var query = conn.Query();
 
-                query.CommandText = @"UPDATE funcionario SET
-                    nome_func = @nome,
-                    data_nascimento_func = @dataNascimento,
-                    cpf_func = @cpf,
-                    rg_func = @rg,
-                    email_func = @email,
-                    telefone_func = @telefone,
-                    genero_func = @genero,
-                    id_end_fk = @idEndFK
-                   WHERE (id_func = @idFunc);
+                query.CommandText = @"
+                    UPDATE funcionario
+                    SET
+                        nome_func = @nome,
+                        data_nascimento_func = @dataNascimento,
+                        cpf_func = @cpf,
+                        rg_func = @rg,
+                        email_func = @email,
+                        telefone_func = @telefone,
+                        genero_func = @genero,
+                        id_end_fk = @enderecoId
+                    WHERE (id_func = @idFunc);
                 ";
                 
-                query.Parameters.AddWithValue("@nome", t.Nome);
-                query.Parameters.AddWithValue("@data_nascimento", t.DataNascimento);
-                query.Parameters.AddWithValue("@cpf", t.Cpf);
-                query.Parameters.AddWithValue("@rg", t.Rg);
-                query.Parameters.AddWithValue("@email", t.Email);
-                query.Parameters.AddWithValue("@telefone", t.Telefone);
-                query.Parameters.AddWithValue("@genero", t.Genero);
-
-                query.Parameters.AddWithValue("@idEndFk", t.EnderecoID);
-                query.Parameters.AddWithValue("@idFunc", t.Id);
+                BindQuery(t, query);
+                BindQueryId(t.Id, query);
 
                 var result = query.ExecuteNonQuery();
 
@@ -239,9 +229,9 @@ namespace alset_aloc.Models
                     throw new Exception("O funcionário não foi alterado. Verifique e tente novamente.");
                 }
             }
-            catch 
-            { 
-            
+            catch (Exception e)
+            {
+                throw e;
             }
             finally
             {

@@ -15,6 +15,31 @@ namespace alset_aloc.Models
             conn = new Conexao();
         }
 
+        static Produto ParseQuery(MySqlDataReader dtReader)
+        {
+            Produto produto = new Produto();
+
+            produto.Id = dtReader.GetInt64("id_prod");
+
+            produto.Nome = dtReader.GetString("nome_prod");
+            produto.Preco = dtReader.GetDouble("preco_prod");
+            produto.Estoque = dtReader.GetDouble("estoque_prod");
+
+            return produto;
+        }
+
+        static void BindQuery(Produto t, MySqlCommand query)
+        {
+            query.Parameters.AddWithValue("@nome", t.Nome);
+            query.Parameters.AddWithValue("@preco", t.Preco);
+            query.Parameters.AddWithValue("@estoque", t.Estoque);
+        }
+
+        static void BindQueryId(long id, MySqlCommand query)
+        {
+            query.Parameters.AddWithValue("@idProd", id);
+        }
+
         public void Delete(Produto t)
         {
             try
@@ -26,7 +51,7 @@ namespace alset_aloc.Models
                     WHERE (id_prod = @idProd)
                 ";
 
-                query.Parameters.AddWithValue("@idProd", t.Id);
+                BindQueryId(t.Id, query);
 
                 var result = query.ExecuteNonQuery();
 
@@ -57,20 +82,13 @@ namespace alset_aloc.Models
                     WHERE (id_prod = @idProd);
                 ";
 
-                query.Parameters.AddWithValue("@idProd", id);
+                BindQueryId(id, query);
 
                 MySqlDataReader dtReader = query.ExecuteReader();
 
-                Produto produto = new Produto();
-
                 while (dtReader.Read())
                 {
-                    produto.Id = dtReader.GetInt64("id_prod");
-
-                    produto.Nome = dtReader.GetString("nome_prod");
-                    produto.Preco = dtReader.GetDouble("preco_prod");
-                    produto.Estoque = dtReader.GetDouble("estoque_prod");
-                    
+                    Produto produto = ParseQuery(dtReader);                    
                     return produto;
                 }
 
@@ -100,9 +118,7 @@ namespace alset_aloc.Models
                         (@nome, @preco, @estoque)
                 ";
 
-                query.Parameters.AddWithValue("@nome", t.Nome);
-                query.Parameters.AddWithValue("@preco", t.Preco);
-                query.Parameters.AddWithValue("@estoque", t.Estoque);
+                BindQuery(t, query);
 
                 var result = query.ExecuteNonQuery();
 
@@ -111,9 +127,7 @@ namespace alset_aloc.Models
                     throw new Exception("O produto não foi cadastrado. Verifique e tente novamente.");
                 }
 
-                long produtoId = query.LastInsertedId;
-
-                t.Id = produtoId;
+                t.Id = query.LastInsertedId;
             }
             catch (Exception e)
             {
@@ -144,14 +158,7 @@ namespace alset_aloc.Models
 
                 while (dtReader.Read())
                 {
-                    Produto produto = new Produto();
-                    
-                    produto.Id = dtReader.GetInt64("id_prod");
-
-                    produto.Nome = dtReader.GetString("nome_prod");
-                    produto.Preco = dtReader.GetDouble("preco_prod");
-                    produto.Estoque = dtReader.GetDouble("estoque_prod");
-
+                    Produto produto = ParseQuery(dtReader);
                     listaDeRetorno.Add(produto);
                 }
 
@@ -183,11 +190,8 @@ namespace alset_aloc.Models
                     WHERE (id_prod = @idProd);
                 ";
 
-                query.Parameters.AddWithValue("@nome", t.Nome);
-                query.Parameters.AddWithValue("@preco", t.Preco);
-                query.Parameters.AddWithValue("@estoque", t.Estoque);
-
-                query.Parameters.AddWithValue("@idProd", t.Id);
+                BindQuery(t, query);
+                BindQueryId(t.Id, query);
 
                 var result = query.ExecuteNonQuery();
 

@@ -15,6 +15,41 @@ namespace alset_aloc.Models
             conn = new Conexao();
         }
 
+        static Endereco ParseReader(MySqlDataReader dtReader)
+        {
+            Endereco endereco = new Endereco();
+
+            endereco.Id = dtReader.GetInt64("id_end");
+
+            endereco.Pais = dtReader.GetString("pais_end");
+            endereco.CodigoPostal = dtReader.GetString("codigo_postal_end");
+            endereco.UF = dtReader.GetString("uf_end");
+            endereco.Cidade = dtReader.GetString("cidade_end");
+            endereco.Rua = dtReader.GetString("rua_end");
+            endereco.Numero = dtReader.GetInt32("numero_end");
+            endereco.Bairro = dtReader.GetString("bairro_end");
+            endereco.Complemento = dtReader.GetString("complemento_end");
+
+            return endereco;
+        }
+
+        static void BindQuery(Endereco t, MySqlCommand query)
+        {
+            query.Parameters.AddWithValue("@pais", t.Pais);
+            query.Parameters.AddWithValue("@codigoPostal", t.CodigoPostal);
+            query.Parameters.AddWithValue("@uf", t.UF);
+            query.Parameters.AddWithValue("@cidade", t.Cidade);
+            query.Parameters.AddWithValue("@rua", t.Rua);
+            query.Parameters.AddWithValue("@numero", t.Numero);
+            query.Parameters.AddWithValue("@bairro", t.Bairro);
+            query.Parameters.AddWithValue("@complemento", t.Complemento);
+        }
+
+        public static void BindQueryId(long id, MySqlCommand query)
+        {
+            query.Parameters.AddWithValue("@idEnd", id);
+        }
+
         public void Delete(Endereco t)
         {
             try
@@ -57,25 +92,14 @@ namespace alset_aloc.Models
                     WHERE (id_end = @idEnd);
                 ";
 
-                query.Parameters.AddWithValue("@idEnd", id);
+                BindQueryId(id, query);
 
                 MySqlDataReader dtReader = query.ExecuteReader();
 
-                Endereco endereco = new Endereco();
 
                 while (dtReader.Read())
                 {
-                    endereco.Id = dtReader.GetInt64("id_end");
-
-                    endereco.Pais = dtReader.GetString("pais_end");
-                    endereco.CodigoPostal = dtReader.GetString("codigo_postal_end");
-                    endereco.UF = dtReader.GetString("uf_end");
-                    endereco.Cidade = dtReader.GetString("cidade_end");
-                    endereco.Rua = dtReader.GetString("rua_end");
-                    endereco.Numero = dtReader.GetInt32("numero_end");
-                    endereco.Bairro = dtReader.GetString("bairro_end");
-                    endereco.Complemento = dtReader.GetString("complemento_end");
-
+                    Endereco endereco = ParseReader(dtReader);
                     return endereco;
                 }
 
@@ -105,14 +129,7 @@ namespace alset_aloc.Models
                         (@pais, @codigoPostal, @uf, @cidade, @rua, @numero, @bairro, @complemento)
                 ";
 
-                query.Parameters.AddWithValue("@pais", t.Pais);
-                query.Parameters.AddWithValue("@codigoPostal", t.CodigoPostal);
-                query.Parameters.AddWithValue("@uf", t.UF);
-                query.Parameters.AddWithValue("@cidade", t.Cidade);
-                query.Parameters.AddWithValue("@rua", t.Rua);
-                query.Parameters.AddWithValue("@numero", t.Numero);
-                query.Parameters.AddWithValue("@bairro", t.Bairro);
-                query.Parameters.AddWithValue("@complemento", t.Complemento);
+                BindQuery(t, query);
 
                 var result = query.ExecuteNonQuery();
 
@@ -121,9 +138,7 @@ namespace alset_aloc.Models
                     throw new Exception("O endereço não foi cadastrado. Verifique e tente novamente.");
                 }
 
-                long enderecoId = query.LastInsertedId;
-
-                t.Id = enderecoId;
+                t.Id = query.LastInsertedId;
             }
             catch (Exception e)
             {
@@ -154,19 +169,7 @@ namespace alset_aloc.Models
 
                 while (dtReader.Read())
                 {
-                    Endereco endereco = new Endereco();
-
-                    endereco.Id = dtReader.GetInt64("id_end");
-
-                    endereco.Pais = dtReader.GetString("pais_end");
-                    endereco.CodigoPostal = dtReader.GetString("codigo_postal_end");
-                    endereco.UF = dtReader.GetString("uf_end");
-                    endereco.Cidade = dtReader.GetString("cidade_end");
-                    endereco.Rua = dtReader.GetString("rua_end");
-                    endereco.Numero = dtReader.GetInt32("numero_end");
-                    endereco.Bairro = dtReader.GetString("bairro_end");
-                    endereco.Complemento = dtReader.GetString("complemento_end");
-
+                    Endereco endereco = ParseReader(dtReader);
                     listaDeRetorno.Add(endereco);
                 }
 
@@ -203,16 +206,8 @@ namespace alset_aloc.Models
                     WHERE (id_end = @idEnd);
                 ";
 
-                query.Parameters.AddWithValue("@pais", t.Pais);
-                query.Parameters.AddWithValue("@codigoPostal", t.CodigoPostal);
-                query.Parameters.AddWithValue("@uf", t.UF);
-                query.Parameters.AddWithValue("@cidade", t.Cidade);
-                query.Parameters.AddWithValue("@rua", t.Rua);
-                query.Parameters.AddWithValue("@numero", t.Numero);
-                query.Parameters.AddWithValue("@bairro", t.Bairro);
-                query.Parameters.AddWithValue("@complemento", t.Complemento);
-
-                query.Parameters.AddWithValue("@idEnd", t.Id);
+                BindQuery(t, query);
+                BindQueryId(t.Id, query);
 
                 var result = query.ExecuteNonQuery();
 
