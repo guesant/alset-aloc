@@ -3,13 +3,10 @@ using alset_aloc.Interfaces;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace alset_aloc.Models
 {
-    class ProdutoDAO : IDAO<Produto>
+  class ProdutoDAO : IDAO<Produto>
     {
         private Conexao conn;
 
@@ -68,12 +65,11 @@ namespace alset_aloc.Models
 
                 while (dtReader.Read())
                 {
+                    produto.Id = dtReader.GetInt64("id_prod");
 
-                    produto.Id = Convert.ToInt64(dtReader["id_prod"].ToString());
-
-                    produto.Nome = dtReader["nome_prod"].ToString()!;
-                    produto.Preco = Convert.ToDouble(dtReader["preco_prod"].ToString()!);
-                    produto.Estoque = Convert.ToDouble(dtReader["estoque_prod"].ToString()!);
+                    produto.Nome = dtReader.GetString("nome_prod");
+                    produto.Preco = dtReader.GetDouble("preco_prod");
+                    produto.Estoque = dtReader.GetDouble("estoque_prod");
                     
                     return produto;
                 }
@@ -149,13 +145,12 @@ namespace alset_aloc.Models
                 while (dtReader.Read())
                 {
                     Produto produto = new Produto();
+                    
+                    produto.Id = dtReader.GetInt64("id_prod");
 
-
-                    produto.Id = Convert.ToInt64(dtReader["id_prod"].ToString());
-
-                    produto.Nome = dtReader["nome_prod"].ToString()!;
-                    produto.Preco = Convert.ToDouble(dtReader["preco_prod"].ToString()!);
-                    produto.Estoque = Convert.ToDouble(dtReader["estoque_prod"].ToString()!);
+                    produto.Nome = dtReader.GetString("nome_prod");
+                    produto.Preco = dtReader.GetDouble("preco_prod");
+                    produto.Estoque = dtReader.GetDouble("estoque_prod");
 
                     listaDeRetorno.Add(produto);
                 }

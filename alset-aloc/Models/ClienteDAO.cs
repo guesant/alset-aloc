@@ -71,22 +71,22 @@ namespace alset_aloc.Models
 
                 while (dtReader.Read())
                 {
-                    cliente.Id = Convert.ToInt64(dtReader["id_cli"].ToString());
+                    cliente.Id = dtReader.GetInt64("id_cli");
 
-                    cliente.Nome = dtReader["nome_cli"].ToString()!;
-                    cliente.DataNascimento = Convert.ToDateTime(dtReader["data_nascimento_cli"].ToString());
-                    cliente.CPF = dtReader["cpf_cli"].ToString()!;
-                    cliente.RG = dtReader["rg_cli"].ToString()!;
-                    cliente.CNH = dtReader["cnh_cli"].ToString()!;
-                    cliente.Email = dtReader["email_cli"].ToString()!;
-                    cliente.Telefone = dtReader["telefone_cli"].ToString()!;
-                    cliente.Genero = dtReader["genero_cli"].ToString()!;
+                    cliente.Nome = dtReader.GetString("nome_cli");
+                    cliente.DataNascimento = dtReader.GetDateTime("data_nascimento_cli");
+                    cliente.CPF = dtReader.GetString("cpf_cli");
+                    cliente.RG = dtReader.GetString("rg_cli");
+                    cliente.CNH = dtReader.GetString("cnh_cli");
+                    cliente.Email = dtReader.GetString("email_cli");
+                    cliente.Telefone = dtReader.GetString("telefone_cli");
+                    cliente.Genero = dtReader.GetString("genero_cli");
 
-                    var rawEnderecoId = dtReader["id_end_fk"].ToString();
+                    var rawEnderecoId = dtReader.GetOrdinal("id_end_fk");
 
-                    if(rawEnderecoId != null && !String.IsNullOrEmpty(rawEnderecoId))
+                    if (!dtReader.IsDBNull(rawEnderecoId))
                     {
-                        cliente.EnderecoId = Convert.ToInt64(rawEnderecoId);
+                        cliente.EnderecoId = dtReader.GetInt64(rawEnderecoId);
                     } else
                     {
                         cliente.EnderecoId = null;
@@ -173,24 +173,23 @@ namespace alset_aloc.Models
                 {
                     Cliente cliente = new Cliente();
 
-                    cliente.Id = Convert.ToInt64(dtReader["id_cli"].ToString());
+                    cliente.Id = dtReader.GetInt64("id_cli");
 
-                    cliente.Nome = dtReader["nome_cli"].ToString()!;
-                    cliente.DataNascimento = Convert.ToDateTime(dtReader["data_nascimento_cli"].ToString());
-                    cliente.CPF = dtReader["cpf_cli"].ToString()!;
-                    cliente.RG = dtReader["rg_cli"].ToString()!;
-                    cliente.CNH = dtReader["cnh_cli"].ToString()!;
-                    cliente.Email = dtReader["email_cli"].ToString()!;
-                    cliente.Telefone = dtReader["telefone_cli"].ToString()!;
-                    cliente.Genero = dtReader["genero_cli"].ToString()!;
+                    cliente.Nome = dtReader.GetString("nome_cli");
+                    cliente.DataNascimento = dtReader.GetDateTime("data_nascimento_cli");
+                    cliente.CPF = dtReader.GetString("cpf_cli");
+                    cliente.RG = dtReader.GetString("rg_cli");
+                    cliente.CNH = dtReader.GetString("cnh_cli");
+                    cliente.Email = dtReader.GetString("email_cli");
+                    cliente.Telefone = dtReader.GetString("telefone_cli");
+                    cliente.Genero = dtReader.GetString("genero_cli");
 
-                    var rawEnderecoId = dtReader["id_end_fk"].ToString();
+                    var rawEnderecoId = dtReader.GetOrdinal("id_end_fk");
 
-                    if (rawEnderecoId != null && !String.IsNullOrEmpty(rawEnderecoId))
+                    if (!dtReader.IsDBNull(rawEnderecoId))
                     {
-                        cliente.EnderecoId = Convert.ToInt64(rawEnderecoId);
-                    }
-                    else
+                        cliente.EnderecoId = dtReader.GetInt64(rawEnderecoId);
+                    } else
                     {
                         cliente.EnderecoId = null;
                     }
