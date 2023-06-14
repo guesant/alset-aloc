@@ -20,6 +20,54 @@ namespace alset_aloc.Models
             conn = new Conexao();
         }
 
+        static Cliente ParseReader(MySqlDataReader dtReader)
+        {
+            Cliente cliente = new Cliente();
+
+            cliente.Id = dtReader.GetInt64("id_cli");
+
+            cliente.Nome = dtReader.GetString("nome_cli");
+            cliente.DataNascimento = dtReader.GetDateTime("data_nascimento_cli");
+            cliente.CPF = dtReader.GetString("cpf_cli");
+            cliente.RG = dtReader.GetString("rg_cli");
+            cliente.CNH = dtReader.GetString("cnh_cli");
+            cliente.Email = dtReader.GetString("email_cli");
+            cliente.Telefone = dtReader.GetString("telefone_cli");
+            cliente.Genero = dtReader.GetString("genero_cli");
+
+            var rawEnderecoId = dtReader.GetOrdinal("id_end_fk");
+
+            if (!dtReader.IsDBNull(rawEnderecoId))
+            {
+                cliente.EnderecoId = dtReader.GetInt64(rawEnderecoId);
+            }
+            else
+            {
+                cliente.EnderecoId = null;
+            }
+
+            return cliente;
+        }
+
+        static void BindQuery(Cliente t, MySqlCommand query)
+        {
+            query.Parameters.AddWithValue("@nome", t.Nome);
+            query.Parameters.AddWithValue("@dataNascimento", t.DataNascimento);
+            query.Parameters.AddWithValue("@cpf", t.CPF);
+            query.Parameters.AddWithValue("@rg", t.RG);
+            query.Parameters.AddWithValue("@cnh", t.CNH);
+            query.Parameters.AddWithValue("@email", t.Email);
+            query.Parameters.AddWithValue("@telefone", t.Telefone);
+            query.Parameters.AddWithValue("@genero", t.Genero);
+
+            query.Parameters.AddWithValue("@enderecoId", t.EnderecoId);
+        }
+
+        static void BindQueryId(long id, MySqlCommand query)
+        {
+            query.Parameters.AddWithValue("@idCli", id);
+        }
+
         public void Delete(Cliente t)
         {
             try
@@ -31,7 +79,7 @@ namespace alset_aloc.Models
                     WHERE (id_cli = @idCli)
                 ";
 
-                query.Parameters.AddWithValue("@idCli", t.Id);
+                BindQueryId(t.Id, query);
 
                 var result = query.ExecuteNonQuery();
 
@@ -63,35 +111,14 @@ namespace alset_aloc.Models
                     ;
                 ";
 
-                query.Parameters.AddWithValue("@idCli", id);
+                BindQueryId(id, query);
 
                 MySqlDataReader dtReader = query.ExecuteReader();
 
-                Cliente cliente = new Cliente();
 
                 while (dtReader.Read())
                 {
-                    cliente.Id = dtReader.GetInt64("id_cli");
-
-                    cliente.Nome = dtReader.GetString("nome_cli");
-                    cliente.DataNascimento = dtReader.GetDateTime("data_nascimento_cli");
-                    cliente.CPF = dtReader.GetString("cpf_cli");
-                    cliente.RG = dtReader.GetString("rg_cli");
-                    cliente.CNH = dtReader.GetString("cnh_cli");
-                    cliente.Email = dtReader.GetString("email_cli");
-                    cliente.Telefone = dtReader.GetString("telefone_cli");
-                    cliente.Genero = dtReader.GetString("genero_cli");
-
-                    var rawEnderecoId = dtReader.GetOrdinal("id_end_fk");
-
-                    if (!dtReader.IsDBNull(rawEnderecoId))
-                    {
-                        cliente.EnderecoId = dtReader.GetInt64(rawEnderecoId);
-                    } else
-                    {
-                        cliente.EnderecoId = null;
-                    }
-
+                    Cliente cliente = ParseReader(dtReader);
                     return cliente;
                 }
 
@@ -117,19 +144,10 @@ namespace alset_aloc.Models
                     INSERT INTO 
                         cliente (nome_cli, data_nascimento_cli, cpf_cli, rg_cli, cnh_cli, email_cli, telefone_cli, genero_cli, id_end_fk)
                     VALUES
-                        (@nome, @dataNascimento, @cpf, @rg, @cnh, @email, @telefone, @genero, @idEnd)
+                        (@nome, @dataNascimento, @cpf, @rg, @cnh, @email, @telefone, @genero, @enderecoId)
                 ";
 
-                query.Parameters.AddWithValue("@nome", t.Nome);
-                query.Parameters.AddWithValue("@dataNascimento", t.DataNascimento);
-                query.Parameters.AddWithValue("@cpf", t.CPF);
-                query.Parameters.AddWithValue("@rg", t.RG);
-                query.Parameters.AddWithValue("@cnh", t.CNH);
-                query.Parameters.AddWithValue("@email", t.Email);
-                query.Parameters.AddWithValue("@telefone", t.Telefone);
-                query.Parameters.AddWithValue("@genero", t.Genero);
-
-                query.Parameters.AddWithValue("@id_end_fk", t.EnderecoId);
+                BindQuery(t, query);
 
                 var result = query.ExecuteNonQuery();
 
@@ -138,9 +156,7 @@ namespace alset_aloc.Models
                     throw new Exception("O cliente não foi cadastrado. Verifique e tente novamente.");
                 }
 
-                long clienteId = query.LastInsertedId;
-
-                t.Id = clienteId;
+                t.Id = query.LastInsertedId;
             }
             catch (Exception e)
             {
@@ -171,29 +187,7 @@ namespace alset_aloc.Models
 
                 while (dtReader.Read())
                 {
-                    Cliente cliente = new Cliente();
-
-                    cliente.Id = dtReader.GetInt64("id_cli");
-
-                    cliente.Nome = dtReader.GetString("nome_cli");
-                    cliente.DataNascimento = dtReader.GetDateTime("data_nascimento_cli");
-                    cliente.CPF = dtReader.GetString("cpf_cli");
-                    cliente.RG = dtReader.GetString("rg_cli");
-                    cliente.CNH = dtReader.GetString("cnh_cli");
-                    cliente.Email = dtReader.GetString("email_cli");
-                    cliente.Telefone = dtReader.GetString("telefone_cli");
-                    cliente.Genero = dtReader.GetString("genero_cli");
-
-                    var rawEnderecoId = dtReader.GetOrdinal("id_end_fk");
-
-                    if (!dtReader.IsDBNull(rawEnderecoId))
-                    {
-                        cliente.EnderecoId = dtReader.GetInt64(rawEnderecoId);
-                    } else
-                    {
-                        cliente.EnderecoId = null;
-                    }
-
+                    Cliente cliente = ParseReader(dtReader);
                     listaDeRetorno.Add(cliente);
                 }
 
@@ -226,22 +220,12 @@ namespace alset_aloc.Models
                         email_cli = @email,
                         telefone_cli = @telefone,
                         genero_cli = @genero,
-                        id_end_fk = @idEndFk
+                        id_end_fk = @enderecoId
                     WHERE (id_cli = @idCli);
                 ";
 
-                query.Parameters.AddWithValue("@nome", t.Nome);
-                query.Parameters.AddWithValue("@dataNascimento", t.DataNascimento);
-                query.Parameters.AddWithValue("@cpf", t.CPF);
-                query.Parameters.AddWithValue("@rg", t.RG);
-                query.Parameters.AddWithValue("@cnh", t.CNH);
-                query.Parameters.AddWithValue("@email", t.Email);
-                query.Parameters.AddWithValue("@telefone", t.Telefone);
-                query.Parameters.AddWithValue("@genero", t.Genero);
-
-                query.Parameters.AddWithValue("@idEndFk", t.EnderecoId);
-
-                query.Parameters.AddWithValue("@idCli", t.Id);
+                BindQuery(t, query);
+                BindQueryId(t.Id, query);
 
                 var result = query.ExecuteNonQuery();
 

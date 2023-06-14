@@ -15,6 +15,41 @@ namespace alset_aloc.Models
             conn = new Conexao();
         }
 
+        static Veiculo ParseQuery(MySqlDataReader dtReader)
+        {
+            Veiculo veiculo = new Veiculo();
+
+            veiculo.Id = dtReader.GetInt64("id_vei");
+
+            veiculo.Modelo = dtReader.GetString("modelo_vei");
+            veiculo.Marca = dtReader.GetString("marca_vei");
+            veiculo.Ano = dtReader.GetInt32("ano_vei");
+            veiculo.Placa = dtReader.GetString("placa_vei");
+            veiculo.NumeroChassi = dtReader.GetString("numero_chassi_vei");
+            veiculo.Cor = dtReader.GetString("cor_vei");
+            veiculo.DataCompra = dtReader.GetDateTime("data_compra_vei");
+            veiculo.Descricao = dtReader.GetString("descricao_vei");
+
+            return veiculo;
+        }
+
+        static void BindQuery(Veiculo t, MySqlCommand query)
+        {
+            query.Parameters.AddWithValue("@modelo", t.Modelo);
+            query.Parameters.AddWithValue("@marca", t.Marca);
+            query.Parameters.AddWithValue("@ano", t.Ano);
+            query.Parameters.AddWithValue("@placa", t.Placa);
+            query.Parameters.AddWithValue("@numeroChassi", t.NumeroChassi);
+            query.Parameters.AddWithValue("@cor", t.Cor);
+            query.Parameters.AddWithValue("@dataCompra", t.DataCompra);
+            query.Parameters.AddWithValue("@descricao", t.Descricao);
+        }
+
+        static void BindQueryId(long id, MySqlCommand query)
+        {
+            query.Parameters.AddWithValue("@idVei", id);
+        }
+
         public void Delete(Veiculo t)
         {
             try
@@ -26,7 +61,7 @@ namespace alset_aloc.Models
                     WHERE (id_vei = @idVei)
                 ";
 
-                query.Parameters.AddWithValue("@idVei", t.Id);
+                BindQueryId(t.Id, query);
 
                 var result = query.ExecuteNonQuery();
 
@@ -58,25 +93,13 @@ namespace alset_aloc.Models
                     ;
                 ";
 
-                query.Parameters.AddWithValue("@idVei", id);
+                BindQueryId(id, query);
 
                 MySqlDataReader dtReader = query.ExecuteReader();
 
-                Veiculo veiculo = new Veiculo();
-
                 while (dtReader.Read())
                 {
-                    veiculo.Id = dtReader.GetInt64("id_vei");
-
-                    veiculo.Modelo = dtReader.GetString("modelo_vei");
-                    veiculo.Marca = dtReader.GetString("marca_vei");
-                    veiculo.Ano = dtReader.GetInt32("ano_vei");
-                    veiculo.Placa = dtReader.GetString("placa_vei");
-                    veiculo.NumeroChassi = dtReader.GetString("numero_chassi_vei");
-                    veiculo.Cor = dtReader.GetString("cor_vei");
-                    veiculo.DataCompra = dtReader.GetDateTime("data_compra_vei");
-                    veiculo.Descricao = dtReader.GetString("descricao_vei");
-
+                    Veiculo veiculo = ParseQuery(dtReader);
                     return veiculo;
                 }
 
@@ -106,14 +129,7 @@ namespace alset_aloc.Models
                         (@modelo, @marca, @ano, @placa, @numeroChassi, @cor, @dataCompra, @descricao)
                 ";
 
-                query.Parameters.AddWithValue("@modelo", t.Modelo);
-                query.Parameters.AddWithValue("@marca", t.Marca);
-                query.Parameters.AddWithValue("@ano", t.Ano);
-                query.Parameters.AddWithValue("@placa", t.Placa);
-                query.Parameters.AddWithValue("@numeroChassi", t.NumeroChassi);
-                query.Parameters.AddWithValue("@cor", t.Cor);
-                query.Parameters.AddWithValue("@dataCompra", t.DataCompra);
-                query.Parameters.AddWithValue("@descricao", t.Descricao);
+                BindQuery(t, query);
 
                 var result = query.ExecuteNonQuery();
 
@@ -122,9 +138,7 @@ namespace alset_aloc.Models
                     throw new Exception("O veículo não foi cadastrado. Verifique e tente novamente.");
                 }
 
-                long veiculoId = query.LastInsertedId;
-
-                t.Id = veiculoId;
+                t.Id = query.LastInsertedId;
             }
             catch (Exception e)
             {
@@ -155,22 +169,9 @@ namespace alset_aloc.Models
 
                 while (dtReader.Read())
                 {
-                    Veiculo veiculo = new Veiculo();
-
-                    veiculo.Id = dtReader.GetInt64("id_vei");
-                    
-                    veiculo.Modelo = dtReader.GetString("modelo_vei");
-                    veiculo.Marca = dtReader.GetString("marca_vei");
-                    veiculo.Ano = dtReader.GetInt32("ano_vei");
-                    veiculo.Placa = dtReader.GetString("placa_vei");
-                    veiculo.NumeroChassi = dtReader.GetString("numero_chassi_vei");
-                    veiculo.Cor = dtReader.GetString("cor_vei");
-                    veiculo.DataCompra = dtReader.GetDateTime("data_compra_vei");
-                    veiculo.Descricao = dtReader.GetString("descricao_vei");
-
+                    Veiculo veiculo = ParseQuery(dtReader);
                     listaDeRetorno.Add(veiculo);
                 }
-
 
                 return listaDeRetorno;
             }
@@ -201,19 +202,12 @@ namespace alset_aloc.Models
                         cor_vei = @cor,
                         data_compra_vei = @dataCompra,
                         descricao_vei = @descricao
-                    WHERE (id_vei = @idVei);
+                    WHERE 
+                        (id_vei = @idVei);
                 ";
 
-                query.Parameters.AddWithValue("@modelo", t.Modelo);
-                query.Parameters.AddWithValue("@marca", t.Marca);
-                query.Parameters.AddWithValue("@ano", t.Ano);
-                query.Parameters.AddWithValue("@placa", t.Placa);
-                query.Parameters.AddWithValue("@numeroChassi", t.NumeroChassi);
-                query.Parameters.AddWithValue("@cor", t.Cor);
-                query.Parameters.AddWithValue("@dataCompra", t.DataCompra);
-                query.Parameters.AddWithValue("@descricao", t.Descricao);
-
-                query.Parameters.AddWithValue("@idVei", t.Id);
+                BindQuery(t, query);
+                BindQueryId(t.Id, query);
 
                 var result = query.ExecuteNonQuery();
 
