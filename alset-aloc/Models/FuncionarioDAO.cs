@@ -162,7 +162,7 @@ namespace alset_aloc.Models
 
                 MySqlDataReader reader = query.ExecuteReader();
 
-                List<Funcionario> listaDeRetorno = new List<Funcionario>();//Crie uma lista de Cliente
+                List<Funcionario> listaDeRetorno = new List<Funcionario>();
 
                 while (reader.Read())
                 {
@@ -230,13 +230,13 @@ namespace alset_aloc.Models
                 query.Parameters.AddWithValue("@genero", t.Genero);
 
                 query.Parameters.AddWithValue("@idEndFk", t.EnderecoID);
-                query.Parameters.AddWithValue("@idCli", t.Id);
+                query.Parameters.AddWithValue("@idFunc", t.Id);
 
                 var result = query.ExecuteNonQuery();
 
                 if (result == 0)
                 {
-                    throw new Exception("O cliente não foi alterado. Verifique e tente novamente.");
+                    throw new Exception("O funcionário não foi alterado. Verifique e tente novamente.");
                 }
             }
             catch 
