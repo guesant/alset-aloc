@@ -47,14 +47,13 @@ foreign key (id_end_fk) references endereco(id_end)
 );
 
 CREATE TABLE IF NOT EXISTS usuario (
-
 id_usua int primary key not null auto_increment,
+
 usuario_usua varchar(45) not null,
 senha_usua varchar(45) not null,
 
 id_func_fk int,
 foreign key (id_func_fk) references funcionario(id_func)
-
 );
 
 CREATE TABLE IF NOT EXISTS veiculo (
