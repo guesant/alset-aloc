@@ -2,16 +2,11 @@
 using alset_aloc.Interfaces;
 using MySql.Data.MySqlClient;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.PortableExecutable;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace alset_aloc.Models
 {
-    class EnderecoDAO : IDAO<Endereco>
+  class EnderecoDAO : IDAO<Endereco>
     {
         private Conexao conn;
 
@@ -70,17 +65,16 @@ namespace alset_aloc.Models
 
                 while (dtReader.Read())
                 {
+                    endereco.Id = dtReader.GetInt64("id_end");
 
-                    endereco.Id = Convert.ToInt64(dtReader["id_end"].ToString());
-
-                    endereco.Pais = dtReader["pais_end"].ToString()!;
-                    endereco.CodigoPostal = dtReader["codigo_postal_end"].ToString()!;
-                    endereco.UF = dtReader["uf_end"].ToString()!;
-                    endereco.Cidade = dtReader["cidade_end"].ToString()!;
-                    endereco.Rua = dtReader["rua_end"].ToString()!;
-                    endereco.Numero = Convert.ToInt32(dtReader["numero_end"].ToString()!);
-                    endereco.Bairro = dtReader["bairro_end"].ToString()!;
-                    endereco.Complemento = dtReader["complemento_end"].ToString()!;
+                    endereco.Pais = dtReader.GetString("pais_end");
+                    endereco.CodigoPostal = dtReader.GetString("codigo_postal_end");
+                    endereco.UF = dtReader.GetString("uf_end");
+                    endereco.Cidade = dtReader.GetString("cidade_end");
+                    endereco.Rua = dtReader.GetString("rua_end");
+                    endereco.Numero = dtReader.GetInt32("numero_end");
+                    endereco.Bairro = dtReader.GetString("bairro_end");
+                    endereco.Complemento = dtReader.GetString("complemento_end");
 
                     return endereco;
                 }
@@ -157,20 +151,21 @@ namespace alset_aloc.Models
                 MySqlDataReader dtReader = query.ExecuteReader();
 
                 List<Endereco> listaDeRetorno = new List<Endereco>();//Crie uma lista de Cliente
-               
+
                 while (dtReader.Read())
                 {
                     Endereco endereco = new Endereco();
 
-                    endereco.Id = Convert.ToInt64(dtReader["id_end"].ToString());
-                    endereco.Pais = dtReader["pais_end"].ToString()!;
-                    endereco.CodigoPostal = dtReader["codigo_postal_end"].ToString()!;
-                    endereco.UF = dtReader["uf_end"].ToString()!;
-                    endereco.Cidade = dtReader["cidade_end"].ToString()!;
-                    endereco.Rua = dtReader["rua_end"].ToString()!;
-                    endereco.Numero = Convert.ToInt32(dtReader["numero_end"].ToString()!);
-                    endereco.Bairro = dtReader["bairro_end"].ToString()!;
-                    endereco.Complemento = dtReader["complemento_end"].ToString()!;
+                    endereco.Id = dtReader.GetInt64("id_end");
+
+                    endereco.Pais = dtReader.GetString("pais_end");
+                    endereco.CodigoPostal = dtReader.GetString("codigo_postal_end");
+                    endereco.UF = dtReader.GetString("uf_end");
+                    endereco.Cidade = dtReader.GetString("cidade_end");
+                    endereco.Rua = dtReader.GetString("rua_end");
+                    endereco.Numero = dtReader.GetInt32("numero_end");
+                    endereco.Bairro = dtReader.GetString("bairro_end");
+                    endereco.Complemento = dtReader.GetString("complemento_end");
 
                     listaDeRetorno.Add(endereco);
                 }

@@ -3,13 +3,10 @@ using alset_aloc.Interfaces;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace alset_aloc.Models
 {
-    class VeiculoDAO : IDAO<Veiculo>
+  class VeiculoDAO : IDAO<Veiculo>
     {
         private Conexao conn;
 
@@ -69,17 +66,16 @@ namespace alset_aloc.Models
 
                 while (dtReader.Read())
                 {
+                    veiculo.Id = dtReader.GetInt64("id_vei");
 
-                    veiculo.Id = Convert.ToInt64(dtReader["id_vei"].ToString());
-
-                    veiculo.Modelo = dtReader["modelo_vei"].ToString()!;
-                    veiculo.Marca = dtReader["marca_vei"].ToString()!;
-                    veiculo.Ano = Convert.ToInt32(dtReader["ano_vei"].ToString()!);
-                    veiculo.Placa = dtReader["placa_vei"].ToString()!;
-                    veiculo.NumeroChassi = dtReader["numero_chassi_vei"].ToString()!;
-                    veiculo.Cor = dtReader["cor_vei"].ToString()!;
-                    veiculo.DataCompra = Convert.ToDateTime(dtReader["data_compra_vei"].ToString()!);
-                    veiculo.Descricao = dtReader["descricao_vei"].ToString()!;
+                    veiculo.Modelo = dtReader.GetString("modelo_vei");
+                    veiculo.Marca = dtReader.GetString("marca_vei");
+                    veiculo.Ano = dtReader.GetInt32("ano_vei");
+                    veiculo.Placa = dtReader.GetString("placa_vei");
+                    veiculo.NumeroChassi = dtReader.GetString("numero_chassi_vei");
+                    veiculo.Cor = dtReader.GetString("cor_vei");
+                    veiculo.DataCompra = dtReader.GetDateTime("data_compra_vei");
+                    veiculo.Descricao = dtReader.GetString("descricao_vei");
 
                     return veiculo;
                 }
@@ -161,16 +157,16 @@ namespace alset_aloc.Models
                 {
                     Veiculo veiculo = new Veiculo();
 
-                    veiculo.Id = Convert.ToInt64(dtReader["id_end"].ToString());
-
-                    veiculo.Modelo = dtReader["modelo_vei"].ToString()!;
-                    veiculo.Marca = dtReader["marca_vei"].ToString()!;
-                    veiculo.Ano = Convert.ToInt32(dtReader["ano_vei"].ToString()!);
-                    veiculo.Placa = dtReader["placa_vei"].ToString()!;
-                    veiculo.NumeroChassi = dtReader["numero_chassi_vei"].ToString()!;
-                    veiculo.Cor = dtReader["cor_vei"].ToString()!;
-                    veiculo.DataCompra = Convert.ToDateTime(dtReader["data_compra_vei"].ToString()!);
-                    veiculo.Descricao = dtReader["descricao_vei"].ToString()!;
+                    veiculo.Id = dtReader.GetInt64("id_vei");
+                    
+                    veiculo.Modelo = dtReader.GetString("modelo_vei");
+                    veiculo.Marca = dtReader.GetString("marca_vei");
+                    veiculo.Ano = dtReader.GetInt32("ano_vei");
+                    veiculo.Placa = dtReader.GetString("placa_vei");
+                    veiculo.NumeroChassi = dtReader.GetString("numero_chassi_vei");
+                    veiculo.Cor = dtReader.GetString("cor_vei");
+                    veiculo.DataCompra = dtReader.GetDateTime("data_compra_vei");
+                    veiculo.Descricao = dtReader.GetString("descricao_vei");
 
                     listaDeRetorno.Add(veiculo);
                 }

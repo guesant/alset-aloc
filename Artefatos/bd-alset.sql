@@ -83,7 +83,7 @@ id_vei_fk int,
 id_fun_fk int,
 
 foreign key (id_vei_fk) references veiculo(id_vei),
-foreign key (id_fun_fk) references Funcionario(id_func)
+foreign key (id_fun_fk) references funcionario(id_func)
 
 );
 
