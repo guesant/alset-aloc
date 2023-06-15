@@ -6,21 +6,22 @@ using System.Threading.Tasks;
 
 namespace alset_aloc.Models
 {
-    internal class Recebimento
+    class Recebimento
     {
         public long Id { get; set; }
+        
         public string Descricao { get; set; }
-        public double Valor { get; set; }
-        public DateTime Data_Vencimento { get; set;  }
-        public DateTime Data_Credenciamento { get; set; }
+        
+        public double? Valor { get; set; }
+        
+        public DateTime? DataVencimento { get; set;  }
+        
+        public DateTime? DataCredenciamento { get; set; }
 
-        public string Pagador { get; set; }
+        public string? Pagador { get; set; }
 
-        public int Parcelas { get; set; }
+        public int? Parcelas { get; set; }
 
         public long? LocacaoId { get; set; }
-
- 
-
-        }
+    }
 }
