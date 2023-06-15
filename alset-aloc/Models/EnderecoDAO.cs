@@ -61,7 +61,7 @@ namespace alset_aloc.Models
                     WHERE (id_end = @idEnd)
                 ";
 
-                query.Parameters.AddWithValue("@idEnd", t.Id);
+                BindQueryId(t.Id, query);
 
                 var result = query.ExecuteNonQuery();
 
@@ -165,7 +165,7 @@ namespace alset_aloc.Models
 
                 MySqlDataReader dtReader = query.ExecuteReader();
 
-                List<Endereco> listaDeRetorno = new List<Endereco>();//Crie uma lista de Cliente
+                List<Endereco> listaDeRetorno = new List<Endereco>();
 
                 while (dtReader.Read())
                 {

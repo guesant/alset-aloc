@@ -1,17 +1,12 @@
 ﻿using alset_aloc.Database;
 using alset_aloc.Interfaces;
 using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media.Media3D;
 
 namespace alset_aloc.Models
 {
-    class ClienteDAO : IDAO<Cliente>
+  class ClienteDAO : IDAO<Cliente>
     {
         private Conexao conn;
 
@@ -183,7 +178,7 @@ namespace alset_aloc.Models
 
                 MySqlDataReader dtReader = query.ExecuteReader();
 
-                List<Cliente> listaDeRetorno = new List<Cliente>();//Crie uma lista de Cliente
+                List<Cliente> listaDeRetorno = new List<Cliente>();
 
                 while (dtReader.Read())
                 {
