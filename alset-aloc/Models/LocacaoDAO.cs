@@ -130,7 +130,7 @@ namespace alset_aloc.Models
                     return locacao;
                 }
 
-                throw new Exception("Não foi possível encontrar o endereço com o id fornecido. Verifique e tente novamente.");
+                throw new Exception("Não foi possível encontrar a locação com o id fornecido. Verifique e tente novamente.");
             }
             catch (Exception e)
             {
