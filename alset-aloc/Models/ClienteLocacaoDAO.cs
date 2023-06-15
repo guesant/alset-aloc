@@ -3,52 +3,53 @@ using alset_aloc.Interfaces;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace alset_aloc.Models
 {
-  class ProdutoDAO : IDAO<Produto>
+    class ClienteLocacaoDAO : IDAO<ClienteLocacao>
     {
         private Conexao conn;
 
-        public ProdutoDAO()
+        public ClienteLocacaoDAO()
         {
             conn = new Conexao();
         }
 
-        static Produto ParseQuery(MySqlDataReader dtReader)
+        static ClienteLocacao ParseReader(MySqlDataReader dtReader)
         {
-            Produto produto = new Produto();
+            var clienteLocacao = new ClienteLocacao();
 
-            produto.Id = dtReader.GetInt64("id_prod");
+            clienteLocacao.Id = dtReader.GetInt64("id_cli_loc");
 
-            produto.Nome = dtReader.GetString("nome_prod");
-            produto.Preco = dtReader.GetDouble("preco_prod");
-            produto.Estoque = dtReader.GetDouble("estoque_prod");
+            clienteLocacao.ClienteId = dtReader.GetInt64("id_cli_fk");
+            clienteLocacao.LocacaoId = dtReader.GetInt64("id_loc_fk");
 
-            return produto;
+            return clienteLocacao;
         }
 
-        static void BindQuery(Produto t, MySqlCommand query)
+        static void BindQuery(ClienteLocacao t, MySqlCommand query)
         {
-            query.Parameters.AddWithValue("@nome", t.Nome);
-            query.Parameters.AddWithValue("@preco", t.Preco);
-            query.Parameters.AddWithValue("@estoque", t.Estoque);
+            query.Parameters.AddWithValue("@clienteId", t.ClienteId);
+            query.Parameters.AddWithValue("@locacaoId", t.LocacaoId);
         }
 
-        static void BindQueryId(long id, MySqlCommand query)
+        public static void BindQueryId(long id, MySqlCommand query)
         {
-            query.Parameters.AddWithValue("@idProd", id);
+            query.Parameters.AddWithValue("@idCliLoc", id);
         }
 
-        public void Delete(Produto t)
+        public void Delete(Endereco t)
         {
             try
             {
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    DELETE FROM produto
-                    WHERE (id_prod = @idProd)
+                    DELETE FROM cliente_locacao
+                    WHERE (id_cli_loc = @idCliLoc)
                 ";
 
                 BindQueryId(t.Id, query);
@@ -57,7 +58,7 @@ namespace alset_aloc.Models
 
                 if (result == 0)
                 {
-                    throw new Exception("O produto não foi encontrado. Verifique e tente novamente.");
+                    throw new Exception("A associação de cliente à locação não foi encontrada. Verifique e tente novamente.");
                 }
             }
             catch (Exception e)
@@ -70,29 +71,30 @@ namespace alset_aloc.Models
             }
         }
 
-        public Produto GetById(int id)
+        public ClienteLocacao GetById(int id)
         {
             try
             {
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT (id_prod, nome_prod, preco_prod, estoque_prod)
-                    FROM produto
-                    WHERE (id_prod = @idProd);
+                    SELECT (id_cli_loc, id_cli_fk, id_loc_fk)
+                    FROM cliente_locacao
+                    WHERE (id_cli_loc = @idCliLoc);
                 ";
 
                 BindQueryId(id, query);
 
                 MySqlDataReader dtReader = query.ExecuteReader();
 
+
                 while (dtReader.Read())
                 {
-                    Produto produto = ParseQuery(dtReader);                    
-                    return produto;
+                    var clienteLocacao = ParseReader(dtReader);
+                    return clienteLocacao;
                 }
 
-                throw new Exception("Não foi possível encontrar o produto com o id fornecido. Verifique e tente novamente.");
+                throw new Exception("Não foi possível encontrar a associação de cliente à locação com o id fornecido. Verifique e tente novamente.");
             }
             catch (Exception e)
             {
@@ -105,7 +107,7 @@ namespace alset_aloc.Models
 
         }
 
-        public void Insert(Produto t)
+        public void Insert(ClienteLocacao t)
         {
             try
             {
@@ -113,9 +115,9 @@ namespace alset_aloc.Models
 
                 query.CommandText = @"
                     INSERT INTO 
-                        produto (nome_prod, preco_prod, estoque_prod)
+                        cliente_locacao (id_cli_fk, id_loc_fk)
                     VALUES
-                        (@nome, @preco, @estoque)
+                        (@clienteId, @locacaoId)
                 ";
 
                 BindQuery(t, query);
@@ -124,7 +126,7 @@ namespace alset_aloc.Models
 
                 if (result == 0)
                 {
-                    throw new Exception("O produto não foi cadastrado. Verifique e tente novamente.");
+                    throw new Exception("A associação de cliente à locação não foi cadastrada. Verifique e tente novamente.");
                 }
 
                 t.Id = query.LastInsertedId;
@@ -139,27 +141,27 @@ namespace alset_aloc.Models
             }
         }
 
-        public List<Produto> List()
+        public List<ClienteLocacao> List()
         {
             try
             {
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT (id_prod, nome_prod, preco_prod, estoque_prod)
-                    FROM produto
+                    SELECT (id_cli_loc, id_cli_fk, id_loc_fk)
+                    FROM cliente_locacao
                     ;
                 "
                 ;
 
                 MySqlDataReader dtReader = query.ExecuteReader();
 
-                List<Produto> listaDeRetorno = new List<Produto>();
+                var listaDeRetorno = new List<ClienteLocacao>();
 
                 while (dtReader.Read())
                 {
-                    Produto produto = ParseQuery(dtReader);
-                    listaDeRetorno.Add(produto);
+                    var clienteLocacao = ParseReader(dtReader);
+                    listaDeRetorno.Add(clienteLocacao);
                 }
 
 
@@ -175,19 +177,18 @@ namespace alset_aloc.Models
             }
         }
 
-        public void Update(Produto t)
+        public void Update(Endereco t)
         {
             try
             {
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    UPDATE produto
+                    UPDATE cliente_locacao
                     SET
-                        nome_prod = @nome,
-                        preco_prod = @preco,
-                        estoque_prod = @estoque
-                    WHERE (id_prod = @idProd);
+                        id_cli_fk = @clienteId,
+                        id_loc_fk = @locacaoId
+                    WHERE (id_cli_loc = @idCliLoc);
                 ";
 
                 BindQuery(t, query);
@@ -197,7 +198,7 @@ namespace alset_aloc.Models
 
                 if (result == 0)
                 {
-                    throw new Exception("O produto não foi alterado. Verifique e tente novamente.");
+                    throw new Exception("A associação de cliente à locação não foi alterada. Verifique e tente novamente.");
                 }
             }
             catch (Exception e)

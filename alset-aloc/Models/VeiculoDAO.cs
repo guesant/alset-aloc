@@ -165,7 +165,7 @@ namespace alset_aloc.Models
 
                 MySqlDataReader dtReader = query.ExecuteReader();
 
-                List<Veiculo> listaDeRetorno = new List<Veiculo>();//Crie uma lista de Cliente
+                List<Veiculo> listaDeRetorno = new List<Veiculo>();
 
                 while (dtReader.Read())
                 {
