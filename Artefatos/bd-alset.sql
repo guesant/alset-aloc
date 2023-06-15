@@ -90,8 +90,8 @@ CREATE TABLE IF NOT EXISTS cliente_locacao (
 
 id_cli_loc int primary key not null auto_increment,
 
-id_cli_fk int,
-id_loc_fk int,
+id_cli_fk int not null,
+id_loc_fk int not null,
 
 foreign key (id_cli_fk) references cliente(id_cli),
 foreign key (id_loc_fk) references locacao(id_loc)
