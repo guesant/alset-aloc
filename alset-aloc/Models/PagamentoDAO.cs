@@ -213,7 +213,7 @@ namespace alset_aloc.Models
                         data_credenciamento_pag = @dataCredenciamento,
                         credor_pag = @credor,
                         parcelas_pag = @parcelas,
-                        id_com_fk = @compraId,
+                        id_com_fk = @compraId
                     WHERE (id_pag = @idPag);
                 ";
 
