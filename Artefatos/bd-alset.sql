@@ -138,12 +138,12 @@ foreign key (id_forn_fk) references fornecedor(id_forn)
 CREATE TABLE IF NOT EXISTS pagamento (
 
 id_pag int primary key not null auto_increment,
-descricao_ag varchar(200) not null,
+descricao_pag varchar(200) not null,
 valor_pag double,
 data_vencimento_pag date,
 data_credenciamento_pag date,
 credor_pag varchar(45),
-parcelar_pag int,
+parcelas_pag int,
 
 id_com_fk int,
 foreign key (id_com_fk) references compra(id_com)

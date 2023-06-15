@@ -123,7 +123,7 @@ namespace alset_aloc.Models
                     INSERT INTO 
                         usuario (usuario_usua, senha_usua, id_func_fk)
                     VALUES
-                        (@usuario, senha, funcionarioId)
+                        (@usuario, @senha, @funcionarioId)
                 ";
 
                 BindQuery(t, query);
