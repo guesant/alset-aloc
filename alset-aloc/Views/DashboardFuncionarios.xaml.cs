@@ -25,7 +25,76 @@ namespace alset_aloc.Views
         public DashboardFuncionarios()
         {
             InitializeComponent();
+            
+            DefinirColunas();
+
             CarregarBusca();
+        }
+
+        private void DefinirColunas()
+        {
+            DataGridTextColumn colunaId = new DataGridTextColumn();
+            Binding colunaIdBinding = new Binding("Id");            
+            colunaId.Binding = colunaIdBinding;
+            colunaId.Header = "ID";            
+            dgFuncionarios.Columns.Add(colunaId);
+            
+            // ...
+
+            DataGridTextColumn colunaNome = new DataGridTextColumn();
+            Binding colunaNomeBinding = new Binding("Nome");
+            colunaNome.Binding = colunaNomeBinding;
+            colunaNome.Header = "Nome";
+            dgFuncionarios.Columns.Add(colunaNome);
+
+            // ...
+
+            DataGridTextColumn colunaDataNascimento = new DataGridTextColumn();
+            Binding colunaDataNascimentoBinding = new Binding("DataNascimento");
+            colunaDataNascimentoBinding.StringFormat = "dd/MM/yyyy";
+            colunaDataNascimento.Binding = colunaDataNascimentoBinding;
+            colunaDataNascimento.Header = "Data de Nascimento";
+            dgFuncionarios.Columns.Add(colunaDataNascimento);
+
+            // ...
+
+            DataGridTextColumn colunaCpf = new DataGridTextColumn();
+            Binding colunaCpfBinding = new Binding("Cpf");
+            colunaCpf.Binding = colunaCpfBinding;
+            colunaCpf.Header = "CPF";
+            dgFuncionarios.Columns.Add(colunaCpf);
+
+            // ...
+
+            DataGridTextColumn colunaRg = new DataGridTextColumn();
+            Binding colunaRgBinding = new Binding("Rg");
+            colunaRg.Binding = colunaRgBinding;
+            colunaRg.Header = "RG";
+            dgFuncionarios.Columns.Add(colunaRg);
+
+            // ...
+
+            DataGridTextColumn colunaEmail = new DataGridTextColumn();
+            Binding colunaEmailBinding = new Binding("Email");
+            colunaEmail.Binding = colunaRgBinding;
+            colunaEmail.Header = "E-mail";
+            dgFuncionarios.Columns.Add(colunaEmail);
+
+            // ...
+
+            DataGridTextColumn colunaTelefone = new DataGridTextColumn();
+            Binding colunaTelefoneBinding = new Binding("Telefone");
+            colunaTelefone.Binding = colunaRgBinding;
+            colunaTelefone.Header = "Telefone";
+            dgFuncionarios.Columns.Add(colunaTelefone);
+
+            // ...
+
+            DataGridTextColumn colunaGenero = new DataGridTextColumn();
+            Binding colunaGeneroBinding = new Binding("Genero");
+            colunaGenero.Binding = colunaRgBinding;
+            colunaGenero.Header = "Genero";
+            dgFuncionarios.Columns.Add(colunaGenero);
         }
 
 
@@ -35,49 +104,7 @@ namespace alset_aloc.Views
 
             var funcionarios = funcionarioDAO.List();
 
-            var data = funcionarios
-                .Select(
-                    t => new 
-                    {
-                        Id = t.Id,
-                        Nome = t.Nome,
-                        DataNascimento = t.DataNascimento.ToString("dd/MM/yyyy"),
-                        Email = t.Email,
-                        Genero = t.Genero,
-                        Cpf = Mascaras.FormatarCPF(t.Cpf),
-                        Rg = t.Rg,
-                        Telefone = Mascaras.FormatarTelefone(t.Telefone)
-                    }
-                )
-                .ToArray();
-
-            dgFuncionarios.ItemsSource = data;
-        }
-
-        private void dgFuncionarios_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
-        {
-            switch (e.Column.Header.ToString()) {
-                case "Id":
-                    {
-                        e.Column.Header = "ID";
-                        break;
-                    }
-                case "Nome":
-                    {
-                        e.Column.Header = "Nome";
-                        break;
-                    }
-                case "DataNascimento":
-                    {
-                        e.Column.Header = "Data de Nascimento";
-                        break;
-                    }
-                case "Cpf":
-                    {
-                        e.Column.Header = "CPF";
-                        break;
-                    }
-            }
+            dgFuncionarios.ItemsSource = funcionarios;
         }
     }
 }
