@@ -41,7 +41,7 @@ namespace alset_aloc.Models
             query.Parameters.AddWithValue("@idCliLoc", id);
         }
 
-        public void Delete(Endereco t)
+        public void Delete(ClienteLocacao t)
         {
             try
             {
@@ -177,7 +177,7 @@ namespace alset_aloc.Models
             }
         }
 
-        public void Update(Endereco t)
+        public void Update(ClienteLocacao t)
         {
             try
             {
