@@ -18,7 +18,7 @@ namespace alset_aloc.Database
 
         private static string password = "root";
 
-        private static string dbname = "alset_db";
+        private static string dbname = "aloc";
 
         private static MySqlConnection connection;
 

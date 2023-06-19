@@ -10,6 +10,9 @@
     <Compile Update="Views\DashboardClientes.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\DashboardFuncionarios.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\DashboardHome.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -22,6 +25,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\DashboardClientes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\DashboardFuncionarios.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\DashboardHome.xaml">
