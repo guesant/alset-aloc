@@ -135,7 +135,7 @@ namespace alset_aloc.Models
                 query.CommandText = @"
                     INSERT INTO 
                         fornecedor
-                        (cnpj_forn, razao_social_forn, nome_fantasia_forn, email_forn, telefone_forn, id_end_fk)
+                        cnpj_forn, razao_social_forn, nome_fantasia_forn, email_forn, telefone_forn, id_end_fk
                     VALUES
                         (@cnpj, @razaoSocial, @nomeFantasia, @email, @telefone, @enderecoId)
                 ";
@@ -168,10 +168,8 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT (id_forn, cnpj_forn, razao_social_forn, nome_fantasia_forn, email_forn, telefone_forn, id_end_fk)
-                    FROM fornecedor
-                    ;
-                ";
+                    SELECT id_forn, cnpj_forn, razao_social_forn, nome_fantasia_forn, email_forn, telefone_forn, id_end_fk
+                    FROM fornecedor;";
 
                 MySqlDataReader dtReader = query.ExecuteReader();
 
