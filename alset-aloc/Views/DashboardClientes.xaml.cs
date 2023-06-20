@@ -45,63 +45,63 @@ namespace alset_aloc.Views
             selectedColumn.IsReadOnly = false;
             dgClientes.Columns.Add(selectedColumn);
 
-            DataGridCheckBoxColumn idColumn = new DataGridCheckBoxColumn();
+            DataGridTextColumn idColumn = new DataGridTextColumn();
             Binding columnIdBinding = new Binding("Item.Id");
             idColumn.Binding = columnIdBinding;
             idColumn.Header = "Código";
             idColumn.IsReadOnly = true;
             dgClientes.Columns.Add(idColumn);
 
-            DataGridCheckBoxColumn nameColumn = new DataGridCheckBoxColumn();
+            DataGridTextColumn nameColumn = new DataGridTextColumn();
             Binding columnNameBinding = new Binding("Item.Nome");
             nameColumn.Binding = columnNameBinding;
             nameColumn.Header = "Nome";
             nameColumn.IsReadOnly = true;
             dgClientes.Columns.Add(nameColumn);
 
-            DataGridCheckBoxColumn dateColumn = new DataGridCheckBoxColumn();
+            DataGridTextColumn dateColumn = new DataGridTextColumn();
             Binding columnDateBinding = new Binding("Item.Date");
             dateColumn.Binding = columnDateBinding;
             dateColumn.Header = "Data de Nascimento";
             dateColumn.IsReadOnly = true;
             dgClientes.Columns.Add(dateColumn);
 
-            DataGridCheckBoxColumn cpfColumn = new DataGridCheckBoxColumn();
+            DataGridTextColumn cpfColumn = new DataGridTextColumn();
             Binding columnCpfBinding = new Binding("Item.Cpf");
             cpfColumn.Binding = columnDateBinding;
             cpfColumn.Header = "CPF";
             cpfColumn.IsReadOnly = true;
             dgClientes.Columns.Add(cpfColumn);
 
-            DataGridCheckBoxColumn rgColumn = new DataGridCheckBoxColumn();
+            DataGridTextColumn rgColumn = new DataGridTextColumn();
             Binding columnRgBinding = new Binding("Item.Rg");
             rgColumn.Binding = columnRgBinding;
             rgColumn.Header = "RG";
             rgColumn.IsReadOnly = true;
             dgClientes.Columns.Add(rgColumn);
 
-            DataGridCheckBoxColumn cnhColumn = new DataGridCheckBoxColumn();
+            DataGridTextColumn cnhColumn = new DataGridTextColumn();
             Binding columnCnhBinding = new Binding("Item.Cnh");
             cnhColumn.Binding = columnCnhBinding;
             cnhColumn.Header = "CNH";
             cnhColumn.IsReadOnly = true;
             dgClientes.Columns.Add(cnhColumn);
 
-            DataGridCheckBoxColumn emailColumn = new DataGridCheckBoxColumn();
+            DataGridTextColumn emailColumn = new DataGridTextColumn();
             Binding columnEmailBinding = new Binding("Item.Email");
             emailColumn.Binding = columnEmailBinding;
             emailColumn.Header = "E-Mail";
             emailColumn.IsReadOnly = true;
             dgClientes.Columns.Add(emailColumn);
 
-            DataGridCheckBoxColumn telefoneColumn = new DataGridCheckBoxColumn();
+            DataGridTextColumn telefoneColumn = new DataGridTextColumn();
             Binding columnTelefoneBinding = new Binding("Item.Telefone");
             telefoneColumn.Binding = columnTelefoneBinding;
             telefoneColumn.Header = "Telefone";
             telefoneColumn.IsReadOnly = true;
             dgClientes.Columns.Add(telefoneColumn);
 
-            DataGridCheckBoxColumn generoColumn = new DataGridCheckBoxColumn();
+            DataGridTextColumn generoColumn = new DataGridTextColumn();
             Binding columnGeneroBinding = new Binding("Item.Genero");
             generoColumn.Binding = columnGeneroBinding;
             generoColumn.Header = "Gênero";

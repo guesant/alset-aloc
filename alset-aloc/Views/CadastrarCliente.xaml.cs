@@ -61,6 +61,8 @@ namespace alset_aloc.Views
             clienteDAO.Insert(cliente);
 
             MessageBox.Show("Cliente cadastrado com sucesso!", "ALOC - Alset");
+
+            this.Close();
         }
 
         private void btCancelar_Click(object sender, RoutedEventArgs e)

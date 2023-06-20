@@ -139,7 +139,7 @@ namespace alset_aloc.Models
                     INSERT INTO 
                         cliente (nome_cli, data_nascimento_cli, cpf_cli, rg_cli, cnh_cli, email_cli, telefone_cli, genero_cli, id_end_fk)
                     VALUES
-                        (@nome, @dataNascimento, @cpf, @rg, @cnh, @email, @telefone, @genero, @enderecoId)
+                        (@nome, @dataNascimento, @cpf, @rg, @cnh, @email, @telefone, @genero, @enderecoId);
                 ";
 
                 BindQuery(t, query);
@@ -170,7 +170,7 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT (id_cli, nome_cli, data_nascimento_cli, cpf_cli, rg_cli, cnh_cli, email_cli, telefone_cli, genero_cli, id_end_fk)
+                    SELECT id_cli, nome_cli, data_nascimento_cli, cpf_cli, rg_cli, cnh_cli, email_cli, telefone_cli, genero_cli, id_end_fk
                     FROM cliente
                     ;
                 ";
