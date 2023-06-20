@@ -70,6 +70,8 @@ descricao_vei varchar(200) not null
 
 );
 
+insert into veiculo values ("Virtus", "aishpda", 2021, ""
+
 CREATE TABLE IF NOT EXISTS locacao (
 
 id_loc int primary key not null auto_increment,
