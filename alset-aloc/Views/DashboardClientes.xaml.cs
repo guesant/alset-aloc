@@ -60,28 +60,30 @@ namespace alset_aloc.Views
             dgClientes.Columns.Add(nameColumn);
 
             DataGridTextColumn dateColumn = new DataGridTextColumn();
-            Binding columnDateBinding = new Binding("Item.Date");
+            Binding columnDateBinding = new Binding("Item.DataNascimento");
+            columnDateBinding.StringFormat = "dd/MM/yyyy";
             dateColumn.Binding = columnDateBinding;
             dateColumn.Header = "Data de Nascimento";
             dateColumn.IsReadOnly = true;
             dgClientes.Columns.Add(dateColumn);
 
             DataGridTextColumn cpfColumn = new DataGridTextColumn();
-            Binding columnCpfBinding = new Binding("Item.Cpf");
-            cpfColumn.Binding = columnDateBinding;
+            Binding columnCpfBinding = new Binding("Item.CPF");
+
+            cpfColumn.Binding = columnCpfBinding;
             cpfColumn.Header = "CPF";
             cpfColumn.IsReadOnly = true;
             dgClientes.Columns.Add(cpfColumn);
 
             DataGridTextColumn rgColumn = new DataGridTextColumn();
-            Binding columnRgBinding = new Binding("Item.Rg");
+            Binding columnRgBinding = new Binding("Item.RG");
             rgColumn.Binding = columnRgBinding;
             rgColumn.Header = "RG";
             rgColumn.IsReadOnly = true;
             dgClientes.Columns.Add(rgColumn);
 
             DataGridTextColumn cnhColumn = new DataGridTextColumn();
-            Binding columnCnhBinding = new Binding("Item.Cnh");
+            Binding columnCnhBinding = new Binding("Item.CNH");
             cnhColumn.Binding = columnCnhBinding;
             cnhColumn.Header = "CNH";
             cnhColumn.IsReadOnly = true;
