@@ -30,14 +30,12 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\CadastrarCliente.xaml">
     <Page Update="Views\CadastrarFornecedor.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\CadastrarFuncionario.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\DashboardClientes.xaml">
     <Page Update="Views\DashboardFornecedor.xaml">
       <SubType>Designer</SubType>
     </Page>
