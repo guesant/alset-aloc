@@ -33,10 +33,16 @@
     <Page Update="Views\CadastrarFornecedor.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\CadastrarVeiculo.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\CadastrarFuncionario.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\DashboardFornecedor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\DashboardVeiculo.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\DashboardFuncionarios.xaml">

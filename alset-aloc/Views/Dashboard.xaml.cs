@@ -84,7 +84,9 @@ namespace alset_aloc.Views
                 {
                     Id = "veiculos",
                     Icon = PackIconKind.LocalShipping,
-                    Label = "Veículos"
+                    Label = "Veículos",
+                    Control = () => new DashboardVeiculo(),
+
                 },
 
                 new DashboardMenuButton()

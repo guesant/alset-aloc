@@ -47,7 +47,13 @@
     <Compile Update="Views\CadastrarFornecedor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\CadastrarVeiculo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\DashboardFornecedor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\DashboardVeiculo.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
