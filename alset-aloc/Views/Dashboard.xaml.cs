@@ -46,6 +46,34 @@ namespace alset_aloc.Views
                     Id = "funcionarios",
                     Icon = PackIconKind.Worker,
                     Label = "Funcionários",
+                    Control = () => new DashboardFuncionarios(),
+                },
+
+                new DashboardMenuButton()
+                {
+                    Id = "fornecedores",
+                    Icon = PackIconKind.Business,
+                    Label = "Fornecedores"
+                },
+
+                // ...
+
+                // Financeiro
+
+                new DashboardMenuButton()
+                {
+                    Id = "compras",
+                    Icon = PackIconKind.ReceiptText,
+                    Label = "Compras"
+                },
+
+                // ...
+
+                new DashboardMenuButton()
+                {
+                    Id = "clientes",
+                    Icon = PackIconKind.People,
+                    Label = "Clientes",
                 },
 
                 new DashboardMenuButton()
@@ -57,11 +85,24 @@ namespace alset_aloc.Views
 
                 new DashboardMenuButton()
                 {
-                    Id = "clientes",
-                    Icon = PackIconKind.People,
-                    Label = "Clientes",
-                    Control = () => new DashboardClientes(),
+                    Id = "locacoes",
+                    Icon = PackIconKind.Key,
+                    Label = "Locações"
                 },
+
+
+                // ...
+
+
+                
+                new DashboardMenuButton()
+                {
+                    Id = "relatorios",
+                    Icon = PackIconKind.ChartBox,
+                    Label = "Relatórios"
+                },
+
+                //
 
                 new DashboardMenuButton()
                 {
@@ -69,34 +110,6 @@ namespace alset_aloc.Views
                     Icon = PackIconKind.PointOfSale,
                     Label = "Recebimentos",
                     Control = () => new DashboardRecebimentos(),
-                },
-
-                new DashboardMenuButton()
-                {
-                    Id = "fornecedores",
-                    Icon = PackIconKind.Business,
-                    Label = "Fornecedores"
-                },
-
-                new DashboardMenuButton()
-                {
-                    Id = "compras",
-                    Icon = PackIconKind.ReceiptText,
-                    Label = "Compras"
-                },
-
-                new DashboardMenuButton()
-                {
-                    Id = "locacoes",
-                    Icon = PackIconKind.Key,
-                    Label = "Locações"
-                },
-
-                new DashboardMenuButton()
-                {
-                    Id = "relatorios",
-                    Icon = PackIconKind.ChartBox,
-                    Label = "Relatórios"
                 }
             };
 

@@ -171,9 +171,9 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT (id_func, nome_func, data_nascimento_func, cpf_func, rg_func, email_func, telefone_func, genero_func, id_end_fk)
+                    SELECT id_func, nome_func, data_nascimento_func, cpf_func, rg_func, email_func, telefone_func, genero_func, id_end_fk
                     FROM funcionario
-                    WHERE (id_func = @idFunc);
+                    ;
                 ";
 
 

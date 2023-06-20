@@ -13,7 +13,8 @@
         TextElement.FontSize="14"
         FontFamily="{materialDesign:MaterialDesignFont}"
         
-        Title="Painel" Height="740" Width="1320" WindowStartupLocation="CenterScreen">
+        Title="Painel" Height="740" Width="1320" WindowStartupLocation="CenterScreen"
+    >
     
     <Grid Background="White">
         <Grid.ColumnDefinitions>
@@ -32,6 +33,7 @@
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+            
             <Image Grid.Column="0" Margin="20 0" VerticalAlignment="Center" Width="45" Height="45" Source="/Images/Icons/home.png" />
             <Image Grid.Column="1" Margin="20 0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="45" Height="45"  Source="/Images/icons/logout.png"/>
 
@@ -117,6 +119,7 @@
                                         </Grid.ColumnDefinitions>
 
                                         <materialDesign:PackIcon Grid.Column="0"  Margin="10 5" VerticalAlignment="Center" Width="24" Height="24" Kind="{Binding Icon}" />
+                                        
                                         <TextBlock Grid.Column="1" Margin="4 0 0 0" FontWeight="Bold" FontSize="16" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding Label}" />
                                     </Grid>
                                 </Button>

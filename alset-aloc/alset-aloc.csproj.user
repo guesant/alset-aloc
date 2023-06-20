@@ -7,7 +7,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Views\DashboardClientes.xaml.cs">
+    <Compile Update="Views\CadastrarFuncionario.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\DashboardFuncionarios.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\DashboardHome.xaml.cs">
@@ -21,7 +24,10 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\DashboardClientes.xaml">
+    <Page Update="Views\CadastrarFuncionario.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\DashboardFuncionarios.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\DashboardHome.xaml">
