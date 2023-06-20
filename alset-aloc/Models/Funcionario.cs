@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace alset_aloc.Models
 {
-    internal class Funcionario
+    public class Funcionario
     {
 
         public long Id { get; set; }
@@ -19,6 +19,13 @@ namespace alset_aloc.Models
         public string Genero { get; set; }
 
         public long? EnderecoID { get; set; }
+
+        //
+
+        public string? CNH { get; set; }
+
+        public long? CargoId { get; set; }
+
 
         //Get e Set CPF
 

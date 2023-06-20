@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace alset_aloc.Models
 {
-    class Endereco
+    public class Endereco
     {
         public long Id { get; set; }
 

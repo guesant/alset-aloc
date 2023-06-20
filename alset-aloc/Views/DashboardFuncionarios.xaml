@@ -51,7 +51,7 @@
                 
                 BorderBrush="Transparent"
                 VerticalAlignment="Top"
-                HorizontalAlignment="Stretch"
+                HorizontalAlignment="Stretch" Click="Button_Click"
             >
                 <Grid >
                     <Grid.ColumnDefinitions>
@@ -90,6 +90,6 @@
             />
         </Grid>
 
-        <DataGrid x:Name="dgFuncionarios" Margin="15" Grid.Row="2" IsReadOnly="True" AutoGenerateColumns="False" />
+        <DataGrid x:Name="dgFuncionarios" Margin="15" Grid.Row="2" AutoGenerateColumns="False" />
     </Grid>
 </UserControl>

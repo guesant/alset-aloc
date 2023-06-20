@@ -1,4 +1,5 @@
 ﻿using alset_aloc.Helpers;
+using alset_aloc.Interfaces;
 using alset_aloc.Models;
 using System;
 using System.Collections.Generic;
@@ -22,10 +23,12 @@ namespace alset_aloc.Views
     /// </summary>
     public partial class DashboardFuncionarios : UserControl
     {
+        public List<long> idsSelecionados = new List<long>();
+
         public DashboardFuncionarios()
         {
             InitializeComponent();
-            
+
             DefinirColunas();
 
             CarregarBusca();
@@ -33,67 +36,88 @@ namespace alset_aloc.Views
 
         private void DefinirColunas()
         {
+            dgFuncionarios.Columns.Clear();
+
+            // ...
+
+            DataGridCheckBoxColumn colunaSelect = new DataGridCheckBoxColumn();
+            Binding colunaSelectBinding = new Binding("IsSelected");
+            colunaSelect.Binding = colunaSelectBinding;
+            colunaSelect.Header = "#";
+            colunaSelect.IsReadOnly = false;
+            dgFuncionarios.Columns.Add(colunaSelect);
+
+            // ...
+
             DataGridTextColumn colunaId = new DataGridTextColumn();
-            Binding colunaIdBinding = new Binding("Id");            
+            Binding colunaIdBinding = new Binding("Item.Id");
             colunaId.Binding = colunaIdBinding;
-            colunaId.Header = "ID";            
+            colunaId.Header = "ID";
+            colunaId.IsReadOnly = true;
             dgFuncionarios.Columns.Add(colunaId);
-            
+
             // ...
 
             DataGridTextColumn colunaNome = new DataGridTextColumn();
-            Binding colunaNomeBinding = new Binding("Nome");
+            Binding colunaNomeBinding = new Binding("Item.Nome");
             colunaNome.Binding = colunaNomeBinding;
             colunaNome.Header = "Nome";
+            colunaNome.IsReadOnly = true;
             dgFuncionarios.Columns.Add(colunaNome);
 
             // ...
 
             DataGridTextColumn colunaDataNascimento = new DataGridTextColumn();
-            Binding colunaDataNascimentoBinding = new Binding("DataNascimento");
+            Binding colunaDataNascimentoBinding = new Binding("Item.DataNascimento");
             colunaDataNascimentoBinding.StringFormat = "dd/MM/yyyy";
             colunaDataNascimento.Binding = colunaDataNascimentoBinding;
             colunaDataNascimento.Header = "Data de Nascimento";
+            colunaDataNascimento.IsReadOnly = true;
             dgFuncionarios.Columns.Add(colunaDataNascimento);
 
             // ...
 
             DataGridTextColumn colunaCpf = new DataGridTextColumn();
-            Binding colunaCpfBinding = new Binding("Cpf");
+            Binding colunaCpfBinding = new Binding("Item.Cpf");
             colunaCpf.Binding = colunaCpfBinding;
             colunaCpf.Header = "CPF";
+            colunaCpf.IsReadOnly = true;
             dgFuncionarios.Columns.Add(colunaCpf);
 
             // ...
 
             DataGridTextColumn colunaRg = new DataGridTextColumn();
-            Binding colunaRgBinding = new Binding("Rg");
+            Binding colunaRgBinding = new Binding("Item.Rg");
             colunaRg.Binding = colunaRgBinding;
             colunaRg.Header = "RG";
+            colunaRg.IsReadOnly = true;
             dgFuncionarios.Columns.Add(colunaRg);
 
             // ...
 
             DataGridTextColumn colunaEmail = new DataGridTextColumn();
-            Binding colunaEmailBinding = new Binding("Email");
-            colunaEmail.Binding = colunaRgBinding;
+            Binding colunaEmailBinding = new Binding("Item.Email");
+            colunaEmail.Binding = colunaEmailBinding;
             colunaEmail.Header = "E-mail";
+            colunaEmail.IsReadOnly = true;
             dgFuncionarios.Columns.Add(colunaEmail);
 
             // ...
 
             DataGridTextColumn colunaTelefone = new DataGridTextColumn();
-            Binding colunaTelefoneBinding = new Binding("Telefone");
-            colunaTelefone.Binding = colunaRgBinding;
+            Binding colunaTelefoneBinding = new Binding("Item.Telefone");
+            colunaTelefone.Binding = colunaTelefoneBinding;
             colunaTelefone.Header = "Telefone";
+            colunaTelefone.IsReadOnly = true;
             dgFuncionarios.Columns.Add(colunaTelefone);
 
             // ...
 
             DataGridTextColumn colunaGenero = new DataGridTextColumn();
-            Binding colunaGeneroBinding = new Binding("Genero");
-            colunaGenero.Binding = colunaRgBinding;
+            Binding colunaGeneroBinding = new Binding("Item.Genero");
+            colunaGenero.Binding = colunaGeneroBinding;
             colunaGenero.Header = "Genero";
+            colunaGenero.IsReadOnly = true;
             dgFuncionarios.Columns.Add(colunaGenero);
         }
 
@@ -101,10 +125,18 @@ namespace alset_aloc.Views
         private void CarregarBusca()
         {
             var funcionarioDAO = new FuncionarioDAO();
-
             var funcionarios = funcionarioDAO.List();
 
-            dgFuncionarios.ItemsSource = funcionarios;
+            var data = funcionarios.Select(funcionario => new TableEntry<Funcionario>(funcionario, this.idsSelecionados)).ToList();
+
+            dgFuncionarios.ItemsSource = data;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var form = new CadastrarFuncionario();
+            form.ShowDialog();
+            this.CarregarBusca();
         }
     }
 }
