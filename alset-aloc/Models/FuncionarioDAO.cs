@@ -88,7 +88,10 @@ namespace alset_aloc.Models
             {
                 throw e;
             }
-            finally { conn.Close(); }
+            finally 
+            {    
+                conn.Close();
+            }
         
         }
 
@@ -172,9 +175,7 @@ namespace alset_aloc.Models
 
                 query.CommandText = @"
                     SELECT id_func, nome_func, data_nascimento_func, cpf_func, rg_func, email_func, telefone_func, genero_func, id_end_fk
-                    FROM funcionario
-                    ;
-                ";
+                    FROM funcionario;";
 
 
                 MySqlDataReader dtReader = query.ExecuteReader();

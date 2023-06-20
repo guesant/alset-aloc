@@ -53,7 +53,9 @@ namespace alset_aloc.Views
                 {
                     Id = "fornecedores",
                     Icon = PackIconKind.Business,
-                    Label = "Fornecedores"
+                    Label = "Fornecedores",
+                    Control = () => new DashboardFornecedor(),
+
                 },
 
                 // ...

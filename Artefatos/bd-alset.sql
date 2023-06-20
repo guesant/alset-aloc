@@ -33,7 +33,7 @@ foreign key (id_end_fk) references endereco(id_end)
 
 CREATE TABLE IF NOT EXISTS funcionario (
 
-id_func int primary key not null auto_increment,
+id_func int primary key auto_increment not null,
 nome_func varchar(300) not null,
 data_nascimento_func date not null,
 cpf_func varchar(11) not null,
@@ -47,7 +47,7 @@ foreign key (id_end_fk) references endereco(id_end)
 );
 
 CREATE TABLE IF NOT EXISTS usuario (
-id_usua int primary key not null auto_increment,
+id_usua int primary key auto_increment not null,
 
 usuario_usua varchar(45) not null,
 senha_usua varchar(45) not null,
@@ -58,7 +58,7 @@ foreign key (id_func_fk) references funcionario(id_func)
 
 CREATE TABLE IF NOT EXISTS veiculo (
 
-id_vei int primary key not null auto_increment,
+id_vei int primary KEY auto_increment not null,
 modelo_vei varchar(45) not null,
 marca_vei varchar(45) not null,
 ano_vei int not null,
@@ -100,7 +100,7 @@ foreign key (id_loc_fk) references locacao(id_loc)
 
 CREATE TABLE IF NOT EXISTS fornecedor (
 
-id_forn int primary key not null,
+id_forn int primary key not null auto_increment,
 cnpj_forn varchar(20),
 razao_social_forn varchar(45),
 nome_fantasia_forn varchar(45),
@@ -114,7 +114,7 @@ foreign key (id_end_fk) references endereco(id_end)
 
 CREATE TABLE IF NOT EXISTS produto (
 
-id_prod int primary key not null,
+id_prod int primary key not null auto_increment,
 nome_prod varchar(60),
 preco_prod double,
 estoque_prod double
@@ -123,7 +123,7 @@ estoque_prod double
 
 CREATE TABLE IF NOT EXISTS compra (
 
-id_com int primary key not null,
+id_com int primary key not null auto_increment,
 data_compra_com date,
 numero_nota_com varchar(45),
 
