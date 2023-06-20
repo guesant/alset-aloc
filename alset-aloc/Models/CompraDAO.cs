@@ -3,13 +3,10 @@ using alset_aloc.Interfaces;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace alset_aloc.Models
 {
-    class CompraDAO : IDAO<Compra>
+  class CompraDAO : IDAO<Compra>
     {
         private Conexao conn;
 
@@ -90,7 +87,7 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT (id_com, data_compra_com, numero_nota_com, id_prod_fk, id_forn_fk)
+                    SELECT id_com, data_compra_com, numero_nota_com, id_prod_fk, id_forn_fk
                     FROM compra
                     WHERE (id_com = @idCom);
                 ";

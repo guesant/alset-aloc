@@ -3,13 +3,10 @@ using alset_aloc.Interfaces;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace alset_aloc.Models
 {
-    internal class RecebimentoDAO : IDAO<Recebimento>
+  internal class RecebimentoDAO : IDAO<Recebimento>
     {
         private Conexao conn;
 
@@ -101,7 +98,7 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT (id_rec, descricao_rec, valor_rec, data_vencimento_rec, data_credenciamento_rec, pagador_rec, parcelas_rec, id_loc_fk)
+                    SELECT id_rec, descricao_rec, valor_rec, data_vencimento_rec, data_credenciamento_rec, pagador_rec, parcelas_rec, id_loc_fk
                     FROM recebimento
                     WHERE (id_rec = @idRec)
                     ;
@@ -170,7 +167,7 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT (id_rec, descricao_rec, valor_rec, data_vencimento_rec, data_credenciamento_rec, pagador_rec, parcelas_rec, id_loc_fk)
+                    SELECT id_rec, descricao_rec, valor_rec, data_vencimento_rec, data_credenciamento_rec, pagador_rec, parcelas_rec, id_loc_fk
                     FROM recebimento
                     ;
                 ";

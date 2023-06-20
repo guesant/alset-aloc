@@ -3,13 +3,10 @@ using alset_aloc.Interfaces;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace alset_aloc.Models
 {
-    class ClienteLocacaoDAO : IDAO<ClienteLocacao>
+  class ClienteLocacaoDAO : IDAO<ClienteLocacao>
     {
         private Conexao conn;
 
@@ -78,7 +75,7 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT (id_cli_loc, id_cli_fk, id_loc_fk)
+                    SELECT id_cli_loc, id_cli_fk, id_loc_fk
                     FROM cliente_locacao
                     WHERE (id_cli_loc = @idCliLoc);
                 ";
@@ -148,7 +145,7 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT (id_cli_loc, id_cli_fk, id_loc_fk)
+                    SELECT id_cli_loc, id_cli_fk, id_loc_fk
                     FROM cliente_locacao
                     ;
                 "
