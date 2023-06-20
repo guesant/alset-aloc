@@ -2,7 +2,6 @@
 using alset_aloc.Interfaces;
 using MySql.Data.MySqlClient;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace alset_aloc.Models
@@ -115,7 +114,7 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT (id_loc, data_locacao_loc, data_devolucao_prevista, data_devolucao_efetivada, status_loc, id_vei_fk, id_fun_fk)
+                    SELECT id_loc, data_locacao_loc, data_devolucao_prevista, data_devolucao_efetivada, status_loc, id_vei_fk, id_fun_fk
                     FROM locacao
                     WHERE (id_loc = @idLoc);
                 ";

@@ -3,13 +3,10 @@ using alset_aloc.Interfaces;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace alset_aloc.Models
 {
-    internal class ParcelaDAO : IDAO<Parcela>
+  internal class ParcelaDAO : IDAO<Parcela>
     {
         private Conexao conn;
 
@@ -104,7 +101,7 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT (id_par, data_vencimento_par, valor_par, forma_pagamento_par, numero_parcela_par, tipo_parcela_par, status_par, id_rec_fk, id_pag_fk)
+                    SELECT id_par, data_vencimento_par, valor_par, forma_pagamento_par, numero_parcela_par, tipo_parcela_par, status_par, id_rec_fk, id_pag_fk
                     FROM parcela
                     WHERE (id_par = @idPar)
                     ;
@@ -173,7 +170,7 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT (id_par, data_vencimento_par, valor_par, forma_pagamento_par, numero_parcela_par, tipo_parcela_par, status_par, id_rec_fk, id_pag_fk)
+                    SELECT id_par, data_vencimento_par, valor_par, forma_pagamento_par, numero_parcela_par, tipo_parcela_par, status_par, id_rec_fk, id_pag_fk
                     FROM parcela
                     ;
                 ";

@@ -3,13 +3,10 @@ using alset_aloc.Interfaces;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace alset_aloc.Models
 {
-    internal class PagamentoDAO : IDAO<Pagamento>
+  internal class PagamentoDAO : IDAO<Pagamento>
     {
         private Conexao conn;
 
@@ -101,7 +98,7 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT (id_pag, descricao_pag, valor_pag, data_vencimento_pag, data_credenciamento_pag, credor_pag, parcelas_pag, id_com_fk)
+                    SELECT id_pag, descricao_pag, valor_pag, data_vencimento_pag, data_credenciamento_pag, credor_pag, parcelas_pag, id_com_fk
                     FROM pagamento
                     WHERE (id_pag = @idPag)
                     ;
@@ -170,7 +167,7 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT (id_pag, descricao_pag, valor_pag, data_vencimento_pag, data_credenciamento_pag, credor_pag, parcelas_pag, id_com_fk)
+                    SELECT id_pag, descricao_pag, valor_pag, data_vencimento_pag, data_credenciamento_pag, credor_pag, parcelas_pag, id_com_fk
                     FROM pagamento
                     ;
                 ";

@@ -43,4 +43,13 @@
     <Resource Include="Images\Icons\relatorios.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Views\CadastrarFornecedor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\DashboardFornecedor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>
