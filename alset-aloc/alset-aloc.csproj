@@ -9,12 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Components\**" />
     <Compile Remove="Properties\**" />
     <Compile Remove="Resources\**" />
+    <EmbeddedResource Remove="Components\**" />
     <EmbeddedResource Remove="Properties\**" />
     <EmbeddedResource Remove="Resources\**" />
+    <None Remove="Components\**" />
     <None Remove="Properties\**" />
     <None Remove="Resources\**" />
+    <Page Remove="Components\**" />
     <Page Remove="Properties\**" />
     <Page Remove="Resources\**" />
   </ItemGroup>
@@ -35,21 +39,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FerramentasBiblioteca\FerramentasBiblioteca.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\Icons\carro.png" />
     <Resource Include="Images\Icons\home.png" />
     <Resource Include="Images\Icons\logoAlset.png" />
     <Resource Include="Images\Icons\logout.png" />
     <Resource Include="Images\Icons\procurar.png" />
     <Resource Include="Images\Icons\relatorios.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Views\CadastrarFornecedor.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\DashboardFornecedor.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
 
 </Project>

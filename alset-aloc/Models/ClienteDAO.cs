@@ -3,6 +3,7 @@ using alset_aloc.Interfaces;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using FerramentasBiblioteca.Validacoes;
 
 namespace alset_aloc.Models
 {
@@ -237,6 +238,16 @@ namespace alset_aloc.Models
             {
                 conn.Close();
             }
+        }
+
+        public static bool Validar(Cliente cliente)
+        {
+            if(String.IsNullOrEmpty(cliente.CPF) || !ValidacoesSociais.ValidarCpf(cliente.CPF))
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
