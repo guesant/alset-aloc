@@ -1,17 +1,12 @@
 ﻿using alset_aloc.Database;
 using alset_aloc.Interfaces;
 using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media.Media3D;
 
 namespace alset_aloc.Models
 {
-    class UsuarioDAO : IDAO<Usuario>
+  class UsuarioDAO : IDAO<Usuario>
     {
         private Conexao conn;
 
@@ -84,7 +79,7 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT (id_usua, usuario_usua, senha_usua, id_func_fk)
+                    SELECT id_usua, usuario_usua, senha_usua, id_func_fk
                     FROM usuario
                     WHERE (id_usua = @idUsua)
                     ;
@@ -154,7 +149,7 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT (id_usua, usuario_usua, senha_usua, id_func_fk)
+                    SELECT id_usua, usuario_usua, senha_usua, id_func_fk
                     FROM usuario
                     ;
                 ";

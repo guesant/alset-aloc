@@ -77,7 +77,7 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT (id_prod, nome_prod, preco_prod, estoque_prod)
+                    SELECT id_prod, nome_prod, preco_prod, estoque_prod
                     FROM produto
                     WHERE (id_prod = @idProd);
                 ";
@@ -146,7 +146,7 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT (id_prod, nome_prod, preco_prod, estoque_prod)
+                    SELECT id_prod, nome_prod, preco_prod, estoque_prod
                     FROM produto
                     ;
                 "
