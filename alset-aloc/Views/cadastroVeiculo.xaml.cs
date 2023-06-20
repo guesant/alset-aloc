@@ -15,18 +15,19 @@ using System.Windows.Shapes;
 
 namespace alset_aloc.Views
 {
-    public partial class DashboardVeiculos : UserControl
+    /// <summary>
+    /// Interação lógica para cadastroVeiculo.xam
+    /// </summary>
+    public partial class cadastroVeiculo : Page
     {
-        public DashboardVeiculos()
+        public cadastroVeiculo()
         {
             InitializeComponent();
         }
 
-        private void btncadastroVeiculo_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
-            Window window = Window.GetWindow(this);
-            window.Content = new cadastroVeiculo();
+
         }
     }
 }

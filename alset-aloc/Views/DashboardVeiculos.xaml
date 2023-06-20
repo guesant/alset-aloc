@@ -16,7 +16,7 @@
             <TextBlock FontSize="20" FontWeight="Bold" Foreground="#004d94" Margin="10 1 5 0"> Veículos</TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
-            <Button Margin="15 0" Content="+ Cadastrar" FontWeight="Bold"  FontSize="16" Padding="10 5" BorderBrush="Transparent" Background="#004D94" Foreground="White">
+            <Button Margin="15 0" Content="+ Cadastrar" FontWeight="Bold"  FontSize="16" Padding="10 5" BorderBrush="Transparent" Background="#004D94" Foreground="White" x:Name="btncadastroVeiculo" Click="btncadastroVeiculo_Click">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="5"/>
@@ -45,13 +45,10 @@
                     </Style>
                 </Button.Resources>
             </Button>
-           
+
         </StackPanel>
 
-
-
         <DataGrid Grid.Row="2"/>
-
 
     </Grid>
 </UserControl>
