@@ -135,7 +135,7 @@ namespace alset_aloc.Models
                 query.CommandText = @"
                     INSERT INTO 
                         fornecedor
-                        cnpj_forn, razao_social_forn, nome_fantasia_forn, email_forn, telefone_forn, id_end_fk
+                        (cnpj_forn, razao_social_forn, nome_fantasia_forn, email_forn, telefone_forn, id_end_fk)
                     VALUES
                         (@cnpj, @razaoSocial, @nomeFantasia, @email, @telefone, @enderecoId)
                 ";
