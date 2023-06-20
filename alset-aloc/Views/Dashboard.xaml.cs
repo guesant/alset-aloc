@@ -76,6 +76,8 @@ namespace alset_aloc.Views
                     Id = "clientes",
                     Icon = PackIconKind.People,
                     Label = "Clientes",
+                    Control = () => new DashboardClientes(),
+
                 },
 
                 new DashboardMenuButton()
