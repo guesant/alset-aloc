@@ -2,6 +2,7 @@
 using System;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace alset_aloc.Models
 {
@@ -198,6 +199,7 @@ namespace alset_aloc.Models
 
         public void Update(Funcionario t)
         {
+            MessageBox.Show(t.ToString());
             try
             {
                 var query = conn.Query();

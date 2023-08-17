@@ -1,6 +1,7 @@
 ﻿using alset_aloc.Helpers;
 using alset_aloc.Interfaces;
 using alset_aloc.Models;
+using MySqlX.XDevAPI.Relational;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -119,6 +120,10 @@ namespace alset_aloc.Views
             colunaGenero.Header = "Genero";
             colunaGenero.IsReadOnly = true;
             dgFuncionarios.Columns.Add(colunaGenero);
+
+            // ...
+
+            
         }
 
 
@@ -138,5 +143,29 @@ namespace alset_aloc.Views
             form.ShowDialog();
             this.CarregarBusca();
         }
+
+        private void Row_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        private void dgFuncionarios_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var row = ItemsControl.ContainerFromElement((DataGrid)sender,
+                                    e.OriginalSource as DependencyObject) as DataGridRow;
+
+            if (row == null) return;
+
+            var tableEntry = row.DataContext as TableEntry<Funcionario>;
+
+            var func = tableEntry.Item;
+
+            var window = new CadastrarFuncionario(func.Id);
+            window.ShowDialog();
+
+            CarregarBusca();
+
+        }
     }
 }
+    

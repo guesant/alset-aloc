@@ -20,16 +20,13 @@ namespace alset_aloc.Models
 
         public long? EnderecoID { get; set; }
 
-        //
-
         public string? CNH { get; set; }
 
-        public long? CargoId { get; set; }
+        public string? Cargo { get; set; }
 
-
-        //Get e Set CPF
-
-        
-
+        public string ToString()
+        {
+            return $"{Id};{Nome};{DataNascimento};{Cpf};{Rg};{Email};{Telefone};{Genero};{EnderecoID};{CNH};{Cargo};";
+        }
     }
 }
