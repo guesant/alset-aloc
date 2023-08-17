@@ -40,7 +40,7 @@
             <Button
                 Grid.Column="0"
                 Padding="10"
-                
+             
                 Height="35"
                 
                 Margin="0 0 10 0"
@@ -88,8 +88,9 @@
                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
                 VerticalScrollBarVisibility="Auto"
             />
+         
         </Grid>
 
-        <DataGrid x:Name="dgFuncionarios" Margin="15" Grid.Row="2" AutoGenerateColumns="False" />
+        <DataGrid x:Name="dgFuncionarios" Margin="15" Grid.Row="2" AutoGenerateColumns="False" MouseDoubleClick="dgFuncionarios_MouseDoubleClick"  />
     </Grid>
 </UserControl>
