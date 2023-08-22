@@ -93,7 +93,8 @@ namespace alset_aloc.Views
                 {
                     Id = "locacoes",
                     Icon = PackIconKind.Key,
-                    Label = "Locações"
+                    Label = "Locações",
+                    Control = () => new DashboardLocacoes(),
                 },
 
 
