@@ -70,7 +70,6 @@ descricao_vei varchar(200) not null
 
 );
 
-insert into veiculo values ("Virtus", "aishpda", 2021, ""
 
 CREATE TABLE IF NOT EXISTS locacao (
 
@@ -122,12 +121,14 @@ preco_prod double,
 estoque_prod double
 
 );
-
+insert into produto values('coca',12,12);
+delete from produto;
 CREATE TABLE IF NOT EXISTS compra (
 
 id_com int primary key not null auto_increment,
 data_compra_com date,
 numero_nota_com varchar(45),
+quantidade_com double,
 
 id_prod_fk int,
 id_forn_fk int,
@@ -183,3 +184,6 @@ foreign key (id_rec_fk) references recebimento(id_rec),
 foreign key (id_pag_fk) references pagamento(id_pag)
 
 );
+
+
+select * from compra;

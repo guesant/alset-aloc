@@ -33,6 +33,11 @@ namespace alset_aloc.Models
             var rawFornecedorId = dtReader.GetOrdinal("id_forn_fk");
             compra.FornecedorId = dtReader.IsDBNull(rawFornecedorId) ? null : dtReader.GetInt64(rawFornecedorId);
 
+
+            var rawQuantidade = dtReader.GetOrdinal("quantidade_com");
+            compra.Quantidade = dtReader.IsDBNull(rawQuantidade) ? null : dtReader.GetInt64(rawQuantidade);
+
+
             return compra;
         }
 
@@ -40,6 +45,7 @@ namespace alset_aloc.Models
         {
             query.Parameters.AddWithValue("@dataCompra", t.DataCompra);
             query.Parameters.AddWithValue("@numeroNota", t.NumeroNota);
+            query.Parameters.AddWithValue("@quantidade" , t.NumeroNota);
 
             query.Parameters.AddWithValue("@produtoId", t.ProdutoId);
             query.Parameters.AddWithValue("@fornecedorId", t.FornecedorId);
@@ -87,7 +93,7 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT id_com, data_compra_com, numero_nota_com, id_prod_fk, id_forn_fk
+                    SELECT id_com, data_compra_com, numero_nota_com, quantidade_com , id_prod_fk, id_forn_fk
                     FROM compra
                     WHERE (id_com = @idCom);
                 ";
@@ -123,9 +129,9 @@ namespace alset_aloc.Models
 
                 query.CommandText = @"
                     INSERT INTO 
-                        compra (data_compra_com, numero_nota_com, id_prod_fk, id_forn_fk)
+                        compra (data_compra_com, numero_nota_com, quantidade_com, id_prod_fk, id_forn_fk)
                     VALUES
-                        (@dataCompra, @numeroNota, @produtoId, @fornecedorId)
+                        (@dataCompra, @numeroNota,@quantidade, @produtoId, @fornecedorId)
                 ";
 
                 BindQuery(t, query);
@@ -157,7 +163,7 @@ namespace alset_aloc.Models
 
                 query.CommandText = @"
                     SELECT
-                        (id_com, data_compra_com, numero_nota_com, id_prod_fk, id_forn_fk)
+                        id_com, data_compra_com, numero_nota_com, quantidade_com, id_prod_fk, id_forn_fk
                     FROM compra
                     ;
                 "
@@ -196,6 +202,7 @@ namespace alset_aloc.Models
                     SET
                         data_compra_com = @dataCompra,
                         numero_nota_com = @numeroNota,
+                        quantidade_com = @quantidade
                         id_prod_fk = @produtoId,
                         id_forn_fk = @fornecedorId
                     WHERE (id_com = @idCom);

@@ -99,8 +99,6 @@ namespace alset_aloc.Views
             funcionario.Email = txtFuncionarioEmail.Text;
             funcionario.Telefone = txtFuncionarioTelefone.Text;
             funcionario.Genero = txtFuncionarioGenero.Text;
-
-
             funcionario.Cargo = txtFuncionarioCargo.Text;
 
             if (endereco.Id > 0)

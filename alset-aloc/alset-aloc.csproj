@@ -55,6 +55,9 @@
     <Compile Update="Views\CadastrarFornecedor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\DashboardCompra.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\DashboardFornecedor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

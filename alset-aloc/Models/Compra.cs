@@ -13,6 +13,7 @@ namespace alset_aloc.Models
         public DateTime? DataCompra { get; set; }
 
         public string? NumeroNota { get; set; }
+        public long? Quantidade { get; set; }
 
         public long? ProdutoId { get; set; }
 

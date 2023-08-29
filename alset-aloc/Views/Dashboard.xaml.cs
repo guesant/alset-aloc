@@ -66,7 +66,9 @@ namespace alset_aloc.Views
                 {
                     Id = "compras",
                     Icon = PackIconKind.ReceiptText,
-                    Label = "Compras"
+                    Label = "Compras",
+                    Control = () => new DashboardCompra(),
+
                 },
 
                 // ...
