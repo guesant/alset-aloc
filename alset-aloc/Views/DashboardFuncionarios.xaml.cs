@@ -123,7 +123,7 @@ namespace alset_aloc.Views
 
             // ...
 
-            
+
         }
 
 
@@ -146,7 +146,7 @@ namespace alset_aloc.Views
 
         private void Row_Click(object sender, RoutedEventArgs e)
         {
-           
+
         }
 
         private void dgFuncionarios_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -168,4 +168,3 @@ namespace alset_aloc.Views
         }
     }
 }
-    

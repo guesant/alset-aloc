@@ -90,7 +90,7 @@
                 materialDesign:HintAssist.Hint="Razão Social"
                 materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxTextCountComboBox, Converter={StaticResource BooleanToVisibilityConverter}}"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                VerticalScrollBarVisibility="Auto"
+                VerticalScrollBarVisibility="Auto" TextChanged="txtFornecedorRazaoSocial_TextChanged"
             />
 
             <TextBox 

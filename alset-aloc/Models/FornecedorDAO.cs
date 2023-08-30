@@ -201,13 +201,13 @@ namespace alset_aloc.Models
                     SET
                         cnpj_forn = @cnpj,
                         razao_social_forn = @razaoSocial,
-                        nome_fantasia_forn = @cpf,
-                        email_forn = @rg,
-                        telefone_forn = @cnh,
-                        id_end_fk = @email
+                        nome_fantasia_forn = @nomeFantasia,
+                        email_forn = @email,
+                        telefone_forn = @telefone,
+                        id_end_fk = @enderecoId
                     WHERE (id_forn = @idForn);
                 ";
-
+                
                 BindQuery(t, query);
                 BindQueryId(t.Id, query);
 
