@@ -13,6 +13,9 @@
     <Compile Update="Views\CadastrarFuncionario.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\CadastrarLocacao.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\DashboardClientes.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -34,6 +37,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\CadastrarFornecedor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\CadastrarLocacao.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\CadastrarVeiculo.xaml">

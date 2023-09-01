@@ -108,7 +108,7 @@ namespace alset_aloc.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var form = new CadastrarCliente();
+            var form = new CadastrarLocacao();
             form.ShowDialog();
             this.LoadSearch();
         }
