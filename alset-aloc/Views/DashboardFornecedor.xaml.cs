@@ -121,5 +121,22 @@ namespace alset_aloc.Views
             form.ShowDialog();
             this.CarregarBusca();
         }
+        private void dgFornecedor_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var row = ItemsControl.ContainerFromElement((DataGrid)sender,
+                                    e.OriginalSource as DependencyObject) as DataGridRow;
+
+            if (row == null) return;
+
+            var tableEntry = row.DataContext as TableEntry<Fornecedor>;
+
+            var forn = tableEntry.Item;
+
+            var window = new CadastrarFornecedor(forn.Id);
+            window.ShowDialog();
+
+            CarregarBusca();
+
+        }
     }
 }
