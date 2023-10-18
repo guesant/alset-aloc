@@ -18,25 +18,25 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace alset_aloc.Views
-{
+    {
     /// <summary>
     /// Interação lógica para DashboardFuncionarios.xam
     /// </summary>
     public partial class DashboardFuncionarios : UserControl
-    {
+        {
         public List<long> idsSelecionados = new List<long>();
 
         public DashboardFuncionarios()
-        {
+            {
             InitializeComponent();
 
             DefinirColunas();
 
             CarregarBusca();
-        }
+            }
 
         private void DefinirColunas()
-        {
+            {
             dgFuncionarios.Columns.Clear();
 
             // ...
@@ -124,37 +124,38 @@ namespace alset_aloc.Views
             // ...
 
 
-        }
+            }
 
 
         private void CarregarBusca()
-        {
+            {
             var funcionarioDAO = new FuncionarioDAO();
             var funcionarios = funcionarioDAO.List();
 
-            var data = funcionarios.Select(funcionario => new TableEntry<Funcionario>(funcionario, this.idsSelecionados)).ToList();
+            var data = funcionarios.Select(funcionario => new TableEntry<Funcionario>(funcionario , this.idsSelecionados)).ToList();
 
             dgFuncionarios.ItemsSource = data;
-        }
+            }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
+        private void Button_Click(object sender , RoutedEventArgs e)
+            {
             var form = new CadastrarFuncionario();
             form.ShowDialog();
             this.CarregarBusca();
-        }
+            }
 
-        private void Row_Click(object sender, RoutedEventArgs e)
-        {
+        private void Row_Click(object sender , RoutedEventArgs e)
+            {
 
-        }
+            }
 
-        private void dgFuncionarios_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            var row = ItemsControl.ContainerFromElement((DataGrid)sender,
+        private void dgFuncionarios_MouseDoubleClick(object sender , MouseButtonEventArgs e)
+            {
+            var row = ItemsControl.ContainerFromElement((DataGrid) sender ,
                                     e.OriginalSource as DependencyObject) as DataGridRow;
 
-            if (row == null) return;
+            if (row == null)
+                return;
 
             var tableEntry = row.DataContext as TableEntry<Funcionario>;
 
@@ -165,6 +166,26 @@ namespace alset_aloc.Views
 
             CarregarBusca();
 
+            }
+
+        private void Button_Click_1(object sender , RoutedEventArgs e)
+            {
+            foreach (TableEntry<Funcionario> tableEntry in dgFuncionarios.Items)
+                {
+                if (tableEntry.IsSelected)
+                    {
+                    // A linha foi selecionada, você pode acessar o objeto Funcionario associado a esta linha.
+                    Funcionario funcionario = tableEntry.Item;
+
+                    var funcionarioDAO = new FuncionarioDAO();
+
+                    funcionarioDAO.Delete(funcionario);
+
+                    // Faça o que precisar com o objeto funcionario.
+                    }
+                } //ao clicar neste botão ele verifica todos os campos que possuem checkbox marcada e retorna a linha em que em que o checkbox se encontra
+            CarregarBusca();
+            }
         }
     }
-}
+    
