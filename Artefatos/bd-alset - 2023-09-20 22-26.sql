@@ -1,6 +1,6 @@
 CREATE DATABASE IF NOT EXISTS aloc;
 
-
+																																																																				
 USE aloc;
 
 CREATE TABLE IF NOT EXISTS endereco (
@@ -217,7 +217,7 @@ CALL SalvarVeiculo('Ford Focus', 'Ford', 2021, 'DEF456', '5678901234', 'Azul', '
 CREATE TABLE IF NOT EXISTS locacao (
   id_loc int primary key not null auto_increment,
   data_locacao_loc datetime not null,
-  data_devo	sta_loc datetime not null,
+  data_devoluca_loc datetime not null,
   data_devolucao_efetivada_loc date,
   alocado_loc tinyint not null,
   id_vei_fk int,

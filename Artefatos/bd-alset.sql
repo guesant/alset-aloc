@@ -185,5 +185,14 @@ foreign key (id_pag_fk) references pagamento(id_pag)
 
 );
 
+#############################Procedimentos
 
-select * from compra;
+#Deletar funcionario e Chaves estrangeiras
+
+Delimiter $$
+
+$$ Delimiter ;
+
+
+select * from funcionario;
+
