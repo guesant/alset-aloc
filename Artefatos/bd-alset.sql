@@ -186,4 +186,11 @@ foreign key (id_pag_fk) references pagamento(id_pag)
 );
 
 
-select * from compra;
+select * from funcionario;
+-- Inserir um funcionário
+INSERT INTO funcionario (nome_func, data_nascimento_func, cpf_func, rg_func, email_func, telefone_func, genero_func, id_end_fk)
+VALUES ('João da Silva', '1990-05-15', '12345678901', '789012345', 'joao.silva@email.com', '123-456-7890', 'Masculino', 1);
+
+-- Inserir outro funcionário
+INSERT INTO funcionario (nome_func, data_nascimento_func, cpf_func, rg_func, email_func, telefone_func, genero_func, id_end_fk)
+VALUES ('Maria Souza', '1985-03-20', '98765432101', '567890123', 'maria.souza@email.com', '987-654-3210', 'Feminino', 2);
