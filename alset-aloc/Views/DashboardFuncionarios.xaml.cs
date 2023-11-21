@@ -170,21 +170,26 @@ namespace alset_aloc.Views
 
         private void Button_Click_1(object sender , RoutedEventArgs e)
             {
-            foreach (TableEntry<Funcionario> tableEntry in dgFuncionarios.Items)
+            var result = MessageBox.Show("Deseja excluir os registros?" , "Confirm" , MessageBoxButton.OKCancel);
+            if (result == MessageBoxResult.OK)
                 {
-                if (tableEntry.IsSelected)
+                foreach (TableEntry<Funcionario> tableEntry in dgFuncionarios.Items)
                     {
-                    // A linha foi selecionada, você pode acessar o objeto Funcionario associado a esta linha.
-                    Funcionario funcionario = tableEntry.Item;
 
-                    var funcionarioDAO = new FuncionarioDAO();
+                    if (tableEntry.IsSelected)
+                        {
+                        // A linha foi selecionada, você pode acessar o objeto Funcionario associado a esta linha.
+                        Funcionario funcionario = tableEntry.Item;
 
-                    funcionarioDAO.Delete(funcionario);
+                        var funcionarioDAO = new FuncionarioDAO();
 
-                    // Faça o que precisar com o objeto funcionario.
-                    }
-                } //ao clicar neste botão ele verifica todos os campos que possuem checkbox marcada e retorna a linha em que em que o checkbox se encontra
-            CarregarBusca();
+                        funcionarioDAO.Delete(funcionario);
+
+                        // Faça o que precisar com o objeto funcionario.
+                        }
+                    } //ao clicar neste botão ele verifica todos os campos que possuem checkbox marcada e retorna a linha em que em que o checkbox se encontra
+                CarregarBusca();
+                }
             }
         }
     }

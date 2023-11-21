@@ -72,7 +72,7 @@
                 Height="35"
                 Command="{Binding SearchCommand}"
                 CommandParameter="{Binding ElementName=SearchBox, Path=Text}"
-                Style="{StaticResource MaterialDesignOutlinedButton}"
+                Style="{StaticResource MaterialDesignOutlinedButton}" Click="Button_Click_1"
             >
                 <materialDesign:PackIcon Kind="Delete" />
             </Button>

@@ -20,7 +20,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-   
+
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="0"/>
@@ -36,7 +36,7 @@
                 <ColumnDefinition Width="1.*" />
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
-            
+
             <Button
                 Grid.Column="0"
                 Padding="10"
@@ -68,11 +68,10 @@
             <Button
                 Grid.Column="1"
                 Padding="0"
-                Width="35"
                 Height="35"
                 Command="{Binding SearchCommand}"
                 CommandParameter="{Binding ElementName=SearchBox, Path=Text}"
-                Style="{StaticResource MaterialDesignOutlinedButton}"
+                Style="{StaticResource MaterialDesignOutlinedButton}" Grid.ColumnSpan="2" Margin="0,0,355,0" Click="Button_Click_1"
             >
                 <materialDesign:PackIcon Kind="Delete" />
             </Button>
