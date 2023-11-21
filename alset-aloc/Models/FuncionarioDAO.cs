@@ -68,6 +68,8 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
+                  DELETE FROM usuario 
+                  WHERE (id_func_fk = @idFunc);
                   DELETE FROM funcionario
                   WHERE (id_func = @idFunc);
                 ";
