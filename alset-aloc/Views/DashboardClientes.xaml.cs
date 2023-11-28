@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace alset_aloc.Views
 {
@@ -124,8 +125,8 @@ namespace alset_aloc.Views
         {
             var row = ItemsControl.ContainerFromElement((DataGrid)sender,
                                     e.OriginalSource as DependencyObject) as DataGridRow;
-       
-            if (row == null) return; 
+
+            if (row == null) return;
 
             var tableEntry = row.DataContext as TableEntry<Cliente>;
 
@@ -138,30 +139,32 @@ namespace alset_aloc.Views
 
 
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBox.Show("Deseja excluir os registros?", "Confirm", MessageBoxButton.OKCancel);
+            if (result == MessageBoxResult.OK)
+            {
+                foreach (TableEntry<Cliente> tableEntry in dgClientes.Items)
+                {
+                    if (tableEntry.IsSelected)
+                    {
+                        // A linha foi selecionada, você pode acessar o objeto Funcionario associado a esta linha.
+                        Cliente cliente = tableEntry.Item;
+
+                        var clienteDAO = new ClienteDAO();
+
+                        clienteDAO.Delete(cliente);
+
+                        // Faça o que precisar com o objeto funcionario.
+                    }
+                }
+            } //ao clicar neste botão ele verifica todos os campos que possuem checkbox marcada e retorna a linha em que em que o checkbox se encontra
+            LoadSearch();
+
+        }
     }
 
-        private void Button_Click_1(object sender , RoutedEventArgs e)
-            {
-                var result = MessageBox.Show("Deseja excluir os registros?" , "Confirm" , MessageBoxButton.OKCancel);
-                if (result == MessageBoxResult.OK)
-                {
-                    foreach (TableEntry<Cliente> tableEntry in dgClientes.Items)
-                        {
-                        if (tableEntry.IsSelected)
-                            {
-                            // A linha foi selecionada, você pode acessar o objeto Funcionario associado a esta linha.
-                            Cliente cliente= tableEntry.Item;
 
-                            var clienteDAO = new ClienteDAO();
-
-                            clienteDAO.Delete(cliente);
-
-                            // Faça o que precisar com o objeto funcionario.
-                            }
-                        }
-                } //ao clicar neste botão ele verifica todos os campos que possuem checkbox marcada e retorna a linha em que em que o checkbox se encontra
-                    LoadSearch();
-                
-        }
-        }
 }
+
