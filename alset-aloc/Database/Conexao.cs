@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using MySql.Data.MySqlClient;
 
 namespace alset_aloc.Database
@@ -34,6 +35,10 @@ namespace alset_aloc.Database
             }
             catch (Exception)
             {
+                MessageBox.Show("Erro de Conexão","Alerta");
+
+                connection = new MySqlConnection($"server={host};database={dbname};port={"3306"};user={user};password={password}");
+                connection.Open();
                 throw;
             }
         }

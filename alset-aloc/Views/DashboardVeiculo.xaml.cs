@@ -149,5 +149,28 @@ namespace alset_aloc.Views
             form.ShowDialog();
             this.CarregarBusca();
         }
-    }
+
+        private void Button_Click_1(object sender , RoutedEventArgs e)
+            {
+            var result = MessageBox.Show("Deseja excluir os registros?" , "Confirm" , MessageBoxButton.OKCancel);
+            if (result == MessageBoxResult.OK)
+                {
+                foreach (TableEntry<Veiculo> tableEntry in dgVeiculo.Items)
+                    {
+                    if (tableEntry.IsSelected)
+                        {
+                        // A linha foi selecionada, você pode acessar o objeto Funcionario associado a esta linha.
+                        Veiculo veiculo = tableEntry.Item;
+
+                        var veiculoDAO = new VeiculoDAO();
+
+                        veiculoDAO.Delete(veiculo);
+
+                        // Faça o que precisar com o objeto funcionario.
+                        }
+                    }
+                } //ao clicar neste botão ele verifica todos os campos que possuem checkbox marcada e retorna a linha em que em que o checkbox se encontra
+            CarregarBusca();
+            }
+        }
 }

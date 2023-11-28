@@ -65,6 +65,8 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
+                    DELETE FROM compra
+                    WHERE (id_forn_fk = @idForn);
                     DELETE FROM fornecedor
                     WHERE (id_forn = @idForn)
                 ";
