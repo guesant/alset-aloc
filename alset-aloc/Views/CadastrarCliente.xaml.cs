@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Security.Cryptography;
 
 namespace alset_aloc.Views
 {
@@ -20,15 +21,52 @@ namespace alset_aloc.Views
     /// </summary>
     public partial class CadastrarCliente : Window
     {
+
+        private long? _id;
+
         public CadastrarCliente()
         {
             InitializeComponent();
+        }
+
+        public CadastrarCliente(long? id)
+        {
+            if (id <= 0)
+            {
+                id = null;
+            }
+
+            _id = id;
+
+            InitializeComponent();
+
+            if (id != null)
+            {
+                FillForm();
+            }
         }
 
         private void btCadastrar_Click(object sender, RoutedEventArgs e)
         {
             var enderecoDAO = new EnderecoDAO();
             var endereco = new Endereco();
+            var clienteAtual = _id != null ? (new ClienteDAO()).GetById((int)_id) : null;
+
+            if (clienteAtual != null)
+            {
+                int? enderecoId = (int?)clienteAtual.EnderecoId;
+
+                if (enderecoId != null)
+                {
+                    endereco = enderecoDAO.GetById((int)enderecoId);
+                }
+            }
+
+            if (cbEnderecoPais.SelectedValue == null)
+            {
+                cbEnderecoPais.SelectedIndex = 1;
+            }
+
 
             ComboBoxItem countryItem = (ComboBoxItem)cbEnderecoPais.SelectedItem;
             endereco.Pais = countryItem.Content.ToString();
@@ -68,6 +106,49 @@ namespace alset_aloc.Views
         private void btCancelar_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void FillForm()
+        {
+            try
+            {
+                if (_id != 0 && _id != null)
+                {
+                    var clienteDAO = new ClienteDAO();
+                    var _cliente = clienteDAO.GetById((int)_id);
+                    var enderecoDAO = new EnderecoDAO();
+
+                    txtClienteNome.Text = _cliente.Nome;
+                    txtClienteCPF.Text = _cliente.CPF;
+                    txtClienteRg.Text = _cliente.RG;
+                    txtClienteCNH.Text = _cliente.CNH;
+                    txtClienteEmail.Text = _cliente.Email;
+                    txtClienteTelefone.Text = _cliente.Telefone;
+                    txtClienteGenero.Text = _cliente.Genero;
+                    txtClienteDataNascimento.Text = _cliente.DataNascimento.ToString();
+
+                    if (_cliente.EnderecoId != null)
+                    {
+                        var _endereco = enderecoDAO.GetById((int)_cliente.EnderecoId);
+
+                        txtEnderecoBairro.Text = _endereco.Bairro;
+                        txtEnderecoCidade.Text = _endereco.Cidade;
+                        txtEnderecoCodigoPostal.Text = _endereco.CodigoPostal;
+                        txtEnderecoComplemento.Text = _endereco.Complemento;
+                        txtEnderecoNumero.Text = _endereco.Numero.ToString();
+                        txtEnderecoRua.Text = _endereco.Rua;
+                        txtEnderecoUF.Text = _endereco.UF;
+                        cbEnderecoPais.SelectedValue = _endereco.Pais;
+
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

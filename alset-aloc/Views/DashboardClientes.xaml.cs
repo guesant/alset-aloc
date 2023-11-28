@@ -128,5 +128,24 @@ namespace alset_aloc.Views
             form.ShowDialog();
             this.LoadSearch();
         }
+
+        private void dgClientes_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var row = ItemsControl.ContainerFromElement((DataGrid)sender,
+                                    e.OriginalSource as DependencyObject) as DataGridRow;
+       
+            if (row == null) return; 
+
+            var tableEntry = row.DataContext as TableEntry<Cliente>;
+
+            var cliente = tableEntry.Item;
+
+            var window = new CadastrarCliente(cliente.Id);
+            window.ShowDialog();
+
+            LoadSearch();
+
+
+        }
     }
 }
