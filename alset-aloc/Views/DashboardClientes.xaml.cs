@@ -120,6 +120,26 @@ namespace alset_aloc.Views
             this.LoadSearch();
         }
 
+        private void dgClientes_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var row = ItemsControl.ContainerFromElement((DataGrid)sender,
+                                    e.OriginalSource as DependencyObject) as DataGridRow;
+       
+            if (row == null) return; 
+
+            var tableEntry = row.DataContext as TableEntry<Cliente>;
+
+            var cliente = tableEntry.Item;
+
+            var window = new CadastrarCliente(cliente.Id);
+            window.ShowDialog();
+
+            LoadSearch();
+
+
+        }
+    }
+
         private void Button_Click_1(object sender , RoutedEventArgs e)
             {
                 var result = MessageBox.Show("Deseja excluir os registros?" , "Confirm" , MessageBoxButton.OKCancel);
