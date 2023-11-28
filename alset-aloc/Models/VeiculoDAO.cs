@@ -57,6 +57,8 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
+                    DELETE FROM locacao
+                    WHERE (id_vei_fk = @idVei);
                     DELETE FROM veiculo
                     WHERE (id_vei = @idVei)
                 ";

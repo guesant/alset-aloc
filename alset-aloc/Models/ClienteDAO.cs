@@ -70,7 +70,8 @@ namespace alset_aloc.Models
             {
                 var query = conn.Query();
 
-                query.CommandText = @"
+                query.CommandText = @"DELETE FROM cliente_locacao
+                    WHERE (id_cli_fk = @idCli);
                     DELETE FROM cliente
                     WHERE (id_cli = @idCli)
                 ";

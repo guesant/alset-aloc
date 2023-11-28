@@ -12,7 +12,6 @@ rua_end varchar(45) not null,
 numero_end int not null,
 bairro_end varchar(45) not null,
 complemento_end varchar(45)
-
 );
 
 CREATE TABLE IF NOT EXISTS cliente (
@@ -70,7 +69,6 @@ descricao_vei varchar(200) not null
 
 );
 
-insert into veiculo values ("Virtus", "aishpda", 2021, ""
 
 CREATE TABLE IF NOT EXISTS locacao (
 
@@ -113,6 +111,8 @@ id_end_fk int,
 foreign key (id_end_fk) references endereco(id_end)
 
 );
+select * from fornecedor;
+
 
 CREATE TABLE IF NOT EXISTS produto (
 
@@ -128,6 +128,7 @@ CREATE TABLE IF NOT EXISTS compra (
 id_com int primary key not null auto_increment,
 data_compra_com date,
 numero_nota_com varchar(45),
+quantidade_com double,
 
 id_prod_fk int,
 id_forn_fk int,
@@ -183,3 +184,13 @@ foreign key (id_rec_fk) references recebimento(id_rec),
 foreign key (id_pag_fk) references pagamento(id_pag)
 
 );
+
+
+select * from funcionario;
+-- Inserir um funcionário
+INSERT INTO funcionario (nome_func, data_nascimento_func, cpf_func, rg_func, email_func, telefone_func, genero_func, id_end_fk)
+VALUES ('João da Silva', '1990-05-15', '12345678901', '789012345', 'joao.silva@email.com', '123-456-7890', 'Masculino', 1);
+
+-- Inserir outro funcionário
+INSERT INTO funcionario (nome_func, data_nascimento_func, cpf_func, rg_func, email_func, telefone_func, genero_func, id_end_fk)
+VALUES ('Maria Souza', '1985-03-20', '98765432101', '567890123', 'maria.souza@email.com', '987-654-3210', 'Feminino', 2);

@@ -184,7 +184,7 @@ namespace alset_aloc.Models
 
                 query.CommandText = @"
                     SELECT
-                        (id_loc, data_locacao_loc, data_devolucao_prevista, data_devolucao_efetivada, status_loc, id_vei_fk, id_fun_fk)
+                        id_loc, data_locacao_loc, data_devolucao_prevista, data_devolucao_efetivada, status_loc, id_vei_fk, id_fun_fk
                     FROM locacao
                     ;
                 "
