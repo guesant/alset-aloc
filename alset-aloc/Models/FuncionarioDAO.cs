@@ -207,7 +207,6 @@ namespace alset_aloc.Models
 
         public void Update(Funcionario t)
         {
-            MessageBox.Show(t.ToString());
             try
             {
                 var query = conn.Query();

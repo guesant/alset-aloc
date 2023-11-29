@@ -22,31 +22,41 @@ namespace alset_aloc.Views
     public partial class CadastrarFornecedor : Window
         {
 
-        public string PaisCBValue { get; set; } = "";
-
         private long? _id;
 
         public CadastrarFornecedor()
             {
             InitializeComponent();
+            BuscarDados();
             }
 
         public CadastrarFornecedor(long? id = null)
             {
 
             if (id <= 0)
-                {
+             {
                 id = null;
-                }
+            }
 
             _id = id;
 
             InitializeComponent();
+            BuscarDados();
+           
             if (id != null)
-                {
+            {
+                Title = "Visualizar Fornecedor";
+                btCadastrar.Content = "Atualizar";
+
                 FillForm();
-                }
             }
+            
+        }
+
+        private void BuscarDados()
+        {
+            cbEnderecoPais.ItemsSource = new PaisDAO().List();
+        }
 
         private void btCadastrar_Click(object sender , RoutedEventArgs e)
             {
@@ -73,9 +83,7 @@ namespace alset_aloc.Views
                 cbEnderecoPais.SelectedIndex = 1;
                 }
 
-            endereco.Pais = PaisCBValue;
-
-
+            endereco.Pais = (string)cbEnderecoPais.SelectedItem;
 
             endereco.CodigoPostal = txtEnderecoCodigoPostal.Text;
             endereco.UF = txtEnderecoUF.Text;
@@ -161,7 +169,7 @@ namespace alset_aloc.Views
                         txtEnderecoRua.Text = _endereco.Rua;
                         txtEnderecoUF.Text = _endereco.UF;
                         
-                        PaisCBValue = _endereco.Pais;
+                        cbEnderecoPais.SelectedItem = _endereco.Pais;
                     }
                     }
                 }
@@ -175,6 +183,11 @@ namespace alset_aloc.Views
             {
 
             }
+
+        private void cbEnderecoPais_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
+    }
     }
 

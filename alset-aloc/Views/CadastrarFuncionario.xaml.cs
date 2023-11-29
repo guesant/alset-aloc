@@ -1,4 +1,5 @@
-﻿using alset_aloc.Interfaces;
+﻿using alset_aloc.Helpers;
+using alset_aloc.Interfaces;
 using alset_aloc.Models;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace alset_aloc.Views
         public CadastrarFuncionario()
         {
             InitializeComponent();
+            BuscarDados();
         }
         
         public CadastrarFuncionario(long? id = null)
@@ -39,11 +41,19 @@ namespace alset_aloc.Views
             _id = id;
 
             InitializeComponent();
+            BuscarDados();
 
             if(id != null)
             {
+                Title = "Visualizar Funcionário";
+                btCadastrar.Content = "Atualizar";
                 FillForm();
             }
+        }
+
+        private void BuscarDados()
+        {
+            cbEnderecoPais.ItemsSource = new PaisDAO().List();
         }
 
         private void btCadastrar_Click(object sender, RoutedEventArgs e)
@@ -69,10 +79,7 @@ namespace alset_aloc.Views
                 cbEnderecoPais.SelectedIndex = 1;
             }
 
-            ComboBoxItem typeItem = (ComboBoxItem)cbEnderecoPais.SelectedValue;
-            endereco.Pais = typeItem.Content.ToString();
-
-
+            endereco.Pais = (string)cbEnderecoPais.SelectedValue;
 
             endereco.CodigoPostal = txtEnderecoCodigoPostal.Text;
             endereco.UF = txtEnderecoUF.Text;
@@ -164,8 +171,9 @@ namespace alset_aloc.Views
                         txtEnderecoNumero.Text = _endereco.Numero.ToString();
                         txtEnderecoRua.Text = _endereco.Rua;
                         txtEnderecoUF.Text = _endereco.UF;
-                        
-                        cbEnderecoPais.SelectedValue = _endereco.Pais;
+
+                        //cbEnderecoPais.SelectedIndex = new PaisDAO().FindId(_endereco.Pais);
+                        cbEnderecoPais.SelectedItem = _endereco.Pais;
                     }
                 }
             }
@@ -174,6 +182,5 @@ namespace alset_aloc.Views
                 MessageBox.Show($"Erro! {ex}");
             }
         }
-    
     }
 }

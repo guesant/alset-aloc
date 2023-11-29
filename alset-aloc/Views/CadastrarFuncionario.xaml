@@ -14,7 +14,7 @@
         TextElement.FontSize="14"
         FontFamily="{materialDesign:MaterialDesignFont}"
         
-        Title="CadastrarFuncionario" Height="358" Width="800">
+        Title="Cadastrar Funcionario" Height="358" Width="800">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -196,12 +196,9 @@
                 Grid.Row="3"
                 Grid.Column="0"
                 Grid.ColumnSpan="5"
-                SelectedValue="{Binding Path=endereco.Pais}"
                 materialDesign:HintAssist.Hint="País"
                 Style="{StaticResource MaterialDesignOutlinedComboBox}"
             >
-                <ComboBoxItem Content="Brasil" />
-                <ComboBoxItem Content="Moçambique" />
             </ComboBox>
 
             <TextBox 

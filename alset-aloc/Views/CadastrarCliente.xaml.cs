@@ -27,6 +27,8 @@ namespace alset_aloc.Views
         public CadastrarCliente()
         {
             InitializeComponent();
+            
+            BuscarDados();
         }
 
         public CadastrarCliente(long? id)
@@ -39,11 +41,18 @@ namespace alset_aloc.Views
             _id = id;
 
             InitializeComponent();
+            
+            BuscarDados();
 
             if (id != null)
             {
                 FillForm();
             }
+        }
+
+        private void BuscarDados()
+        {
+            cbEnderecoPais.ItemsSource = new PaisDAO().List();
         }
 
         private void btCadastrar_Click(object sender, RoutedEventArgs e)
@@ -68,8 +77,7 @@ namespace alset_aloc.Views
             }
 
 
-            ComboBoxItem countryItem = (ComboBoxItem)cbEnderecoPais.SelectedItem;
-            endereco.Pais = countryItem.Content.ToString();
+            endereco.Pais = (string)cbEnderecoPais.SelectedItem;
 
             endereco.CodigoPostal = txtEnderecoCodigoPostal.Text;
             endereco.UF = txtEnderecoUF.Text;
@@ -138,8 +146,8 @@ namespace alset_aloc.Views
                         txtEnderecoNumero.Text = _endereco.Numero.ToString();
                         txtEnderecoRua.Text = _endereco.Rua;
                         txtEnderecoUF.Text = _endereco.UF;
-                        cbEnderecoPais.SelectedValue = _endereco.Pais;
-
+                        
+                        cbEnderecoPais.SelectedItem = _endereco.Pais;
                     }
 
                 }
