@@ -190,6 +190,38 @@ foreign key (id_pag_fk) references pagamento(id_pag) on delete cascade
 
 
 select * from funcionario;
+INSERT INTO endereco (pais_end, codigo_postal_end, uf_end, cidade_end, rua_end, numero_end, bairro_end, complemento_end)
+VALUES ('Brasil', '123456', 'RO', 'Ji-parana', 'Rua das Ruas', 1528, 'Bairro dos bairros', 'Logradouro');
+
+INSERT INTO cliente (nome_cli, data_nascimento_cli, cpf_cli, rg_cli, cnh_cli, email_cli, telefone_cli, genero_cli, id_end_fk)
+VALUES ('Nome Cliente', '1990-01-01', '12345678901', '01234567890', '12345678901', 'cliente@email.com', '123-456-7890', 'Masculino', 1);
+
+INSERT INTO funcionario (nome_func, data_nascimento_func, cpf_func, rg_func, cnh_func, email_func, telefone_func, genero_func, cargo_func, id_end_fk)
+VALUES ('Nome Funcionario', '1980-02-15', '98765432101', '567890123', '123456789012', 'funcionario@email.com', '987-654-3210', 'Feminino', 'Cargo Funcionario', 2);
+
+
+-- Insert into veiculo table
+INSERT INTO veiculo (modelo_vei, marca_vei, ano_vei, placa_vei, numero_chassi_vei, cor_vei, data_compra_vei, descricao_vei)
+VALUES ('Modelo Carro', 'Marca Carro', 2022, 'ABC123', '12345678901234567', 'Azul', '2023-01-01', 'Descrição do veículo');
+
+-- Insert into fornecedor table
+INSERT INTO fornecedor (cnpj_forn, razao_social_forn, nome_fantasia_forn, email_forn, telefone_forn, id_end_fk)
+VALUES ('12345678901234', 'Razão Social', 'Nome Fantasia', 'fornecedor@email.com', '789-456-1230', 3);
+
+INSERT INTO produto (nome_prod, preco_prod, estoque_prod)
+VALUES ('Produto A', 49.99, 100);
+
+INSERT INTO pagamento (descricao_pag, valor_pag, data_vencimento_pag, data_credenciamento_pag, credor_pag, parcelas_pag, id_com_fk)
+VALUES ('Pagamento 1', 499.90, '2023-03-01', '2023-03-02', 'Credor 1', 1, 1);
+
+-- Insert into recebimento table
+INSERT INTO recebimento (descricao_rec, valor_rec, data_vencimento_rec, data_credenciamento_rec, pagador_rec, parcelas_rec, id_loc_fk)
+VALUES ('Recebimento 1', 499.90, '2023-03-01', '2023-03-02', 'Pagador 1', 1, 1);
+
+-- Insert into parcela table
+INSERT INTO parcela (data_vencimento_par, valor_par, forma_pagamento_par, numero_parcela_par, tipo_parcela_par, status_par, id_rec_fk, id_pag_fk)
+VALUES ('2023-03-01', 499.90, 'Boleto', 1, 'Parcela Única', 1, 1, 1);
+
 -- -- Inserir um funcionário
 -- INSERT INTO funcionario (nome_func, data_nascimento_func, cpf_func, rg_func, email_func, telefone_func, genero_func, id_end_fk)
 -- VALUES ('João da Silva', '1990-05-15', '12345678901', '789012345', 'joao.silva@email.com', '123-456-7890', 'Masculino', 1);
