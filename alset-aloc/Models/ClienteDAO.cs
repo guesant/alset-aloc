@@ -165,6 +165,41 @@ namespace alset_aloc.Models
             }
         }
 
+        public List<Cliente> Select(string nome)
+        {
+            try
+                {
+                var query = conn.Query();
+
+
+
+                
+                query.CommandText = @"
+                    SELECT id_cli, nome_cli, data_nascimento_cli, cpf_cli, rg_cli, cnh_cli, email_cli, telefone_cli, genero_cli, id_end_fk
+                    FROM cliente where nome_cli like '%@texto%';";
+        
+                query.Parameters.AddWithValue("@texto" , nome);
+                MySqlDataReader dtReader = query.ExecuteReader();
+
+                List<Cliente> listaDeRetorno = new List<Cliente>();
+
+                while (dtReader.Read())
+                {
+                    Cliente cliente = ParseReader(dtReader);
+                    listaDeRetorno.Add(cliente);
+                    }
+                    return listaDeRetorno;
+                }
+                catch (Exception e)
+                {
+                throw e;
+                }
+                finally
+                {
+                conn.Close();
+                }
+            }
+
         public List<Cliente> List()
         {
             try

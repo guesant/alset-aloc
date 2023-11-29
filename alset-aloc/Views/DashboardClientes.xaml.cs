@@ -140,6 +140,12 @@ namespace alset_aloc.Views
 
         }
 
+        private void dgCliente_TextChanged(object sender, TextChangedEventArgs args)
+        {
+                var nome = SearchBar.Text;
+                var clienteDao = new ClienteDAO();
+                dgClientes.ItemsSource = clienteDao.Select("p");
+        }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             var result = MessageBox.Show("Deseja excluir os registros?", "Confirm", MessageBoxButton.OKCancel);
