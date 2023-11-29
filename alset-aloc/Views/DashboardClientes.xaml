@@ -84,7 +84,8 @@
                 materialDesign:HintAssist.Hint="Pesquisar..."
                 materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxTextCountComboBox, Converter={StaticResource BooleanToVisibilityConverter}}"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                VerticalScrollBarVisibility="Auto"
+                TextChanged="dgCliente_TextChanged" VerticalScrollBarVisibility="Auto"
+                x:Name="SearchBar"
             />
         </Grid>
 
