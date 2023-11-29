@@ -128,7 +128,7 @@
                 Style="{StaticResource MaterialDesignOutlinedDatePicker}" Grid.Row="2" Grid.Column="10"
             />
             <TextBox 
-                Margin="3,5,8,0"
+                Margin="3,5,5,0"
                 Padding="10"
                 Grid.Row="3"
                 Grid.Column="0"

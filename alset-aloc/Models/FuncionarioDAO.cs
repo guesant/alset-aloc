@@ -3,6 +3,7 @@ using System;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using System.Windows;
+using alset_aloc.Helpers;
 
 namespace alset_aloc.Models
 {
@@ -29,6 +30,9 @@ namespace alset_aloc.Models
             funcionario.Telefone = dtReader.GetString("telefone_func");
             funcionario.Genero = dtReader.GetString("genero_func");
 
+            funcionario.Cargo = dtReader.GetString("cargo_func");
+            funcionario.CNH = dtReader.GetString("cnh_func");
+
             var enderecoIdRaw = dtReader.GetOrdinal("id_end_fk");
 
             if (!dtReader.IsDBNull(enderecoIdRaw))
@@ -47,11 +51,13 @@ namespace alset_aloc.Models
         {
             query.Parameters.AddWithValue("@nome", t.Nome);
             query.Parameters.AddWithValue("@dataNascimento", t.DataNascimento);
-            query.Parameters.AddWithValue("@cpf", t.Cpf);
+            query.Parameters.AddWithValue("@cpf", Mascaras.LimparCPF(t.Cpf));
             query.Parameters.AddWithValue("@rg", t.Rg);
             query.Parameters.AddWithValue("@email", t.Email);
             query.Parameters.AddWithValue("@telefone", t.Telefone);
             query.Parameters.AddWithValue("@genero", t.Genero);
+            query.Parameters.AddWithValue("@cnh", t.CNH);
+            query.Parameters.AddWithValue("@cargo", t.Cargo);
 
             query.Parameters.AddWithValue("@enderecoId", t.EnderecoID);
         }
@@ -101,7 +107,7 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT id_func, nome_func, data_nascimento_func, cpf_func, rg_func, email_func, telefone_func, genero_func, id_end_fk
+                    SELECT id_func, nome_func, data_nascimento_func, cpf_func, rg_func, email_func, telefone_func, genero_func, cnh_func, cargo_func, id_end_fk
                     FROM funcionario
                     WHERE (id_func = @idFunc);
                 ";
@@ -139,9 +145,9 @@ namespace alset_aloc.Models
                 query.CommandText = @"
                     INSERT INTO 
                         funcionario 
-                        (nome_func, data_nascimento_func, cpf_func, rg_func, email_func, telefone_func, genero_func, id_end_fk)
+                        (nome_func, data_nascimento_func, cpf_func, rg_func, email_func, telefone_func, genero_func, cnh_func, cargo_func, id_end_fk)
                     VALUES 
-                        (@nome, @dataNascimento, @cpf, @rg, @email, @telefone, @genero, @enderecoId);
+                        (@nome, @dataNascimento, @cpf, @rg, @email, @telefone, @genero, @cnh, @cargo, @enderecoId);
                 ";
 
                 BindQuery(t, query);
@@ -173,7 +179,7 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT id_func, nome_func, data_nascimento_func, cpf_func, rg_func, email_func, telefone_func, genero_func, id_end_fk
+                    SELECT id_func, nome_func, data_nascimento_func, cpf_func, rg_func, email_func, telefone_func, genero_func, cnh_func, cargo_func, id_end_fk
                     FROM funcionario;";
 
 
@@ -216,6 +222,8 @@ namespace alset_aloc.Models
                         email_func = @email,
                         telefone_func = @telefone,
                         genero_func = @genero,
+                        cnh_func = @cnh,
+                        cargo_func = @cargo,
                         id_end_fk = @enderecoId
                     WHERE (id_func = @idFunc);
                 ";

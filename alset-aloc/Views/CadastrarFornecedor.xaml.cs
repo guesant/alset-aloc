@@ -21,6 +21,9 @@ namespace alset_aloc.Views
     /// </summary>
     public partial class CadastrarFornecedor : Window
         {
+
+        public string PaisCBValue { get; set; } = "";
+
         private long? _id;
 
         public CadastrarFornecedor()
@@ -70,8 +73,7 @@ namespace alset_aloc.Views
                 cbEnderecoPais.SelectedIndex = 1;
                 }
 
-            ComboBoxItem typeItem = (ComboBoxItem) cbEnderecoPais.SelectedValue;
-            endereco.Pais = typeItem.Content.ToString();
+            endereco.Pais = PaisCBValue;
 
 
 
@@ -158,8 +160,9 @@ namespace alset_aloc.Views
                         txtEnderecoNumero.Text = _endereco.Numero.ToString();
                         txtEnderecoRua.Text = _endereco.Rua;
                         txtEnderecoUF.Text = _endereco.UF;
-                        cbEnderecoPais.SelectedValue = _endereco.Pais;
-                        }
+                        
+                        PaisCBValue = _endereco.Pais;
+                    }
                     }
                 }
             catch (Exception ex)

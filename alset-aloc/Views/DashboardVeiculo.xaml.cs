@@ -150,6 +150,26 @@ namespace alset_aloc.Views
             this.CarregarBusca();
         }
 
+        private void dgVeiculo_MouseDoubleClick(object sender , MouseButtonEventArgs e)
+            {
+                var row = ItemsControl.ContainerFromElement((DataGrid) sender ,
+                                        e.OriginalSource as DependencyObject) as DataGridRow;
+
+                if (row == null)
+                    return;
+
+                var tableEntry = row.DataContext as TableEntry<Veiculo>;
+
+                var veiculo = tableEntry.Item;
+
+                var window = new CadastrarVeiculo(veiculo.Id);
+                window.ShowDialog();
+                
+                CarregarBusca();
+
+
+            }
+
         private void Button_Click_1(object sender , RoutedEventArgs e)
             {
             var result = MessageBox.Show("Deseja excluir os registros?" , "Confirm" , MessageBoxButton.OKCancel);
@@ -172,5 +192,6 @@ namespace alset_aloc.Views
                 } //ao clicar neste botão ele verifica todos os campos que possuem checkbox marcada e retorna a linha em que em que o checkbox se encontra
             CarregarBusca();
             }
-        }
+
+    }
 }

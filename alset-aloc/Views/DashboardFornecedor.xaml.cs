@@ -104,6 +104,7 @@ namespace alset_aloc.Views
             // ...
         }
 
+     
 
         private void CarregarBusca()
         {

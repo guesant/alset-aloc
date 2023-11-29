@@ -10,6 +10,7 @@ namespace alset_aloc.Models
     {
 
         public long Id { get; set; }
+        
         public string Nome { get; set; }
         public DateTime DataNascimento { get; set; }
         public string Cpf { get; set; }
@@ -18,11 +19,13 @@ namespace alset_aloc.Models
         public string Telefone { get; set; }
         public string Genero { get; set; }
 
+        
+
         public long? EnderecoID { get; set; }
 
         public string? CNH { get; set; }
 
-        public string? Cargo { get; set; }
+        public string Cargo { get; set; }
 
         public string ToString()
         {

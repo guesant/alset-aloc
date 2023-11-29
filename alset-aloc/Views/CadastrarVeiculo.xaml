@@ -14,7 +14,7 @@
         TextElement.FontSize="14"
         FontFamily="{materialDesign:MaterialDesignFont}"
         
-        Title="CadastrarFuncionario" Height="248" Width="800">
+        Title="Cadastrar Veículo" Height="248" Width="800">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -177,7 +177,7 @@
         </Grid>
 
         <Grid Grid.Column="0" Grid.ColumnSpan="2" Margin="0,169,0,0" Grid.RowSpan="2">
-            <Button x:Name="btCadastrar" Margin="20 0" HorizontalAlignment="Right" Click="btCadastrar_Click">Cadastrar</Button>
+            <Button x:Name="btCadastrar" Margin="20 0" HorizontalAlignment="Right" Click="btCadastrar_Click">Salvar</Button>
         </Grid>
     </Grid>
 </Window>

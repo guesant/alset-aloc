@@ -304,7 +304,7 @@
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="0">
-            <Button x:Name="btCadastrar" Margin="20 0" HorizontalAlignment="Right" Click="btCadastrar_Click">Cadastrar</Button>
+            <Button x:Name="btCadastrar" Margin="20 0" HorizontalAlignment="Right" Click="btCadastrar_Click">Salvar</Button>
         </Grid>
     </Grid>
 </Window>

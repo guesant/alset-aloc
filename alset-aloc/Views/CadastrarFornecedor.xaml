@@ -94,7 +94,7 @@
             />
 
             <TextBox 
-                Margin="10,5,51,5"
+                Margin="5,5,51,5"
                 Padding="10"
                 Grid.Row="1"
                 Grid.ColumnSpan="6"
@@ -121,7 +121,7 @@
             />
 
             <TextBox 
-                Margin="11,5,10,5"
+                Margin="11,5,5,5"
                 Padding="10"
                 Grid.Row="1"
                 Grid.Column="11"
@@ -140,7 +140,7 @@
                 Grid.Row="3"
                 Grid.Column="0"
                 Grid.ColumnSpan="5"
-                SelectedValue="{Binding Path=endereco.Pais}"
+                SelectedValue="{Binding PaisCBValue}"
                 materialDesign:HintAssist.Hint="País"
                 Style="{StaticResource MaterialDesignOutlinedComboBox}"
             >
@@ -248,7 +248,7 @@
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="0">
-            <Button x:Name="btCadastrar" Margin="20 0" HorizontalAlignment="Right" Click="btCadastrar_Click">Cadastrar</Button>
+            <Button x:Name="btCadastrar" Margin="20 10" HorizontalAlignment="Right" Click="btCadastrar_Click">Cadastrar</Button>
         </Grid>
     </Grid>
 </Window>

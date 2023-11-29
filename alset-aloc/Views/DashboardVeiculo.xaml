@@ -90,6 +90,6 @@
             />
         </Grid>
 
-        <DataGrid x:Name="dgVeiculo" Margin="15" Grid.Row="2" AutoGenerateColumns="False" />
+        <DataGrid MouseDoubleClick="dgVeiculo_MouseDoubleClick"  x:Name="dgVeiculo" Margin="15" Grid.Row="2" AutoGenerateColumns="False" />
     </Grid>
 </UserControl>

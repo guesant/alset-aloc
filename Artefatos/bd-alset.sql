@@ -1,118 +1,128 @@
-CREATE DATABASE IF NOT EXISTS aloc;
+drop database if exists aloc;
+
+CREATE DATABASE aloc;
+
 USE aloc;
 
 CREATE TABLE IF NOT EXISTS endereco (
+    id_end int primary key not null auto_increment,
 
-id_end int primary key not null auto_increment,
-pais_end varchar(45) not null,
-codigo_postal_end varchar(45) not null,
-uf_end varchar(2) not null,
-cidade_end varchar(45) not null,
-rua_end varchar(45) not null,
-numero_end int not null,
-bairro_end varchar(45) not null,
-complemento_end varchar(45)
+    pais_end varchar(45) not null,
+    codigo_postal_end varchar(45) not null,
+    uf_end varchar(2) not null,
+    cidade_end varchar(45) not null,
+    rua_end varchar(45) not null,
+    numero_end int not null,
+    bairro_end varchar(45) not null,
+
+    complemento_end varchar(45)
 );
 
 CREATE TABLE IF NOT EXISTS cliente (
+    id_cli int primary key not null auto_increment,
 
-id_cli int primary key not null auto_increment,
-nome_cli varchar(200) not null, 
-data_nascimento_cli date not null,
-cpf_cli varchar(11) not null,
-rg_cli varchar(30) not null,
-cnh_cli varchar(30) not null,
-email_cli varchar(45) not null,
-telefone_cli varchar(45) not null, 
-genero_cli varchar(45) not null,
+    nome_cli varchar(200) not null, 
+    data_nascimento_cli date not null,
+    cpf_cli varchar(11) not null,
+    rg_cli varchar(30) not null,
+    cnh_cli varchar(30) not null,
+    email_cli varchar(45) not null,
+    telefone_cli varchar(45) not null, 
+    genero_cli varchar(45) not null,
     
-id_end_fk int,
-foreign key (id_end_fk) references endereco(id_end)
+    id_end_fk int null,
+    foreign key (id_end_fk) references endereco(id_end) on delete set null
 );
 
 CREATE TABLE IF NOT EXISTS funcionario (
+    id_func int primary key auto_increment not null,
 
-id_func int primary key auto_increment not null,
-nome_func varchar(300) not null,
-data_nascimento_func date not null,
-cpf_func varchar(11) not null,
-rg_func varchar(45) not null,
-email_func varchar(45) not null,
-telefone_func varchar(45) not null,
-genero_func varchar(45),
+    nome_func varchar(300) not null,
+    
+    data_nascimento_func date not null,
+    
+    cpf_func varchar(11) not null,
+    rg_func varchar(45) null,
 
-id_end_fk int,
-foreign key (id_end_fk) references endereco(id_end)
+    cnh_func varchar(200),
+
+    email_func varchar(45) not null,
+    telefone_func varchar(45) not null,
+    genero_func varchar(45),
+
+    cargo_func varchar(200) not null,
+
+    id_end_fk int,
+    foreign key (id_end_fk) references endereco(id_end) on delete set null
 );
 
 CREATE TABLE IF NOT EXISTS usuario (
-id_usua int primary key auto_increment not null,
+    id_usua int primary key auto_increment not null,
 
-usuario_usua varchar(45) not null,
-senha_usua varchar(45) not null,
+    usuario_usua varchar(45) not null,
+    senha_usua varchar(45) not null,
 
-id_func_fk int,
-foreign key (id_func_fk) references funcionario(id_func)
+    id_func_fk int,
+    foreign key (id_func_fk) references funcionario(id_func) on delete cascade
 );
 
 CREATE TABLE IF NOT EXISTS veiculo (
+    id_vei int primary KEY auto_increment not null,
 
-id_vei int primary KEY auto_increment not null,
-modelo_vei varchar(45) not null,
-marca_vei varchar(45) not null,
-ano_vei int not null,
-placa_vei varchar(45) not null,
-numero_chassi_vei varchar(45) not null,
-cor_vei varchar(45) not null,
-data_compra_vei date not null,
-descricao_vei varchar(200) not null
-
+    modelo_vei varchar(45) not null,
+    marca_vei varchar(45) not null,
+    ano_vei int not null,
+    placa_vei varchar(45) not null,
+    numero_chassi_vei varchar(45) not null,
+    cor_vei varchar(45) not null,
+    data_compra_vei date not null,
+    descricao_vei varchar(200) not null
 );
 
 
 CREATE TABLE IF NOT EXISTS locacao (
+    id_loc int primary key not null auto_increment,
 
-id_loc int primary key not null auto_increment,
-data_locacao_loc datetime not null,
-data_devolucao_prevista datetime not null,
-data_devolucao_efetivada date,
-status_loc tinyint not null,
+    data_locacao_loc datetime not null,
+    data_devolucao_prevista datetime not null,
+    data_devolucao_efetivada date,
+    status_loc tinyint not null,
 
-id_vei_fk int,
-id_fun_fk int,
+    id_vei_fk int,
+    id_fun_fk int,
 
-foreign key (id_vei_fk) references veiculo(id_vei),
-foreign key (id_fun_fk) references funcionario(id_func)
-
+    foreign key (id_vei_fk) references veiculo(id_vei) on delete cascade,
+    foreign key (id_fun_fk) references funcionario(id_func) on delete set null
 );
 
 CREATE TABLE IF NOT EXISTS cliente_locacao (
 
-id_cli_loc int primary key not null auto_increment,
+    id_cli_loc int primary key not null auto_increment,
 
-id_cli_fk int not null,
-id_loc_fk int not null,
+    id_cli_fk int not null,
+    id_loc_fk int not null,
 
-foreign key (id_cli_fk) references cliente(id_cli),
-foreign key (id_loc_fk) references locacao(id_loc)
+    foreign key (id_cli_fk) references cliente(id_cli) on delete cascade,
+    foreign key (id_loc_fk) references locacao(id_loc) on delete cascade
 
 );
 
 CREATE TABLE IF NOT EXISTS fornecedor (
 
-id_forn int primary key not null auto_increment,
-cnpj_forn varchar(20),
-razao_social_forn varchar(45),
-nome_fantasia_forn varchar(45),
-email_forn varchar(60),
-telefone_forn varchar(45),
+    id_forn int primary key not null auto_increment,
 
-id_end_fk int,
-foreign key (id_end_fk) references endereco(id_end)
+    cnpj_forn varchar(20),
+    razao_social_forn varchar(45),
+    nome_fantasia_forn varchar(45),
+    email_forn varchar(60),
+    telefone_forn varchar(45),
+
+    id_end_fk int,
+    foreign key (id_end_fk) references endereco(id_end) on delete set null
 
 );
-select * from fornecedor;
 
+select * from fornecedor;
 
 CREATE TABLE IF NOT EXISTS produto (
 
@@ -133,8 +143,8 @@ quantidade_com double,
 id_prod_fk int,
 id_forn_fk int,
 
-foreign key (id_prod_fk) references produto(id_prod),
-foreign key (id_forn_fk) references fornecedor(id_forn)
+foreign key (id_prod_fk) references produto(id_prod) on delete cascade,
+foreign key (id_forn_fk) references fornecedor(id_forn) on delete set null
 
 );
 
@@ -149,7 +159,7 @@ credor_pag varchar(45),
 parcelas_pag int,
 
 id_com_fk int,
-foreign key (id_com_fk) references compra(id_com)
+foreign key (id_com_fk) references compra(id_com) on delete cascade
 );
 
 CREATE TABLE IF NOT EXISTS recebimento (
@@ -163,7 +173,7 @@ pagador_rec varchar(200) not null,
 parcelas_rec int,
 
 id_loc_fk int,
-foreign key (id_loc_fk) references locacao(id_loc)
+foreign key (id_loc_fk) references locacao(id_loc) on delete cascade
 
 );
 
@@ -180,8 +190,8 @@ status_par tinyint,
 id_rec_fk int,
 id_pag_fk int,
 
-foreign key (id_rec_fk) references recebimento(id_rec),
-foreign key (id_pag_fk) references pagamento(id_pag)
+foreign key (id_rec_fk) references recebimento(id_rec) on delete cascade,
+foreign key (id_pag_fk) references pagamento(id_pag) on delete cascade
 
 );
 

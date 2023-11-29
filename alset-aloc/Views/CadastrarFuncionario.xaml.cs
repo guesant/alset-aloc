@@ -164,6 +164,7 @@ namespace alset_aloc.Views
                         txtEnderecoNumero.Text = _endereco.Numero.ToString();
                         txtEnderecoRua.Text = _endereco.Rua;
                         txtEnderecoUF.Text = _endereco.UF;
+                        
                         cbEnderecoPais.SelectedValue = _endereco.Pais;
                     }
                 }
