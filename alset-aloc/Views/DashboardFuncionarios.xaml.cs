@@ -117,7 +117,7 @@ namespace alset_aloc.Views
             DataGridTextColumn colunaGenero = new DataGridTextColumn();
             Binding colunaGeneroBinding = new Binding("Item.Genero");
             colunaGenero.Binding = colunaGeneroBinding;
-            colunaGenero.Header = "Genero";
+            colunaGenero.Header = "Gênero";
             colunaGenero.IsReadOnly = true;
             dgFuncionarios.Columns.Add(colunaGenero);
 
@@ -191,6 +191,11 @@ namespace alset_aloc.Views
                 CarregarBusca();
                 }
             }
+
+        private void dgFuncionarios_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
+    }
     }
     

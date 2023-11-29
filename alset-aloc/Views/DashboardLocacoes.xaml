@@ -89,6 +89,6 @@
             />
         </Grid>
 
-        <DataGrid x:Name="dgLocacoes" Margin="15" Grid.Row="2" AutoGenerateColumns="False"/>
+        <DataGrid x:Name="dgLocacoes" Margin="15" Grid.Row="2" AutoGenerateColumns="False" MouseDoubleClick="dgLocacoes_MouseDoubleClick"/>
     </Grid>
 </UserControl>

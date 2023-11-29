@@ -22,10 +22,22 @@ namespace alset_aloc.Models
             locacao.Id = dtReader.GetInt64("id_loc");
 
             locacao.DataLocacao = dtReader.GetDateTime("data_locacao_loc");
-            locacao.DataDevolucaoPrevista = dtReader.GetDateTime("data_devolucao_prevista");
-            
+
+            var rawDataDevolucaoPrevista = dtReader.GetOrdinal("data_devolucao_prevista");
+
+            if (!dtReader.IsDBNull(rawDataDevolucaoPrevista))
+            {
+                locacao.DataDevolucaoPrevista = dtReader.GetDateTime(rawDataDevolucaoPrevista);
+            }
+            else
+            {
+                locacao.DataDevolucaoPrevista = null;
+            }
+
             locacao.Status = dtReader.GetBoolean("status_loc");
 
+            locacao.ValorDiaria = dtReader.GetDouble("valor_diaria_loc");
+            
             var rawDataDevolucaoEfetivada = dtReader.GetOrdinal("data_devolucao_efetivada");
 
             if (!dtReader.IsDBNull(rawDataDevolucaoEfetivada))
@@ -59,6 +71,17 @@ namespace alset_aloc.Models
                 locacao.FuncionarioId = null;
             }
 
+            var rawClienteId = dtReader.GetOrdinal("id_cli_fk");
+
+            if (!dtReader.IsDBNull(rawClienteId))
+            {
+                locacao.ClienteId = dtReader.GetInt64(rawClienteId);
+            }
+            else
+            {
+                locacao.ClienteId = null;
+            }
+
             return locacao;
         }
 
@@ -68,8 +91,10 @@ namespace alset_aloc.Models
             query.Parameters.AddWithValue("@dataDevolucaoPrevista", t.DataDevolucaoPrevista);
             query.Parameters.AddWithValue("@dataDevolucaoEfetivada", t.DataDevolucaoEfetivada);
             query.Parameters.AddWithValue("@status", t.Status);
+            query.Parameters.AddWithValue("@valorDiaria", t.ValorDiaria);
             query.Parameters.AddWithValue("@veiculoId", t.VeiculoId);
             query.Parameters.AddWithValue("@funcionarioId", t.FuncionarioId);
+            query.Parameters.AddWithValue("@clienteId", t.ClienteId);
         }
 
         static void BindQueryId(long id, MySqlCommand query)
@@ -114,7 +139,7 @@ namespace alset_aloc.Models
                 var query = conn.Query();
 
                 query.CommandText = @"
-                    SELECT id_loc, data_locacao_loc, data_devolucao_prevista, data_devolucao_efetivada, status_loc, id_vei_fk, id_fun_fk
+                    SELECT id_loc, data_locacao_loc, data_devolucao_prevista, data_devolucao_efetivada, valor_diaria_loc, status_loc, id_vei_fk, id_fun_fk, id_cli_fk
                     FROM locacao
                     WHERE (id_loc = @idLoc);
                 ";
@@ -150,9 +175,9 @@ namespace alset_aloc.Models
 
                 query.CommandText = @"
                     INSERT INTO 
-                        locacao (data_locacao_loc, data_devolucao_prevista, data_devolucao_efetivada, status_loc, id_vei_fk, id_fun_fk)
+                        locacao (data_locacao_loc, data_devolucao_prevista, data_devolucao_efetivada, status_loc, id_vei_fk, id_fun_fk, id_cli_fk, valor_diaria_loc)
                     VALUES
-                        (@dataLocacao, @dataDevolucaoPrevista, @dataDevolucaoEfetivada, @status, @veiculoId, @funcionarioId)
+                        (@dataLocacao, @dataDevolucaoPrevista, @dataDevolucaoEfetivada, @status, @veiculoId, @funcionarioId, @clienteId, @valorDiaria)
                 ";
 
                 BindQuery(t, query);
@@ -184,7 +209,7 @@ namespace alset_aloc.Models
 
                 query.CommandText = @"
                     SELECT
-                        id_loc, data_locacao_loc, data_devolucao_prevista, data_devolucao_efetivada, status_loc, id_vei_fk, id_fun_fk
+                        id_loc, data_locacao_loc, data_devolucao_prevista, data_devolucao_efetivada, status_loc, id_vei_fk, id_fun_fk, id_cli_fk, valor_diaria_loc
                     FROM locacao
                     ;
                 "
@@ -225,8 +250,10 @@ namespace alset_aloc.Models
                         data_devolucao_prevista = @dataDevolucaoPrevista,
                         data_devolucao_efetivada = @dataDevolucaoEfetivada,
                         status_loc = @status,
+                        valor_diaria_loc = @valorDiaria,
                         id_vei_fk = @veiculoId,
-                        id_fun_fk = @funcionarioId
+                        id_fun_fk = @funcionarioId,
+                        id_cli_fk = @clienteId
                     WHERE (id_loc = @idLoc);
                 ";
 

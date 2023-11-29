@@ -21,6 +21,24 @@ namespace alset_aloc.Views
     /// <summary>
     /// Interação lógica para DashboardLocacoes.xam
     /// </summary>
+    /// 
+
+    class DashboardLocacoesItem
+    {
+        public Locacao Locacao { get; set; }
+        public Veiculo Veiculo {get;set;}
+        public Cliente Cliente {get;set;}
+        public Funcionario Funcionario {get;set;}
+
+        public string Situacao
+        {
+            get
+            {
+                return this.Locacao.Status ? "Concluído" : "Locado";
+            }
+        }
+    }
+
     public partial class DashboardLocacoes : UserControl
     {
 
@@ -47,21 +65,21 @@ namespace alset_aloc.Views
             dgLocacoes.Columns.Add(selectedColumn);
 
             DataGridTextColumn idColumn = new DataGridTextColumn();
-            Binding columnIdBinding = new Binding("Item.Id");
+            Binding columnIdBinding = new Binding("Item.Locacao.Id");
             idColumn.Binding = columnIdBinding;
             idColumn.Header = "Código";
             idColumn.IsReadOnly = true;
             dgLocacoes.Columns.Add(idColumn);
 
             DataGridTextColumn clienteColumn = new DataGridTextColumn();
-            Binding columnClienteBinding = new Binding("Item.Cliente");
+            Binding columnClienteBinding = new Binding("Item.Cliente.Nome");
             clienteColumn.Binding = columnIdBinding;
             clienteColumn.Header = "Cliente";
             clienteColumn.IsReadOnly = true;
             dgLocacoes.Columns.Add(clienteColumn);
 
             DataGridTextColumn vehicleColumn = new DataGridTextColumn();
-            Binding columnVehicleBinding = new Binding("Item.Veículo");
+            Binding columnVehicleBinding = new Binding("Item.Veiculo.Placa");
             vehicleColumn.Binding = columnVehicleBinding;
             vehicleColumn.Header = "Veículo";
             vehicleColumn.IsReadOnly = true;
@@ -69,7 +87,7 @@ namespace alset_aloc.Views
 
 
             DataGridTextColumn valueDailyColumn = new DataGridTextColumn();
-            Binding columnValueDailyBinding = new Binding("Item.ValorDiária");
+            Binding columnValueDailyBinding = new Binding("Item.Locacao.ValorDiaria");
 
             columnValueDailyBinding.StringFormat = "R$ ";
             valueDailyColumn.Binding = columnValueDailyBinding;
@@ -78,7 +96,7 @@ namespace alset_aloc.Views
             dgLocacoes.Columns.Add(valueDailyColumn);
 
             DataGridTextColumn dateColumn = new DataGridTextColumn();
-            Binding columnDateBinding = new Binding("Item.DataLocação");
+            Binding columnDateBinding = new Binding("Item.Locacao.DataLocacao");
             columnDateBinding.StringFormat = "dd/MM/yyyy";
             dateColumn.Binding = columnDateBinding;
             dateColumn.Header = "Data da Locação";
@@ -87,7 +105,7 @@ namespace alset_aloc.Views
 
 
             DataGridTextColumn statusColumn = new DataGridTextColumn();
-            Binding columnStatusBinding = new Binding("Item.Status");
+            Binding columnStatusBinding = new Binding("Item.Situacao");
             statusColumn.Binding = columnStatusBinding;
             statusColumn.Header = "Status";
             statusColumn.IsReadOnly = true;
@@ -101,7 +119,18 @@ namespace alset_aloc.Views
             var locacoesDAO = new LocacaoDAO();
             var locacoes = locacoesDAO.List();
 
-            var dataRequired = locacoes.Select(locacao => new TableEntry<Locacao> (locacao, this.selectedIds)).ToList();
+            var dataRequired = locacoes.Select(locacao =>
+            {
+
+                var item = new DashboardLocacoesItem();
+                item.Locacao = locacao;
+
+                item.Cliente = locacao.ClienteId != null ? new ClienteDAO().GetById((int)locacao.ClienteId):null;
+                item.Veiculo = locacao.VeiculoId != null ? new VeiculoDAO().GetById((int)locacao.VeiculoId) : null;
+                item.Funcionario = locacao.FuncionarioId != null ? new FuncionarioDAO().GetById((int)locacao.FuncionarioId) : null;
+
+                return new TableEntry<DashboardLocacoesItem>(item, this.selectedIds);
+            }).ToList();
 
             dgLocacoes.ItemsSource = dataRequired;
         }
@@ -111,6 +140,24 @@ namespace alset_aloc.Views
             var form = new CadastrarLocacao();
             form.ShowDialog();
             this.LoadSearch();
+        }
+
+        private void dgLocacoes_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var row = ItemsControl.ContainerFromElement((DataGrid)sender,
+                                  e.OriginalSource as DependencyObject) as DataGridRow;
+
+            if (row == null)
+                return;
+
+            var tableEntry = row.DataContext as TableEntry<DashboardLocacoesItem>;
+
+            var func = tableEntry.Item;
+
+            var window = new CadastrarLocacao(func.Locacao.Id);
+            window.ShowDialog();
+
+            LoadSearch();
         }
     }
         

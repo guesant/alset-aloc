@@ -84,27 +84,20 @@ CREATE TABLE IF NOT EXISTS locacao (
     id_loc int primary key not null auto_increment,
 
     data_locacao_loc datetime not null,
-    data_devolucao_prevista datetime not null,
+    data_devolucao_prevista datetime null,
     data_devolucao_efetivada date,
     status_loc tinyint not null,
 
+    valor_diaria_loc double,
+
     id_vei_fk int,
-    id_fun_fk int,
-
     foreign key (id_vei_fk) references veiculo(id_vei) on delete cascade,
-    foreign key (id_fun_fk) references funcionario(id_func) on delete set null
-);
+    
+    id_fun_fk int,
+    foreign key (id_fun_fk) references funcionario(id_func) on delete set null,
 
-CREATE TABLE IF NOT EXISTS cliente_locacao (
-
-    id_cli_loc int primary key not null auto_increment,
-
-    id_cli_fk int not null,
-    id_loc_fk int not null,
-
-    foreign key (id_cli_fk) references cliente(id_cli) on delete cascade,
-    foreign key (id_loc_fk) references locacao(id_loc) on delete cascade
-
+    id_cli_fk int,
+    foreign key (id_cli_fk) references cliente(id_cli) on delete set null
 );
 
 CREATE TABLE IF NOT EXISTS fornecedor (
@@ -197,10 +190,10 @@ foreign key (id_pag_fk) references pagamento(id_pag) on delete cascade
 
 
 select * from funcionario;
--- Inserir um funcionário
-INSERT INTO funcionario (nome_func, data_nascimento_func, cpf_func, rg_func, email_func, telefone_func, genero_func, id_end_fk)
-VALUES ('João da Silva', '1990-05-15', '12345678901', '789012345', 'joao.silva@email.com', '123-456-7890', 'Masculino', 1);
+-- -- Inserir um funcionário
+-- INSERT INTO funcionario (nome_func, data_nascimento_func, cpf_func, rg_func, email_func, telefone_func, genero_func, id_end_fk)
+-- VALUES ('João da Silva', '1990-05-15', '12345678901', '789012345', 'joao.silva@email.com', '123-456-7890', 'Masculino', 1);
 
--- Inserir outro funcionário
-INSERT INTO funcionario (nome_func, data_nascimento_func, cpf_func, rg_func, email_func, telefone_func, genero_func, id_end_fk)
-VALUES ('Maria Souza', '1985-03-20', '98765432101', '567890123', 'maria.souza@email.com', '987-654-3210', 'Feminino', 2);
+-- -- Inserir outro funcionário
+-- INSERT INTO funcionario (nome_func, data_nascimento_func, cpf_func, rg_func, email_func, telefone_func, genero_func, id_end_fk)
+-- VALUES ('Maria Souza', '1985-03-20', '98765432101', '567890123', 'maria.souza@email.com', '987-654-3210', 'Feminino', 2);

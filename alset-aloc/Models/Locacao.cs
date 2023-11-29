@@ -12,7 +12,7 @@ namespace alset_aloc.Models
 
         public DateTime DataLocacao { get; set; }
 
-        public DateTime DataDevolucaoPrevista { get; set;  }
+        public DateTime? DataDevolucaoPrevista { get; set;  }
 
         public DateTime? DataDevolucaoEfetivada { get; set; }
 
@@ -21,5 +21,9 @@ namespace alset_aloc.Models
         public long? VeiculoId { get; set; }
 
         public long? FuncionarioId { get; set; }
+
+        public long? ClienteId { get; set; }
+
+        public double ValorDiaria { get; set; }
     }
 }

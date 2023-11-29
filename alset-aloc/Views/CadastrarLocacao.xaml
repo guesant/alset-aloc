@@ -7,6 +7,7 @@
         mc:Ignorable="d"
               WindowStartupLocation="CenterScreen"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        d:DataContext="{d:DesignInstance Type=local:CadastrarLocacao}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.FontWeight="Medium"
@@ -68,33 +69,32 @@
                 <RowDefinition  Height="auto" />
             </Grid.RowDefinitions>
 
-            <TextBox
-                x:Name="txtLocacaoCliente" 
+            <ComboBox 
+                x:Name="cbCliente"
                 Margin="5"
                 Padding="10"
                 Grid.Column="0"
+                SelectedValuePath="Id"
+                DisplayMemberPath="Nome"
                 Grid.ColumnSpan="15"
-                Background="White"
                 materialDesign:HintAssist.Hint="Cliente"
-                materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxTextCountComboBox, Converter={StaticResource BooleanToVisibilityConverter}}"
-                Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                VerticalScrollBarVisibility="Auto"
-            />
+                Style="{StaticResource MaterialDesignOutlinedComboBox}"
+            >
+            </ComboBox>
 
-
-            <TextBox 
-                Margin="5"
+            <ComboBox x:Name="cbVeiculo"
+               Margin="5"
                 Padding="10"
                 Grid.Row="1"
                 Grid.Column="0"
                 Grid.ColumnSpan="15"
-                Background="White"
-                x:Name="txtLocacaoVeiculo" 
-                materialDesign:HintAssist.Hint="Veiculo"
-                materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxTextCountComboBox, Converter={StaticResource BooleanToVisibilityConverter}}"
-                Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                VerticalScrollBarVisibility="Auto" 
-            />
+                SelectedValuePath="Id"
+                DisplayMemberPath="Placa"
+                materialDesign:HintAssist.Hint="Veículo"
+                Style="{StaticResource MaterialDesignOutlinedComboBox}"
+            >
+            </ComboBox>
+
             <DatePicker
                 Margin="4,5,10,5"
                    Grid.ColumnSpan="5"

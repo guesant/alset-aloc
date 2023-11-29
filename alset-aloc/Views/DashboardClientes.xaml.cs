@@ -142,9 +142,7 @@ namespace alset_aloc.Views
 
         private void dgCliente_TextChanged(object sender, TextChangedEventArgs args)
         {
-                var nome = SearchBar.Text;
-                var clienteDao = new ClienteDAO();
-                dgClientes.ItemsSource = clienteDao.Select("p");
+                
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -166,8 +164,20 @@ namespace alset_aloc.Views
                     }
                 }
             } //ao clicar neste botão ele verifica todos os campos que possuem checkbox marcada e retorna a linha em que em que o checkbox se encontra
+           
             LoadSearch();
 
+        }
+
+        private void txtSearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //var txtSearchBar = (TextBox)sender;
+
+            //var nome = txtSearchBar.Text;
+
+            //var clienteDao = new ClienteDAO();
+
+            //dgClientes.ItemsSource = clienteDao.Select(nome);
         }
     }
 

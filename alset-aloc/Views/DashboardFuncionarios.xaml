@@ -100,6 +100,6 @@
          
         </Grid>
 
-        <DataGrid x:Name="dgFuncionarios" Margin="15" Grid.Row="2" AutoGenerateColumns="False" MouseDoubleClick="dgFuncionarios_MouseDoubleClick"  />
+        <DataGrid x:Name="dgFuncionarios" Margin="15" Grid.Row="2" AutoGenerateColumns="False" MouseDoubleClick="dgFuncionarios_MouseDoubleClick" SelectionChanged="dgFuncionarios_SelectionChanged"  />
     </Grid>
 </UserControl>

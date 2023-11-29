@@ -68,14 +68,24 @@
                 Grid.Column="1"
                 Padding="0"
                 Width="35"
+                Height="35"
                 Command="{Binding SearchCommand}"
                 CommandParameter="{Binding ElementName=SearchBox, Path=Text}"
-                Style="{StaticResource MaterialDesignOutlinedButton}" Grid.ColumnSpan="2" Margin="0,0,355,0" Click="Button_Click_1"
+                Style="{StaticResource MaterialDesignOutlinedButton}" Grid.ColumnSpan="2" HorizontalAlignment="Left" Click="Button_Click_1" VerticalAlignment="Top"
             >
-                <materialDesign:PackIcon Kind="Delete" />
+                <materialDesign:PackIcon x:Name="btDelete" Kind="Delete" RenderTransformOrigin="0.5,0.5" >
+                    <materialDesign:PackIcon.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="0.247"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </materialDesign:PackIcon.RenderTransform>
+                </materialDesign:PackIcon>
             </Button>
 
-            <TextBox 
+            <TextBox x:Name="txtSearchBar" 
                 Width="250"
                 Grid.Column="3"
                 Padding="10 6"
@@ -83,9 +93,8 @@
                 VerticalAlignment="Center"
                 materialDesign:HintAssist.Hint="Pesquisar..."
                 materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxTextCountComboBox, Converter={StaticResource BooleanToVisibilityConverter}}"
-                Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                TextChanged="dgCliente_TextChanged" VerticalScrollBarVisibility="Auto"
-                x:Name="SearchBar"
+                Style="{StaticResource MaterialDesignOutlinedTextBox}" VerticalScrollBarVisibility="Auto"
+                 TextChanged="txtSearchBar_TextChanged"
             />
         </Grid>
 
