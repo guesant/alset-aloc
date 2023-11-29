@@ -3,6 +3,7 @@ using alset_aloc.Interfaces;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace alset_aloc.Models
 {
@@ -63,6 +64,7 @@ namespace alset_aloc.Models
 
         public void Delete(Recebimento t)
         {
+
             try
             {
                 var query = conn.Query();

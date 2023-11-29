@@ -67,6 +67,7 @@ namespace alset_aloc.Views
             }
 
             var locacao = new Locacao();
+            var recebimento = new Recebimento();
 
             if (locacaoAtual != null)
             {
@@ -82,14 +83,29 @@ namespace alset_aloc.Views
 
             locacao.VeiculoId = Convert.ToInt32(cbVeiculo.SelectedValue);
             locacao.ClienteId = Convert.ToInt32(cbCliente.SelectedValue);
+
+            var initialDate = (DateTime)dtLocacaoData.SelectedDate;
+            var finalDate = (DateTime)dtLocacaoDevolucao.SelectedDate;
+            var value = Convert.ToDouble(txtLocacaoValorDiaria.Text);
+
+            int differenceInDaysInt = (int)(finalDate - initialDate).TotalDays;
+
+            double valorTotal = differenceInDaysInt * value;
+
+            recebimento.Descricao = $"Locação de Veículo";
+            recebimento.Valor = valorTotal;
+            recebimento.DataCredenciamento = (DateTime)dtLocacaoData.SelectedDate;
+            recebimento.DataVencimento = (DateTime)dtLocacaoDevolucao.SelectedDate;
+            recebimento.Pagador = "Teste";
+            recebimento.Parcelas = 1;
             
-            // TODO
-            // locacao.FuncionarioId = null;
 
             if (locacao.Id == 0)
             {
                 var locacaoDAO = new LocacaoDAO();
+                var recebimentoDAO = new RecebimentoDAO();
                 locacaoDAO.Insert(locacao);
+                
                 MessageBox.Show("Locação cadastrado com sucesso!", "ALOC - Alset");
             }
             else

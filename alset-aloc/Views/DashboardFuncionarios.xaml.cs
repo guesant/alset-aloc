@@ -185,6 +185,7 @@ namespace alset_aloc.Views
 
                         funcionarioDAO.Delete(funcionario);
 
+
                         // Faça o que precisar com o objeto funcionario.
                         }
                     } //ao clicar neste botão ele verifica todos os campos que possuem checkbox marcada e retorna a linha em que em que o checkbox se encontra

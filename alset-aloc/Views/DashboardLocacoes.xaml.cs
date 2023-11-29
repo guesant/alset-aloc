@@ -73,7 +73,7 @@ namespace alset_aloc.Views
 
             DataGridTextColumn clienteColumn = new DataGridTextColumn();
             Binding columnClienteBinding = new Binding("Item.Cliente.Nome");
-            clienteColumn.Binding = columnIdBinding;
+            clienteColumn.Binding = columnClienteBinding;
             clienteColumn.Header = "Cliente";
             clienteColumn.IsReadOnly = true;
             dgLocacoes.Columns.Add(clienteColumn);
@@ -87,9 +87,10 @@ namespace alset_aloc.Views
 
 
             DataGridTextColumn valueDailyColumn = new DataGridTextColumn();
-            Binding columnValueDailyBinding = new Binding("Item.Locacao.ValorDiaria");
-
-            columnValueDailyBinding.StringFormat = "R$ ";
+            Binding columnValueDailyBinding = new Binding("Item.Locacao.ValorDiaria")
+            {
+                StringFormat = "R$ {0:N2}" // Isso formatará o número com duas casas decimais
+            };
             valueDailyColumn.Binding = columnValueDailyBinding;
             valueDailyColumn.Header = "Valor Diária";
             valueDailyColumn.IsReadOnly = true;

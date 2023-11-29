@@ -118,7 +118,7 @@ namespace alset_aloc.Views
             Binding colunaDataCompraBinding = new Binding("Item.DataCompra");
             colunaDataCompraBinding.StringFormat = "dd/MM/yyyy";
             colunaDataCompra.Binding = colunaDataCompraBinding;
-            colunaDataCompra.Header = "Data de Nascimento";
+            colunaDataCompra.Header = "Data de Compra";
             colunaDataCompra.IsReadOnly = true;
             dgVeiculo.Columns.Add(colunaDataCompra);
 

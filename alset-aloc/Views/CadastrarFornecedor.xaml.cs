@@ -137,7 +137,7 @@ namespace alset_aloc.Views
                 }
 
             this.Close();
-            }
+        }
 
 
         private void FillForm()
