@@ -222,6 +222,71 @@ VALUES ('Recebimento 1', 499.90, '2023-03-01', '2023-03-02', 'Pagador 1', 1, 1);
 INSERT INTO parcela (data_vencimento_par, valor_par, forma_pagamento_par, numero_parcela_par, tipo_parcela_par, status_par, id_rec_fk, id_pag_fk)
 VALUES ('2023-03-01', 499.90, 'Boleto', 1, 'Parcela Única', 1, 1, 1);
 
+
+-- Additional inserts for endereco table
+INSERT INTO endereco (pais_end, codigo_postal_end, uf_end, cidade_end, rua_end, numero_end, bairro_end, complemento_end)
+VALUES ('Espanha', '567890', 'MD', 'Madrid', 'Calle Principal', 789, 'Barrio Central', 'Apartamento 302');
+
+INSERT INTO endereco (pais_end, codigo_postal_end, uf_end, cidade_end, rua_end, numero_end, bairro_end, complemento_end)
+VALUES ('Estados Unidos', '90210', 'CA', 'Beverly Hills', 'Sunset Boulevard', 1234, 'Luxury District', 'Suite 567');
+
+-- Additional inserts for cliente table
+INSERT INTO cliente (nome_cli, data_nascimento_cli, cpf_cli, rg_cli, cnh_cli, email_cli, telefone_cli, genero_cli, id_end_fk)
+VALUES ('Cliente Adicional 1', '1985-06-20', '98765432102', '5678901234', '98765432102', 'cliente2@email.com', '987-654-3211', 'Feminino', 2);
+
+INSERT INTO cliente (nome_cli, data_nascimento_cli, cpf_cli, rg_cli, cnh_cli, email_cli, telefone_cli, genero_cli, id_end_fk)
+VALUES ('Cliente Adicional 2', '1992-03-12', '87654321098', '5432109876', '87654321098', 'cliente3@email.com', '876-543-2109', 'Masculino', 3);
+
+-- Additional inserts for funcionario table
+INSERT INTO funcionario (nome_func, data_nascimento_func, cpf_func, rg_func, cnh_func, email_func, telefone_func, genero_func, cargo_func, id_end_fk)
+VALUES ('Funcionario Adicional 1', '1982-10-25', '87654321021', '543210987', '87654321021', 'funcionario2@email.com', '876-543-2108', 'Masculino', 'Cargo Funcionario 2', 3);
+
+INSERT INTO funcionario (nome_func, data_nascimento_func, cpf_func, rg_func, cnh_func, email_func, telefone_func, genero_func, cargo_func, id_end_fk)
+VALUES ('Funcionario Adicional 2', '1990-07-15', '76543210987', '4321098765', '76543210987', 'funcionario3@email.com', '765-432-1098', 'Feminino', 'Cargo Funcionario 3', 1);
+
+
+
+-- Additional inserts for veiculo table
+INSERT INTO veiculo (modelo_vei, marca_vei, ano_vei, placa_vei, numero_chassi_vei, cor_vei, data_compra_vei, descricao_vei)
+VALUES ('Modelo Carro 2', 'Marca Carro 2', 2021, 'XYZ789', '98765432109876543', 'Preto', '2023-02-15', 'Descrição do veículo 2');
+
+INSERT INTO veiculo (modelo_vei, marca_vei, ano_vei, placa_vei, numero_chassi_vei, cor_vei, data_compra_vei, descricao_vei)
+VALUES ('Modelo Carro 3', 'Marca Carro 3', 2023, 'JKL012', '54321098765432109', 'Branco', '2023-04-01', 'Descrição do veículo 3');
+
+-- Additional inserts for fornecedor table
+INSERT INTO fornecedor (cnpj_forn, razao_social_forn, nome_fantasia_forn, email_forn, telefone_forn, id_end_fk)
+VALUES ('98765432109876', 'Razão Social 2', 'Nome Fantasia 2', 'fornecedor2@email.com', '987-654-3211', 1);
+
+INSERT INTO fornecedor (cnpj_forn, razao_social_forn, nome_fantasia_forn, email_forn, telefone_forn, id_end_fk)
+VALUES ('87654321098765', 'Razão Social 3', 'Nome Fantasia 3', 'fornecedor3@email.com', '876-543-2109', 2);
+
+-- Additional inserts for produto table
+INSERT INTO produto (nome_prod, preco_prod, estoque_prod)
+VALUES ('Produto B', 29.99, 50);
+
+INSERT INTO produto (nome_prod, preco_prod, estoque_prod)
+VALUES ('Produto C', 39.99, 75);
+
+-- Additional inserts for compra table
+-- Additional inserts for pagamento table
+INSERT INTO pagamento (descricao_pag, valor_pag, data_vencimento_pag, data_credenciamento_pag, credor_pag, parcelas_pag, id_com_fk)
+VALUES ('Pagamento 2', 299.90, '2023-04-01', '2023-04-02', 'Credor 2', 1, 2);
+
+INSERT INTO pagamento (descricao_pag, valor_pag, data_vencimento_pag, data_credenciamento_pag, credor_pag, parcelas_pag, id_com_fk)
+VALUES ('Pagamento 3', 399.90, '2023-05-01', '2023-05-02', 'Credor 3', 1, 3);
+
+-- Additional inserts for recebimento table
+INSERT INTO recebimento (descricao_rec, valor_rec, data_vencimento_rec, data_credenciamento_rec, pagador_rec, parcelas_rec, id_loc_fk)
+VALUES ('Recebimento 2', 299.90, '2023-04-01', '2023-04-02', 'Pagador 2', 1, 2);
+
+INSERT INTO recebimento (descricao_rec, valor_rec, data_vencimento_rec, data_credenciamento_rec, pagador_rec, parcelas_rec, id_loc_fk)
+VALUES ('Recebimento 3', 399.90, '2023-05-01', '2023-05-02', 'Pagador 3', 1, 3);
+
+-- Additional inserts for parcela table
+INSERT INTO parcela (data_vencimento_par, valor_par, forma_pagamento_par, numero_parcela_par, tipo_parcela_par, status_par, id_rec_fk, id_pag_fk)
+VALUES ('2023-04-01', 
+    
+
 -- -- Inserir um funcionário
 -- INSERT INTO funcionario (nome_func, data_nascimento_func, cpf_func, rg_func, email_func, telefone_func, genero_func, id_end_fk)
 -- VALUES ('João da Silva', '1990-05-15', '12345678901', '789012345', 'joao.silva@email.com', '123-456-7890', 'Masculino', 1);
